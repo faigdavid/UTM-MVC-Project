@@ -20,6 +20,7 @@ Two Personas
   
 User Stories
 Persona1 : https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Persona1_userStory.md
+
 Persona2 : https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Persona2_userStory.md
 
 MVP
