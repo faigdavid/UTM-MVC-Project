@@ -10,7 +10,7 @@ Introducing the team
   
   Short bio for each member: https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/MemberBio.md
 
-Choosing the project
+Choosing the project: https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Choosing_the_project.md
 
 Two Personas 
 
