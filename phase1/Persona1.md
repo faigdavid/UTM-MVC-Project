@@ -4,7 +4,7 @@ Age 23. Chinese/Male
 
 Leox is a second year art student at UTM campus.
 He has a girlfriend.
-Leox is also a music enthusiast.
+Leox is a music enthusiast.
 He always have a guitar by his side.
 He does not go to the campus for most of the time.
 He spends his time either singing solo on the street or play with his music band.
