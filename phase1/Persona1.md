@@ -1,7 +1,7 @@
 Leox The Non-Main-Stream Musician Wannabe:
+Age 23. Chinese/Male
 Leox is a second year art student at UTM campus.
 He has a girlfriend.
-
 Leox is also a music enthusiast.
 He always have a guitar by his side.
 He does not go to the campus for most of the time.
