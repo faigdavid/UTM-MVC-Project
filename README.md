@@ -15,6 +15,7 @@ Choosing the project
 Two Personas 
 
   Persona 1:
+  
   Persona 2:
   
 User Stories
