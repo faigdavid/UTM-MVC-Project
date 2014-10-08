@@ -30,7 +30,7 @@ https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Choosi
 
   https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/MVP.md
 
-Release & Iteration Planning
+###Release & Iteration Planning###
 
   https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Planning.md
 
