@@ -17,8 +17,7 @@ Seung Hyun Kim (Shaun)
 
 Carlito Llena
 
--if you are this person write your bio here-
-
+Computer scientist who is a pianist and a famed duelist (don't challenge me if you're a scrub pls).  If Carlito isn't duelling someone, he also does coding in his spare time, mainly in programming languages such as, C, Java, and Javascript. An unfortunate weakness of this man is that he has no experience in Android development. Carlito is a hard working determined person who would be willing to do a fair share of work for the team. 
 
 Henry Ekelund
 
