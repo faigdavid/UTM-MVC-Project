@@ -7,7 +7,8 @@ This person is also the creater of the religion "benism".
 
 Dmitry Vasin
 
--if you are this person write your bio here-
+A programmer proficient in languages such as C, Java, and Python, with some expirience developing Android apps. 
+This person is a capable coder but his strengths lie in writing technical reports and creating various documents required for efficient development.  His main weakness is not having expirience creating pretty designs and user interfaces. Instead he enjoys working on the underlying code, with a focus on network security. His hobbies include travelling to countries all over the globe and mountain hiking. On October 7th, 2014 Dmitry achieved the honor of becoming the High Priest of Benism.
 
 
 Seung Hyun Kim (Shaun)
