@@ -5,7 +5,7 @@
 
 ###Introducing the team###
 
-  One picture with all group members:
+  One picture with all group members: https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/GROUP_PHOTO.jpg
   
   
   Short bio for each member: https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/MemberBio.md
