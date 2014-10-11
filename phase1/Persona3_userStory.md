@@ -17,7 +17,7 @@
 		
 		filter/ being able to remove messages.
 
-#Credit#
+##Credit##
 	Dmitry Vasin
 	Zhang An Ni (Ben)
 	Calito Llena
