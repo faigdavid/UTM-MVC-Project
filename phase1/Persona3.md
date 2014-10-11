@@ -13,7 +13,7 @@ As a teacher's  assistant she dedicates a portion of her time to mark submission
 her students. Being a female in computer science, she is used to boys looking at her as if she were a unicorn.
 Because of this, she prefers to avoid direct communication with her peers. 
 
-#Credit#
+##Credit##
 	Dmitry Vasin
 	Zhang An Ni (Ben)
 	Calito Llena
