@@ -1,6 +1,6 @@
-As Leox 
+##As Leox## 
     
-    I want to have a public lobby, club section
+		I want to have a public lobby, club section
     
 		I anonymous private messaging
 		
