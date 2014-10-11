@@ -1,6 +1,6 @@
 #Chuan Deags#
 
-#AGE: 21#
+AGE: 21
 
 Female
 
