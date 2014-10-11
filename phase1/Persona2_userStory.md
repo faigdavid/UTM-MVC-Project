@@ -1,6 +1,6 @@
 #As Bin #
 
-    		I want a guest option, so my mother can join 
+    	I want a guest option, so my mother can join 
     
 		I want to have a history tracker, so I/my mother can see where I had been.
 		
