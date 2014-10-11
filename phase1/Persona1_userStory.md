@@ -1,4 +1,4 @@
-##As Leox## 
+##As Leox##
     
 		I want to have a public lobby, club section
     
