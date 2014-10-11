@@ -1,4 +1,4 @@
-##As Leox##
+#As Leox#
     
 		I want to have a public lobby, club section
     
@@ -14,3 +14,9 @@
 		
 		send feedbacks to the server
 		
+##Credit##
+	Dmitry Vasin
+	Zhang An Ni (Ben)
+	Calito Llena
+	David Faig
+	Henry Ekelund
