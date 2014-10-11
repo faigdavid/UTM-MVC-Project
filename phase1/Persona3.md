@@ -16,6 +16,7 @@ Because of this, she prefers to avoid direct communication with her peers.
 ##Credit##
 	Dmitry Vasin
 	Zhang An Ni (Ben)
+	Seung Hyun Kim (Shaun)
 	Calito Llena
 	David Faig
 	Henry Ekelund
