@@ -8,6 +8,7 @@ Bin is a first year student in Commerce. In high school, he was at the top of hi
 ##Credit##
 	Dmitry Vasin
 	Zhang An Ni (Ben)
+	Seung Hyun Kim (Shaun)
 	Calito Llena
 	David Faig
 	Henry Ekelund
