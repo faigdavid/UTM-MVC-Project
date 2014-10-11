@@ -1,5 +1,7 @@
-Chuan Deags
-AGE: 21
+#Chuan Deags#
+
+#AGE: 21#
+
 Female
 
 
@@ -10,3 +12,10 @@ She spends much of her time in the computer labs completing assignments and play
 As a teacher's  assistant she dedicates a portion of her time to mark submissions and communicate important information to
 her students. Being a female in computer science, she is used to boys looking at her as if she were a unicorn.
 Because of this, she prefers to avoid direct communication with her peers. 
+
+#Credit#
+	Dmitry Vasin
+	Zhang An Ni (Ben)
+	Calito Llena
+	David Faig
+	Henry Ekelund
