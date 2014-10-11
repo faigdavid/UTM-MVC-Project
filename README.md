@@ -20,11 +20,15 @@ https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Choosi
   
   Persona 2: https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Persona2.md
   
+  Persona 3: https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Persona3.md
+  
 ###User Stories###
 
   Persona1 : https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Persona1_userStory.md
 
   Persona2 : https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Persona2_userStory.md
+  
+  Persona3 : https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/blob/master/phase1/Persona3_userStory.md
 
 ###MVP###
 
