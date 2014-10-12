@@ -13,8 +13,7 @@ This person is a capable coder but his strengths lie in writing technical report
 
 Seung Hyun Kim (Shaun)
 
--if you are this person write your bio here-
-
+Computer scientist who has great coding skills in various languages such as C, java, python, and scheme. Seung Hyun is a landed immigrant from South Korea since 2006 and is currently studying at University of Toronto majoring computer science. His strength lies in solving challenging problems related to coding such as finding more efficient algorithms to solve given problems. However, his weakness lies in writing documents and time managements. Moreover, he gets bored easily when he has to code that is more of macro-like-work, i.e. test cases, rather than that requires critical thinking. His overall goal in life is to take a part in coding a program that is used widely worldwide and get paid well.
 
 Carlito Llena
 
