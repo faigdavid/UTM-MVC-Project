@@ -27,4 +27,4 @@ Henry Ekelund
 
 David Faig
 
--if you are this person write your bio here-
+A student at University of Toronto with a dream of becoming a great video game developer. He has mediocre school skills, and manages to get by with average grades. His goals are fueled by his childhood filled with video games and fantasy books. He enjoys pitching new movie and game concept ideas to his peers and seeing their skeptical reactions.  So far David has made one game, and written several short stories that are hidden somewhere in his room. Hopefully David's imagination and game-fueled drive can become an asset for this rag-tag team of interweb magicians.
