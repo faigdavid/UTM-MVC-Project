@@ -20,7 +20,6 @@
 |Keep Moderator                         |Moderator      |
 |Store Messages                         |               |
 |Disallow banned User from joining      |               |
-|                                       |               |
 
 #User#
 | Responsibilities                      | Collaborators |
