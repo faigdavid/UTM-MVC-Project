@@ -22,7 +22,7 @@ Computer scientist who is a pianist and a famed duelist (don't challenge him if 
 
 Henry Ekelund
 
--if you are this person write your bio here-
+A full time student with a chip on his shoulder, Henry spends pretty much all of his time not at school playing games, both traditional and electronic. His overall goal in life is either to find employment at Valve, or start his own business and retire young. His strengths are in algothrim development and deployment, as well as working well under extreme pressure. Is not very good at paying attention to things he has no interest in.
 
 
 David Faig
