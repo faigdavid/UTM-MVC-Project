@@ -2,17 +2,17 @@
     
 		I want to have a public lobby, club section
     
-		I anonymous private messaging
+		I want to have anonymous private messaging
 		
 		I should be able to edit my screen name
 		
-		Related topics
+		I want to be able to see related topics to the one I'm viewing
 		
-		post links
+		I want to be able to post links
 		
-		able to move around layouts
+		I want to be able to move around layouts
 		
-		send feedbacks to the server
+		I want to be able to send feedback to the developers
 		
 ##Credit##
 	Dmitry Vasin
