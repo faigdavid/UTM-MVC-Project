@@ -15,7 +15,7 @@
 		
 		I should be able to flag important notes, "pin" the information on a visible area.
 		
-		filter/ being able to remove messages.
+		I should be able to filter and/or remove messages.
 
 ##Credit##
 	Dmitry Vasin
