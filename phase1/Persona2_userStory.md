@@ -17,6 +17,10 @@
 	
 	2 | I want to manage who is able to see my topics
 
+##Legend##
+1 - This would be our top priority, something  that would be a requirement for a well-functioning product
+2 - A useful feature but not something that is of utmost importance
+3 - A feature we would like to add, but only if it doesn't take too much time and effort
 
 ##Credit##
 	Dmitry Vasin
