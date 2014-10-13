@@ -1,18 +1,18 @@
 #As Leox#
     
-		I want to have a public lobby, club section 3
+		3 | I want to have a public lobby, club section 
     
-		I want to have anonymous private messaging 2
+		2 | I want to have anonymous private messaging 
 		
-		I should be able to edit my screen name 2
+		2 | I should be able to edit my screen name 
 		
-		I want to be able to see related topics to the one I'm viewing 3
+		3 | I want to be able to see related topics to the one I'm viewing 
 		
-		I want to be able to post links 1
+		1 | I want to be able to post links 
 		
-		I want to be able to move around layouts 3
+		3 | I want to be able to move around layouts 
 		
-		I want to be able to send feedback to the developers 3
+		3 | I want to be able to send feedback to the developers 
 		
 ##Credit##
 	Dmitry Vasin
