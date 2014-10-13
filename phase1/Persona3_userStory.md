@@ -16,6 +16,15 @@
 		1 | I should be able to flag important notes, "pin" the information on a visible area.
 		
 		1 | I should be able to filter and/or remove messages.
+		
+##Legend##
+
+	1 - This would be our top priority, something  that would be a requirement for a well-functioning product
+
+	2 - A useful feature but not something that is of utmost importance
+
+	3 - A feature we would like to add, but only if it doesn't take too much time and effort
+
 
 ##Credit##
 	Dmitry Vasin
