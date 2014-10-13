@@ -3,9 +3,11 @@
 |:--------------------------------------|:-------------:|
 |Create connection with Users           |Board          |
 |Disallow banned user from Connecting   |User           |
-|Keep Admin                             |Admin          |
-|Keep all the boards and show it to User|               |
-|Create/delete Boards                  |               |
+|Keep Admin info.                       |Admin          |
+|Keep boards info.                      |               |
+|Create/delete Boards                   |               |
+|Keep User info.                        |               |
+|Communicate with User                  |               |
 
 #Message#
 | Responsibilities                      | Collaborators |
@@ -18,8 +20,9 @@
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
 |Keep Moderator                         |Moderator      |
-|Store Messages                         |               |
+|Store Messages                         |Server         |
 |Disallow banned User from joining      |               |
+|Keep User info. Show messages to User  |               |
 
 #User#
 | Responsibilities                      | Collaborators |
