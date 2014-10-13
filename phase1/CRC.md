@@ -7,13 +7,13 @@
 |Keep boards info.                      |               |
 |Create/delete Boards                   |               |
 |Keep User info.                        |               |
-|Communicate with User                  |               |
+|Manages User                           |               |
 
 #Message#
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
 |Send messages to Board.                |Board          |
-|Keep Message informations such as <br> author(User), time it was posted, related topic|User|
+|Keep Message logs such as <br> author(User), time it was posted, related topic|User|
 |Store Message string                   |               |
 
 #Board#
@@ -31,6 +31,8 @@
 |Create new board with new topics       |Board          |
 |Send & receive messages                |               |
 |Edit user info (nickname, description) |               |
+|See avaliable topics                   |               |
+|Username/password                      |               |
 
 #Moderator#
 | Responsibilities                      | Collaborators |
@@ -39,6 +41,12 @@
 |Ban Users from the board               |Board          |
 |Delete messages in the Board           |               |
 |Set announcements                      |               | 
+
+#Topic Owner#
+| Responsibilities                      | Collaborators |
+|:--------------------------------------|:-------------:|
+|Inherit Moderator, has higher privilege -<BR> Have control over his/her own topic|Board|
+|Promote user to moderator              |               |
 
 #Admin#
 | Responsibilities                      | Collaborators |
