@@ -32,7 +32,6 @@
 #User_DAO#
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
-|A list of users and their info         |               |
 |Store all user information             |               |
 |Check user information                 |               |
 |Change user information                |               |
