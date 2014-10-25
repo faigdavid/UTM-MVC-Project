@@ -33,12 +33,13 @@
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
 |Store all user information             |               |
-|Check user information                 |               |
+|Read user information                  |               |
 |Change user information                |               |
 
 #BoardMessages_DAO#
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
+|Store/remove all messages              |               |
 |Write to messages on a board           |               |
 |Read from messages on a board          |               |
 
