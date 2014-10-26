@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class SuperBoardDAO implements SuperBoardDAOInt{
 
 	@Override
-	public void createBoard(Board board) {
+	public void storeBoard(Board board) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -21,5 +21,6 @@ public class SuperBoardDAO implements SuperBoardDAOInt{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
