@@ -1,3 +1,4 @@
+package main;
 public interface BoardMsg_DAO {
 	public void storeMessage(String message);
 	public void removeMessage(String message);

@@ -1,3 +1,4 @@
+package main;
 public interface BoardUser_DAO {
 	public void storeUser(User user);
 	public void removeUser(User user);

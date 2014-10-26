@@ -1,3 +1,4 @@
+package main;
 public interface User_DAO {
 	public void storeUserInformation();
 	public void getUserInformation();

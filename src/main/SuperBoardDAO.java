@@ -1,3 +1,4 @@
+package main;
 public interface SuperBoard_DAO {
 	public void storeBoard(Board board);
 	public void removeBoard(Board board);
