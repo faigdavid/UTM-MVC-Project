@@ -10,7 +10,15 @@ public class Board {
 		this.topic = topic;
 	}
 	
-	public void writeMessage(int userid, String text){
-		dao.storeMessage(text);
+	public void writeMessage(Message message){
+		dao.storeMessage(message);
+	}
+
+	public String getTopic() {
+		return topic;
+	}
+
+	public int getId() {
+		return id;
 	}
 }
