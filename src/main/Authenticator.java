@@ -14,7 +14,7 @@ public class Authenticator {
 	public boolean Authenticate {
 		boolean isAuthenticated = false; //assume false
 		if(userDAO.getUserInformation() != null) {
-			isAutthentcated = true;
+			isAuthentcated = true;
 		}
 		return isAuthenticated;
 	}
