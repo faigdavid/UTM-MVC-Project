@@ -10,11 +10,6 @@ public class SuperBoard{
 	private SuperBoard(ArrayList<Board> Superboard_ArrayList) {
 		this.Superboard_ArrayList = Superboard_ArrayList;
 	}
-	
-	public SuperBoard SuperBoardInit (ArrayList<Board> a){
-		this.Superboard_ArrayList = a;
-		return this;
-	}
 
 	public Iterator<Board> getIterator() {
 		return this.i;
