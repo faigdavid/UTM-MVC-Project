@@ -1,9 +1,9 @@
-public interface BoardMessages_DAO {
-	public void storeUserInformation(String Username, int ID);
-	public void removeUserInformation(String Username, int ID);
+public interface User_DAO {
+	public void storeUserInformation();
+	public void getUserInformation();
 	public void changeUserInformation(User user);
 }
 
-public class UserDAO implements BoardMessages_DAO {
+public class UserDAO extends User_DAO {
 
 }
