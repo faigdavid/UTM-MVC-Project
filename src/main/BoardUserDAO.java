@@ -2,15 +2,42 @@ package main;
 
 import java.util.Iterator;
 
-public class BoardUserDAO{
-	public void storeUser(User user){
+public class BoardUserDAO implements BoardUserDAOInt{
+
+	@Override
+	public void storeUser(User user) {
+		// TODO Auto-generated method stub
 		
 	}
-	public void removeUser(User user){}
-	public void markUserAdmin(User user){}
-	public void markUserModerator(User user){}
-	public void banUser(User user){}
-	public Iterator<User> getAllUsers(){
+
+	@Override
+	public void removeUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void markUserAdmin(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void markUserModerator(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void banUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Iterator<User> getAllUsers() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

@@ -2,10 +2,24 @@ package main;
 
 import java.util.Iterator;
 
-public class SuperBoardDAO {
-	public void storeBoard(Board board){}
-	public void removeBoard(Board board){}
-	public Iterator<Board> getAllBoards(){
+public class SuperBoardDAO implements SuperBoardDAOInt{
+
+	@Override
+	public void storeBoard(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeBoard(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Iterator<Board> getAllBoards() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 }
