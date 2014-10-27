@@ -14,10 +14,10 @@
 #Board#
 | Responsibilities                      | Collaborators   |
 |:--------------------------------------|:---------------:|
-|Has a Board ID              |		   	    |
+|Has a Board ID              |BoardDAO		   	    |
 |Has a Name              |		   	    |
 |Has a Password              |		   	    |
-|Keep a Title (Topic name)              |BoardDAO   	    |
+|Keep a Title (Topic name)              |   	    |
 |Keep a board ID                        |				          |
 |Post Messages   						            |                 |
 |Delete Messages                        |                 |
