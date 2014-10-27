@@ -1,0 +1,92 @@
+CONVENTIONS:
+user = user object
+username = string username
+password = string password
+
+
+USERDAO:
+
+	User GetUser(Username)	
+
+	User SaveUser(User)
+
+	User CreateUser(User)
+
+	int deleteUser(User)
+
+	
+USER:
+
+	has username, password, current_board, home_board 
+
+	User builder(username, password)
+		setUsername, setPassword
+
+	int postTo(this, board, string) //Does not need to be implented atm
+	
+	int post(this, string)
+
+	int joinBoard(board ID)
+		joins a board	
+	
+	int leaveBoard(board ID)
+		leaves a board. cannot leave if not joined to a board
+
+	Board getCurrentBoard()
+		returns current_board
+	int deleteUser()
+		deletes current user from DAO and then exits program
+
+	all getters and setters ommitted for now
+
+BOARD DAO:
+
+	Board GetBoard(BID)	
+
+	Board CreateBoard(Board)
+
+	int deleteBoard(Board)
+
+	Iterator <Board> getAllBoards()
+
+MESSAGES DAO:
+	
+	getMessages(Board)
+	
+	getMessage(mid)
+	
+	getMessagesSinceTime(Board, timestamp)
+
+	deleteMessage(Board, Message)
+	
+	addMessage(Board, Message)
+	
+	
+BOARD:
+	String bid;	 	
+	String Name;
+	String password;
+	
+	int deleteMessage(mid)
+
+	int postMessage(Message)
+		
+SUBSCRIPTION_DAO:
+	
+	Iterator <Users> getSubscriptionsByBoard(BID)
+
+	Iterator <Boards> getBoardsBySubscriber(username)	
+
+	int subUserToBoard(user, board)
+
+	int unSubUserFromBoard(user, board)
+
+
+
+Dashboard: Collection of functions for the UI/user settings of sorts. Will not be implemented until 
+
+later.
+
+
+
+	
