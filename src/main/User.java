@@ -1,68 +1,53 @@
-public class User extends UserDAO implements User_DAO {
+package main;
 
+public class User {
+	private String username;
+	private String password;
+	private Board current_board;
+	private Board home_board;
+	
 	public static class Builder {
-		private String userName;
-		private String userID;
-		private UserDAO userDAO;
+		private String username;
+		private String password;
+		private Board current_board;
+		private Board home_board;
 		
-		public Builder userName(String userName) {
-			this.userName = userName;
-			return this;
+		public Builder username(String userName) {
 		}
-		public Builder userID(String userID) {
-			this.userID = userID;
-			return this;
+		
+		public Builder password(String userID) {
 		}
-		public Builder userDAO(String userDAO) {
-			this.userDAO = userDAO;
-			return this;
+		
+		public Builder current_board(String userDAO) {
 		}
-		public Builder SuperBoardDAO(String SuperBoardDAO) {
-			this.SuperBoardDAO = SuperBoardDAO;
-			return this;
+		
+		public Builder home_board(String SuperBoardDAO) {
 		}
+		
 		public User build() {
 			return new User(this);
 		}
 	}
 	
-	private String userName;
-	private String userID;
-	private UserDAO userDAO;
-	private SuperBoardDAO superBoardDAO;
 	
 	private User(Builder builder) {
-		this.userName = builder.userName;
-		this.userID = builder.userID;
-		this.userDAO = builder.userDAO;
-		this.SuperBoardDAO = builder.superBoardDAO;
 	}
+
+	int postTo(this, board, string){} //Does not need to be implented atm
 	
-	public String getUserName() {
-		return userName;
-	}
-	public String getUserID() {
-		return userID;
-	}
+	int post(this, string) {}
+
+	int joinBoard(board ID){}
+		//joins a board	
 	
-	public void storeUserInformation() {
-		userDAO.storeUserInformation(getUserName(), getUserID());
-		return null;
-	}
-	
-	public void changeUserInformation() {
-		userDAO.changeUserInformation(getUserName(), getUserID());
-		return null;	
-	}
-	
-	public void createBoard(String boardName) {
-		Board board = new Board(userID, boardName);
-		superBoardDAO.createBoard(board);
-		return null;
-	}
-	
-	public void writeToBoard(Board board, Message message) {
-		board.writeMessage(message);
-		return null;
-	}
+	int leaveBoard(board ID){}
+		//leaves a board. cannot leave if not joined to a board
+
+	Board getCurrentBoard(){}
+		//returns current_board
+		
+	int deleteUser(){}
+		//deletes current user from DAO and then exits program
+
+	//all getters and setters ommitted for now
 }
