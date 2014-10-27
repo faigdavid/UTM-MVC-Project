@@ -12,16 +12,16 @@ public class User {
 		private Board current_board;
 		private Board home_board;
 		
-		public Builder username(String userName) {
+		public Builder username(String username) {
 		}
 		
-		public Builder password(String userID) {
+		public Builder password(String password) {
 		}
 		
-		public Builder current_board(String userDAO) {
+		public Builder current_board(Board current_board) {
 		}
 		
-		public Builder home_board(String SuperBoardDAO) {
+		public Builder home_board(Board home_board) {
 		}
 		
 		public User build() {

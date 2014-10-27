@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class SubscriptionLocalDAO implements SubscriptionDAO{
 
 	@Override
-	public Iterator<User> getSubscriptionsByBoard(String BID) {
+	public Iterator<User> getSubscriptionsByBoard(String bid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
