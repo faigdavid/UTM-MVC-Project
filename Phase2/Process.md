@@ -1,3 +1,22 @@
+Meeting 1
+Date: October 27th, 2014
+Location: Davis builduing in UTM
+
+Quick Summary: During this meeting we completely revamped the design of our program and clarified our CRC cards. 
+
+Important Ideas:
+-Removed Superboard class
+  We decided to do this because it did not seem like it was useful. It's function was replaced by getAllBoards() in the      Boards DAO.
+
+We decided to complete the basic skeleton code and non-DAO classes for our first sprint. This would mean that we should complete the basic outline of the program and every class that is not a DAO, like Authenticate, Board, and User. We decided to split these tasks up a bit vaguely, that is a general topic was assigned to each person but they could with another person at any time and some parts were up for grabs. 
+ 
+ 
+  
+ 
+
+
+
+
 #### `Phase2/Process.md`
  
  A report describing your scrum-like process. The report should include the following items:
