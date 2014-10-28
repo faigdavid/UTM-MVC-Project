@@ -3,7 +3,7 @@ package main;
 public class UserLocalDAO implements UserDAO{
 
 	@Override
-	public User GetUser(String Username) {
+	public User GetUser(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
