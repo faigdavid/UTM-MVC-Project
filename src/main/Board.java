@@ -3,11 +3,11 @@ package main;
 public class Board {
 	private int BID;
 	private String Name;
-	private string password;
+	private String password;
 	
 	private Board(int id, String name, String password){
-		this.bid = bid;
-		this.name = name;
+		this.BID = id;
+		this.Name = name;
 		this.password = password;
 	}
 	
@@ -20,7 +20,7 @@ public class Board {
 
 	public int postMessage(Message msg) {
 		MessageDAO mdao = new MessageLocalDAO();
-		return mdao.addMessage(this, msg);
+		return mdao.saveMessage(this, msg);
 	}
 
 }
