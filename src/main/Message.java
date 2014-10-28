@@ -38,6 +38,11 @@ public class Message {
 		}
 		return "You do not have permission to see this message.";
 	}
+	//A setter for the mId. Should only be used by MessageDAO.
+	void setmId(String mid){
+		this.mId = mid;
+		return;
+	}
 	public String getmId(){
 		return mId;
 	}
@@ -62,8 +67,9 @@ public class Message {
 	}
 
 	//make sure to check variable names with actual implementation
+	//calling setmId(String) is not required. The DAO will handle that.
 	public static class Builder{
-		private String mId;
+		private String mId = "-1"; //Gets changed by the DAO.
 		private String username;
 		private String boardId;
 		private String text;
@@ -74,6 +80,7 @@ public class Message {
 			this.mId = mid;
 			return this;
 		}
+		
 		public Builder setusername(String username){
 			this.username = username;
 			return this;
