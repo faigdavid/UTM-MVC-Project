@@ -57,9 +57,9 @@ MESSAGES DAO:
 	
 	getMessagesSinceTime(Board, timestamp)
 
-	deleteMessage(Board, Message)
+	int deleteMessage(Board, Message)
 	
-	addMessage(Board, Message)
+	int addMessage(Board, Message)
 	
 	
 BOARD:
