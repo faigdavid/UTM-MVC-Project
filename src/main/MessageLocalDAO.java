@@ -1,5 +1,10 @@
 package main;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.sql.Timestamp;
 import java.util.Iterator;
 
@@ -7,7 +12,8 @@ public class MessageLocalDAO implements MessageDAO{
 
 	@Override
 	public Iterator<Message> getMessages(Board board) {
-		// TODO Auto-generated method stub
+		
+		
 		return null;
 	}
 
@@ -31,8 +37,21 @@ public class MessageLocalDAO implements MessageDAO{
 
 	@Override
 	public int saveMessage(Board board, Message msg) {
-		// TODO Auto-generated method stub
-		return 0;
+	Writer writer = null;
+	try {
+		writer = new BufferedWriter(new OutputStreamWriter(
+				new FileOutputStream("filename.txt"), "utf-8"));
+		writer.write(msg.getboardId());
+		writer.write(msg.getusername());
+		writer.write(msg.getDate());
+		writer.write(msg.getText());
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		   try {writer.close();} catch (Exception ex) {}
+	}
+	
+	return 0;
 	}
 
 

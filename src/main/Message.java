@@ -1,12 +1,13 @@
 package main;
-import java.sql.Timestamp;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Message {
 	private String username;
 	private String boardId;
 	private String text;
-	private Timestamp date;
+	private String date;
 	private ArrayList<String> whitelist;
 	
 	private Message(Builder builder){
@@ -17,7 +18,21 @@ public class Message {
 		this.whitelist = builder.whitelist;
 	}
 	
-	
+	public String getMessage(User user) {
+		String msg = null;
+		msg = String.format("[%s][%s][%s][%s]", boardId, username, date, text);
+		
+		if(whitelist == null){ //No whitelist == public message.
+			return msg;
+		}else{
+			for (String username : whitelist){
+				if (username == user.getusername()){
+					return msg;
+				}
+			}
+		}
+		return "You do not have permission to see this message.";
+	}
 	
 	public String getusername() {
 		return username;
@@ -28,12 +43,13 @@ public class Message {
 	public String getText() {
 		return text;
 	}
-	public Timestamp getDate() {
+	/*Changed this.Date is now a string. */
+	public String getDate() {
 		return date;
 	}
 	
 	public void setText(String contents){
-		//used for exiting a message
+		//used for editing a message
 		this.text = contents;
 		return;
 	}
@@ -43,7 +59,7 @@ public class Message {
 		private String username;
 		private String boardId;
 		private String text;
-		private Timestamp date;
+		private String date;
 		private ArrayList<String> whitelist;
 		
 		public Builder setusername(String username){
@@ -60,9 +76,10 @@ public class Message {
 			this.text = text;
 			return this;
 		}
-		
-		public Builder setDate(Timestamp date){
-			this.date = date;
+		//This will get the exact date the message was made.
+		public Builder setDate(){
+			Date msgdate = new Date();
+			this.date = msgdate.toString();
 			return this;
 		}
 		public Builder setWhitelist(ArrayList<String> list){
