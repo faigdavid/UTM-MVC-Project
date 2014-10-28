@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Writer;
 import java.sql.Timestamp;
 import java.util.Iterator;
@@ -19,6 +20,8 @@ public class MessageLocalDAO implements MessageDAO{
 	 the  methods to linuxpath.*/
 	private String linuxpath = "/CSC301/Messages";
 	private String windowspath = "Libraries\\Documents\\Messages";
+	
+
 	
 	@Override
 	public Iterator<Message> getMessages(Board board) {
@@ -78,7 +81,7 @@ public class MessageLocalDAO implements MessageDAO{
 	}
 
 	@Override
-	public int saveMessage(Board board, Message msg) {
+	public int addMessage(Board board, Message msg) {
 	String filename = String.format("%s/%s.txt", windowspath, msg.getmId());
 	Writer writer = null;
 	try {
@@ -97,7 +100,43 @@ public class MessageLocalDAO implements MessageDAO{
 	
 	return 0;
 	}
-
-
-
+	
+	/*PRIVATE FUNCTIONS*/
+	//Updates the MID that the next post will have.
+	private int incrementMID(int oldMID){
+		String filename = String.format("%s/mId.txt", windowspath);
+		Writer writer = null;
+		
+		try {
+			writer = new PrintWriter(filename);
+			writer.write(String.format("%d", oldMID));
+		}catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			   try {writer.close();} catch (Exception ex) {}
+		}
+		return 1;
+	}
+	//Gets the next MID.
+	private int getMID(){
+		BufferedReader reader = null;
+		String filename = String.format("%s/mId.txt", windowspath);
+		int mid = 1;
+		try{
+			reader = new BufferedReader(new FileReader(filename));
+			String line = null;
+			line = reader.readLine();
+			if (line == null){
+				return 1; //"First!" message.
+			}else{
+				mid = Integer.parseInt(line);
+			}
+		}catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			   try {reader.close();} catch (Exception ex) {}
+		}
+		return mid;
+		
+	}
 }
