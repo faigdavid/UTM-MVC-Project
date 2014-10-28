@@ -50,11 +50,6 @@ public class User {
 		return 1;
 	}
 		
-	//returns current_board
-	public Board getCurrentBoard(){
-		return current_board;
-	}
-		
 	//deletes current user from DAO and then exits program	
 	public int deleteUser(){
 		return 1;
