@@ -53,5 +53,5 @@ public interface MessageDAO {
 	 *            Message object which going to be added.
 	 * @return 0 on success, -1 on error.
 	 */
-	public int addMessage(Board board, Message msg);
+	public int saveMessage(Board board, Message msg);
 }

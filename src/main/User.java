@@ -1,4 +1,4 @@
-package main;
++package main;
 
 public class User {
 	private String username;

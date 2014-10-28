@@ -1,27 +1,36 @@
 package main;
 
-public class MessageLocalDAO implements UserDAO{
+import java.sql.Timestamp;
+import java.util.Iterator;
+
+public class MessageLocalDAO implements MessageDAO{
 
 	@Override
-	public User GetUser(String Username) {
+	public Iterator<Message> getMessages(Board board) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User SaveUser(User user) {
+	public Message getMessage(String mid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User CreateUser(User user) {
+	public Iterator<Message> getMessagesSinceTime(Board board, Timestamp time) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int deleteUser(User user) {
+	public int deleteMessage(Board board, Message msg) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int saveMessage(Board board, Message msg) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

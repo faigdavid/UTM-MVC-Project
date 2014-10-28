@@ -1,23 +1,26 @@
 package main;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class Message {
-	private String userId;
+	private String username;
 	private String boardId;
 	private String text;
 	private Timestamp date;
+	private ArrayList<String> whitelist;
 	
 	private Message(Builder builder){
-		this.userId = builder.userId;
+		this.username = builder.username;
 		this.boardId = builder.boardId;
 		this.text = builder.text;
 		this.date = builder.date;
+		this.whitelist = builder.whitelist;
 	}
 	
 	
 	
-	public String getUserId() {
-		return userId;
+	public String getusername() {
+		return username;
 	}
 	public String getboardId() {
 		return boardId;
@@ -28,37 +31,46 @@ public class Message {
 	public Timestamp getDate() {
 		return date;
 	}
+	
+	public void setText(String contents){
+		//used for exiting a message
+		this.text = contents;
+		return;
+	}
 
-
-
+	//make sure to check variable names with actual implementation
 	public static class Builder{
-		private String userId;
+		private String username;
 		private String boardId;
 		private String text;
 		private Timestamp date;
+		private ArrayList<String> whitelist;
 		
-		public Builder userId(String userId){
-			this.userId = userId;
+		public Builder setusername(String username){
+			this.username = username;
 			return this;
 		}
 		
-		public Builder boardId(String boardId){
+		public Builder setBoardId(String boardId){
 			this.boardId = boardId;
 			return this;
 		}
 		
-		public Builder text(String text){
+		public Builder setText(String text){
 			this.text = text;
 			return this;
 		}
 		
-		public Builder date(Timestamp date){
+		public Builder setDate(Timestamp date){
 			this.date = date;
 			return this;
 		}
-		
+		public Builder setWhitelist(ArrayList<String> list){
+			this.whitelist = list;
+			return this;
+		}
 		public Message build(){
-			// We can validate the arguments, before creating a CanadianAddress instance. 
+			 
 			return new Message(this);
 		}
 		
