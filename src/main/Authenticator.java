@@ -5,19 +5,19 @@ public class Authenticator {
 	 * Authenticates a user with username and password in the Authenticator
 	 * object
 	 * 
-	 * @return true if such user with password exists, false otherwise.
+	 * @return User object with given username and password; null if
+	 *         authenticate fails.
 	 */
-	public boolean Authenticate(String username,String password) {
+	public User Authenticate(String username, String password) {
 		UserDAO udao = new UserLocalDAO();
-		boolean isAuthenticated = false; // assume false
 
 		User actualUser = udao.GetUser(username);
-		
+
 		if (actualUser != null) {
-			if(password.equals(actualUser.getPassword())){
-				isAuthenticated = true;
+			if (password.equals(actualUser.getPassword())) {
+				return actualUser;
 			}
 		}
-		return isAuthenticated;
+		return null;
 	}
 }
