@@ -1,22 +1,26 @@
 package main;
 
 public class User {
-	private String username;
+	private String userName;
 	private String password;
 	private Board current_board;
 	private Board home_board;
+	private UserLocalDAO userLocalDAO;
+	private BoardLocalDAO boardLocalDAO;
 	
 	//The builder is at the bottom.
 	private User(Builder builder) {
-		this.username = builder.username;
+		this.userName = builder.userName;
 		this.password = builder.password;
 		this.current_board = builder.current_board;
 		this.home_board = builder.home_board;
+		this.boardLocalDAO = new BoardLocalDAO();
+		this.userLocalDAO = new UserLocalDAO();
 	}
 	
 	/*GETTERS*/
-	public String getusername(){
-		return this.username;
+	public String getuserName(){
+		return this.userName;
 	}
 	public String getpassword(){
 		return this.password;
@@ -30,36 +34,44 @@ public class User {
 	
 	/*METHODS*/
 	//Does not need to be implemented for now.
-	public int postTo(int bid, String text){
-		
-		BoardLocalDAO BDAO = new BoardLocalDAO();
-		Board B = BDAO.getBoard(bid);
-		return B.postMessage(this, text);
-		
-		
-		
+public int postTo(int bid, String text){
+BoardLocalDAO BDAO = new BoardLocalDAO();
+Board B = BDAO.getBoard(bid);
+return B.postMessage(this, text);
+}
+//posts to current_board.
+public int post(String text) {
+return postTo(current_board.getBID(), text);
+}
 
-	}
-	
-	//posts to current_board.
-	public int post(String text) {
-		return postTo(current_board.getBID(), text);
-	}
 	
 	//joins a board	
-	public int joinBoard(String boardId){
-		return 1;
+	public int joinBoard(String boardID) {
+		int status = 1; //assume we fail
+		Board current;
+		while(boardLocalDAO.getAllBoards().hasNext()) {
+			current = boardLocalDAO.getAllBoards().next();
+			if(current.getBID() == boardID) {
+				this.current_board = current;
+				status = 0;
+			}
+		}
+		return status;
 	}
 		
 	//leaves current_board. cannot leave if not joined to a board
 	public int leaveBoard(){
-		this.current_board = null;
-		return 1;
+		int status = 1; //assume it's false
+		if(this.current_board != null) {
+			this.current_board = null;
+			status = 0;
+		}
+		return status;
 	}
 		
 	//deletes current user from DAO and then exits program	
 	public int deleteUser(){
-		return 1;
+		return userLocalDAO.deleteUser(this);
 	}
 	public String getUsername(){
 		return this.username;
@@ -70,13 +82,13 @@ public class User {
 
 	//all getters and setters omitted for now
 	public static class Builder {
-		private String username;
+		private String userName;
 		private String password;
 		private Board current_board = null; //defaults to null.
 		private Board home_board = null; //defaults to null.
 		
-		public Builder username(String username) {
-			this.username = username;
+		public Builder userName(String userName) {
+			this.userName = userName;
 			return this;
 		}
 		
