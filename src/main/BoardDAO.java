@@ -10,7 +10,7 @@ public interface BoardDAO {
 	 *            String of board id.
 	 * @return Board object with given bid.
 	 */
-	public Board GetBoard(String bid);
+	public Board getBoard(int bid);
 
 	/**
 	 * create given board on the database.
@@ -19,7 +19,7 @@ public interface BoardDAO {
 	 *            Board object that will be created on the database.
 	 * @return Board object that got created; null on error.
 	 */
-	public Board CreateBoard(Board board);
+	public Board createBoard(Board board);
 
 	/**
 	 * delete given board from the database.

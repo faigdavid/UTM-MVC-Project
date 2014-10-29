@@ -5,13 +5,13 @@ import java.util.Iterator;
 public class BoardLocalDAO implements BoardDAO {
 
 	@Override
-	public Board GetBoard(String bid) {
+	public Board getBoard(int bid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Board CreateBoard(Board board) {
+	public Board createBoard(Board board) {
 		// TODO Auto-generated method stub
 		return null;
 	}
