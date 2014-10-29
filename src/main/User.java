@@ -30,13 +30,20 @@ public class User {
 	
 	/*METHODS*/
 	//Does not need to be implemented for now.
-	public int postTo(Board board, String text){
-		return 1;
+	public int postTo(int bid, String text){
+		
+		BoardLocalDAO BDAO = new BoardLocalDAO();
+		Board B = BDAO.getBoard(bid);
+		return B.postMessage(this, text);
+		
+		
+		
+
 	}
 	
 	//posts to current_board.
 	public int post(String text) {
-		return 1;
+		return postTo(current_board.getBID(), text);
 	}
 	
 	//joins a board	

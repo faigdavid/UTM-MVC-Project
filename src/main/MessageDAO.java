@@ -49,9 +49,11 @@ public interface MessageDAO {
 	 * 
 	 * @param board
 	 *            Board object where message is going to be posted.
-	 * @param msg
-	 *            Message object which going to be added.
+	 * @param user
+	 *  		  The user who is posting
+	 * @param text
+	 *           text which going to be added.
 	 * @return 0 on success, -1 on error.
 	 */
-	public int addMessage(Board board, Message msg);
+	public int addMessage(Board board, User user, String text);
 }
