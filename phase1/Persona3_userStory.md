@@ -9,7 +9,8 @@
 		
 		1 | I want to be able to subscribe to a topic 
 		
-
+		1 | I want to be able to join specific boards
+		
 ##Also as a TA:##
 		1 | I want to be able to add/remove students into a topic.
 		
