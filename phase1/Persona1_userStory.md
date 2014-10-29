@@ -14,6 +14,8 @@
 		
 		3 | I want to be able to send feedback to the developers 
 		
+		1 | I want to be able to post messages a specific board so I can ask questions
+
 
 ##Legend##
 
