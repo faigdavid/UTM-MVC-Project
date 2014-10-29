@@ -1,21 +1,21 @@
 package main;
 
-public class UserLocalDAO implements UserDAO{
+public class UserLocalDAO implements UserDAO {
 
 	@Override
-	public User GetUser(String username) {
+	public User getUser(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User SaveUser(User user) {
+	public User saveUser(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User CreateUser(User user) {
+	public User createUser(String username, String password) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,6 +25,5 @@ public class UserLocalDAO implements UserDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 
 }
