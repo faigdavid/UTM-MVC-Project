@@ -16,7 +16,10 @@
 	3 | I want to be able to share files
 	
 	2 | I want to manage who is able to see my topics
+ 
+ 	1 | Bin I want to sign in so I can post as myself
 
+	
 ##Legend##
 
 	1 - This would be our top priority, something  that would be a requirement for a well-functioning product
