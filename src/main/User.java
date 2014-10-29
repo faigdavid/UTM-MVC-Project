@@ -61,7 +61,12 @@ public class User {
 	public int deleteUser(){
 		return 1;
 	}
-		
+	public String getUsername(){
+		return this.username;
+	}
+	public String getPassword(){
+		return this.password;
+	}
 
 	//all getters and setters omitted for now
 	public static class Builder {
