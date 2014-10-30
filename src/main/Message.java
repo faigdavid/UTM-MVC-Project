@@ -22,7 +22,7 @@ public class Message {
 		this.whitelist = builder.whitelist;
 	}
 	
-	public String printMessage(User user) {
+	public String printMessage(String username) {
 		String msg = null;
 		msg = String.format("[%s][%s][%s][%s][%s]",
 				mId, boardId, username, date, text);
@@ -30,19 +30,15 @@ public class Message {
 		if(whitelist == null){ //No whitelist == public message.
 			return msg;
 		}else{
-			for (String username : whitelist){
-				if (username == user.getusername()){
+			for (String name : whitelist){
+				if (name == username){
 					return msg;
 				}
 			}
 		}
 		return "You do not have permission to see this message.";
 	}
-	//A setter for the mId. Should only be used by MessageDAO.
-	void setmId(String mid){
-		this.mId = mid;
-		return;
-	}
+
 	public String getmId(){
 		return mId;
 	}
