@@ -1,10 +1,9 @@
 #Authenticator#
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
-|Authenticate a user+password           |UserDAO        |
-|Build a user object from User_DAO info |               |
-
-#Console#
+|Authenticate a user into the app       |UserDAO        | 
+ 
+#Client#
 | Responsibilities                      	    | Collaborators   |
 |:--------------------------------------------|:---------------:|  	
 |Can ask user to authenticate his/her account |User  	  		    |
@@ -32,14 +31,14 @@
 |Can join a board					              |               |
 |Can post to a board					          |               |
 
-#UserDAO#
+#UserLocalDAO#
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
 |Can store all user information         |               |
 |Can get user information               |               |
 |Can save user information              |               |
 
-#BoardDAO#
+#BoardLocalDAO#
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
 |Can create a board        				      |               |
@@ -47,15 +46,15 @@
 |Can delete a board               		  |               |
 |Can get all boards               		  |               |
 
-#MessagesDAO#
+#MessagesLocalDAO#
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
-|Can get messages       				        |               |
-|Can get messages from a board          |               |
+|Can get a message from a board     				        |               |
+|Can get all messages from a board          |               |
 |Can delete a message               	  |               |
 |Can add a message to a board           |               |
 
-#SubscriptionDAO#
+#SubscriptionLocalDAO#
 | Responsibilities                      		     | Collaborators |
 |:-----------------------------------------------|:-------------:|
 |Can get subscriptions from a board     	       |               |
