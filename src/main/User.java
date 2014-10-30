@@ -42,7 +42,7 @@ public class User {
 	// posts to current_board.
 	public int post(String text) {
 		if (current_board != null) {
-			return postTo(current_board.getbId(), text);
+			return postTo(current_board.getBid(), text);
 		}
 		return 1;
 	}
@@ -53,7 +53,7 @@ public class User {
 		Board current;
 		while (boardLocalDAO.getAllBoards().hasNext()) {
 			current = boardLocalDAO.getAllBoards().next();
-			if (current.getbId() == bid) {
+			if (current.getBid() == bid) {
 				this.current_board = current;
 				status = 0;
 			}

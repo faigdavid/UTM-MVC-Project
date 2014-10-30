@@ -21,7 +21,7 @@ public class Board {
 	public int postMessage(User user, String text) {
 		//david is responsible for making sure this works
 		return new MessageLocalDAO().addMessage(
-				this.getbId(), user.getUsername(), text);
+				this.getBid(), user.getUsername(), text);
 	}
 
 	public String getName() {
@@ -40,7 +40,7 @@ public class Board {
 		this.password = password;
 	}
 
-	public String getbId() {
+	public String getBid() {
 		return bid;
 	}
 
