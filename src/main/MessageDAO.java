@@ -11,7 +11,7 @@ public interface MessageDAO {
 	 *            Board object where messages are posted.
 	 * @return Iterator<Message> of a given board.
 	 */
-	public Iterator<Message> getMessages(Board board);
+	public Iterator<Message> getMessages(String bid);
 
 	/**
 	 * get specific message with given mid from the database.
@@ -31,7 +31,7 @@ public interface MessageDAO {
 	 *            Timestamp object to search for new messages after this time.
 	 * @return Iterator<Message> of a given board since given time.
 	 */
-	public Iterator<Message> getMessagesSinceTime(Board board, Timestamp time);
+	public Iterator<Message> getMessagesSinceTime(String bid, String date);
 
 	/**
 	 * delete a message from the given board.
@@ -42,7 +42,7 @@ public interface MessageDAO {
 	 *            Message object which to be deleted.
 	 * @return 0 on success, -1 on error.
 	 */
-	public int deleteMessage(Board board, Message msg);
+	public int deleteMessage(String mid);
 
 	/**
 	 * add a message to the given board.
@@ -55,5 +55,5 @@ public interface MessageDAO {
 	 *           text which going to be added.
 	 * @return 0 on success, -1 on error.
 	 */
-	public int addMessage(Board board, User user, String text);
+	public int addMessage(String username, String bid, String text);
 }
