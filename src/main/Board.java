@@ -19,7 +19,7 @@ public class Board {
 	}
 
 	public int postMessage(User user, String text) {
-	
+		//david is responsible for making sure this works
 		return new MessageLocalDAO().addMessage(this, user, text);
 	}
 
