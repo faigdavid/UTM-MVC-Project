@@ -71,13 +71,13 @@ public class MessageLocalDAO implements MessageDAO{
 
 	@Override
 	public Iterator<Message> getMessagesSinceTime(String bid, String date) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public int deleteMessage(String mid) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
