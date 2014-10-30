@@ -1,7 +1,7 @@
 package main;
 
 public class User {
-	private String userName;
+	private String username;
 	private String password;
 	private Board current_board;
 	private Board home_board;
@@ -10,7 +10,7 @@ public class User {
 	
 	//The builder is at the bottom.
 	private User(Builder builder) {
-		this.userName = builder.userName;
+		this.username = builder.username;
 		this.password = builder.password;
 		this.current_board = builder.current_board;
 		this.home_board = builder.home_board;
@@ -19,13 +19,10 @@ public class User {
 	}
 	
 	/*GETTERS*/
-	public String getuserName(){
-		return this.userName;
+	public String getUsername(){
+		return this.username;
 	}
-	public String getpassword(){
-		return this.password;
-	}
-	public Board getcurrent_board(){
+	public Board getCurrent_board(){
 		return this.current_board;
 	}
 	public Board gethome_board(){
@@ -41,17 +38,20 @@ return B.postMessage(this, text);
 }
 //posts to current_board.
 public int post(String text) {
-return postTo(current_board.getBID(), text);
+	if(current_board != null){
+		return postTo(current_board.getBID(), text);
+	}
+	return 1;
 }
 
 	
 	//joins a board	
-	public int joinBoard(String boardID) {
+	public int joinBoard(String bid) {
 		int status = 1; //assume we fail
 		Board current;
 		while(boardLocalDAO.getAllBoards().hasNext()) {
 			current = boardLocalDAO.getAllBoards().next();
-			if(current.getBID() == boardID) {
+			if(current.getBID() == Integer.parseInt(bid)) {
 				this.current_board = current;
 				status = 0;
 			}
@@ -73,22 +73,20 @@ return postTo(current_board.getBID(), text);
 	public int deleteUser(){
 		return userLocalDAO.deleteUser(this);
 	}
-	public String getUsername(){
-		return this.username;
-	}
+	
 	public String getPassword(){
 		return this.password;
 	}
 
 	//all getters and setters omitted for now
 	public static class Builder {
-		private String userName;
+		private String username;
 		private String password;
 		private Board current_board = null; //defaults to null.
 		private Board home_board = null; //defaults to null.
 		
-		public Builder userName(String userName) {
-			this.userName = userName;
+		public Builder username(String username) {
+			this.username = username;
 			return this;
 		}
 		
