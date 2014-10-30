@@ -24,14 +24,17 @@ public class Message {
 	
 	public String printMessage(String username) {
 		String msg = null;
+		String boardName = new BoardLocalDAO().getBoard(bid).getName();
 		msg = String.format("[%s][%s][%s][%s][%s]",
-				mid, bid, username, date, text);
+				mid, boardName, username, date, text);
 		
 		if(whitelist == null){ //No whitelist == public message.
+			System.out.println(msg);
 			return msg;
 		}else{
 			for (String name : whitelist){
 				if (name == username){
+					System.out.println(msg);
 					return msg;
 				}
 			}
@@ -92,7 +95,7 @@ public class Message {
 			return this;
 		}
 		public Builder setDate(String date){
-			this.text = date;
+			this.date = date;
 			return this;
 		}
 		

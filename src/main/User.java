@@ -56,7 +56,6 @@ public class User {
 		Iterator<Board> allBoards = boardLocalDAO.getAllBoards();
 		while (allBoards.hasNext()) {
 			current = allBoards.next();
-			System.out.println(current.getBid());
 			if (current.getBid().equals(bid)) {
 				this.currentBoard = current;
 				status = 0;

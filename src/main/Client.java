@@ -138,7 +138,6 @@ public class Client {
 							.println("Or Type 'Quit' to Return to the Main Menu");
 					input = br.readLine();
 					input.trim();
-					System.out.println("trimed input");
 					// Type Quit To Return To the Login Menu
 					if (input.equals("quit")) {
 						return;
@@ -152,7 +151,7 @@ public class Client {
 								j.next().printMessage(user.getUsername());
 							}
 							System.out.println("Enter Text Here");
-							user.post(br.readLine()); //mId.txt works. No file created.
+							user.post(br.readLine());
 							// *****************MAKE MSG OBJECT HERE
 						}
 					}

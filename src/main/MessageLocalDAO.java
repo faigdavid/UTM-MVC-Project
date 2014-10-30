@@ -23,15 +23,16 @@ public class MessageLocalDAO implements MessageDAO{
 	private String linuxpath = "/CSC301/Messages/";
 	private String davidsPath = "C:\\Users\\David\\git\\Proj-UTM-Team6-repo\\src\\database\\messages\\";;
 	private String defaultPath = davidsPath;
-	
+	private ArrayList<Message> messages = null;
+	private Iterator<Message> allmessages = null;
 
 	@Override
 	public Iterator<Message> getMessages(String bid) {
 		ArrayList<Message> messages = new ArrayList<Message>();
-	
-		for (int i=1;i<=Integer.parseInt(getMID());i++){
+		
+		for (int i=1;i<Integer.parseInt(getMID());i++){
 			Message msg = getMessage(Integer.toString(i));
-			if (msg != null && msg.getBid() == bid){
+			if (msg.getBid().equals(bid)){
 				messages.add(msg);
 			}
 		}
@@ -47,31 +48,24 @@ public class MessageLocalDAO implements MessageDAO{
 		try {
 			reader = new BufferedReader(new FileReader(filename));
 			String line = null;
-		    for (int i=1;i<6;i++) {
-		    	line = reader.readLine();
-		    	if (line == null){
-		    		//Corrupted or deleted message.
-		    		return null;
-		    	}
-		    	else if (i == 1){
-		    		msgbuild.setBid(line);
-		    	}
-		    	else if (i == 2){
-		    		msgbuild.setusername(line);
-		    	}
-		    	else if (i == 3){
-		    		msgbuild.setDate(line);
-		    	}
-		    	else if (i == 4){
-		    		msgbuild.setText(line);
-		    	}
-		    	msgbuild.setMid(mid);
+		    line = reader.readLine();
+		    if (line == null){
+		    	System.out.println(String.format("Message %s was deleted", mid));
+		    	//Corrupted or deleted message.
+		    	return null;
 		    }
+    		msgbuild.setBid(line);
+    		msgbuild.setusername(reader.readLine());
+    		msgbuild.setDate(reader.readLine());
+    		msgbuild.setText(reader.readLine());
+	    	msgbuild.setMid(mid);
 		} catch (IOException ex) {
+			System.out.println(String.format("Message %s not found", mid));
 			return null; //Message not found.
 		} finally {
 		   try {reader.close();} catch (Exception ex) {}
 		}
+		System.out.println(String.format("message %s found", mid));
 		return msgbuild.build();
 	}
 
@@ -88,7 +82,7 @@ public class MessageLocalDAO implements MessageDAO{
 	}
 
 	@Override
-	public int addMessage(String username, String bid, String text) {
+	public int addMessage(String bid, String username, String text) {
 	String MID = getMID();
 	incrementMID();
 	Date date = new Date();
