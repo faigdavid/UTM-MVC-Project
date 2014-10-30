@@ -22,7 +22,7 @@ public class MessageLocalDAO implements MessageDAO{
 	 the  methods to linuxpath.*/
 	private String linuxpath = "/CSC301/Messages/";
 	private String windowspath = "Libraries\\Documents\\Messages\\";
-	private String defaultPath = linuxpath;
+	private String defaultPath = windowspath;
 	
 
 	@Override
