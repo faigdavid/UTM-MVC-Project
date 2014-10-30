@@ -33,7 +33,7 @@ public class User {
 
 	/* METHODS */
 	// Does not need to be implemented for now.
-	public int postTo(int bid, String text) {
+	public int postTo(String bid, String text) {
 		BoardLocalDAO BDAO = new BoardLocalDAO();
 		Board B = BDAO.getBoard(bid);
 		return B.postMessage(this, text);
@@ -42,7 +42,7 @@ public class User {
 	// posts to current_board.
 	public int post(String text) {
 		if (current_board != null) {
-			return postTo(current_board.getBid(), text);
+			return postTo(current_board.getbId(), text);
 		}
 		return 1;
 	}
@@ -53,7 +53,7 @@ public class User {
 		Board current;
 		while (boardLocalDAO.getAllBoards().hasNext()) {
 			current = boardLocalDAO.getAllBoards().next();
-			if (current.getBid() == Integer.parseInt(bid)) {
+			if (current.getbId() == bid) {
 				this.current_board = current;
 				status = 0;
 			}

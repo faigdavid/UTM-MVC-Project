@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class BoardLocalDAO implements BoardDAO {
 
 	@Override
-	public Board getBoard(int bid) {
+	public Board getBoard(String bid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
