@@ -21,9 +21,9 @@ public class MessageLocalDAO implements MessageDAO{
 	 the  methods to linuxpath.*/
 	private String linuxpath = "/CSC301/Messages/";
 	private String windowspath = "Libraries\\Documents\\Messages\\";
+	private String defaultPath = linuxpath;
 	
 
-	
 	@Override
 	public Iterator<Message> getMessages(String bid) {
 		
@@ -33,7 +33,7 @@ public class MessageLocalDAO implements MessageDAO{
 
 	@Override
 	public Message getMessage(String mid) {
-		String filename = String.format("%s/%s.txt", windowspath, mid);
+		String filename = String.format("%s/%s.txt", defaultPath, mid);
 		BufferedReader reader = null;
 		Message.Builder msgbuild = new Message.Builder();
 		try {
@@ -85,7 +85,7 @@ public class MessageLocalDAO implements MessageDAO{
 	public int addMessage(String username, String bid, String text) {
 	String MID = getMID();
 	Date date = new Date();
-	String filename = String.format("%s%s.txt", windowspath, MID);
+	String filename = String.format("%s%s.txt", defaultPath, MID);
 	Writer writer = null;
 	try {
 		writer = new BufferedWriter(new OutputStreamWriter(
@@ -107,7 +107,7 @@ public class MessageLocalDAO implements MessageDAO{
 	/*PRIVATE FUNCTIONS*/
 	//Updates the MID that the next post will have.
 	private int incrementMID(int oldMID){
-		String filename = String.format("%s/mId.txt", windowspath);
+		String filename = String.format("%smId.txt", defaultPath);
 		Writer writer = null;
 		
 		try {
@@ -123,7 +123,7 @@ public class MessageLocalDAO implements MessageDAO{
 	//Gets the next MID.
 	private String getMID(){
 		BufferedReader reader = null;
-		String filename = String.format("%s/mId.txt", windowspath);
+		String filename = String.format("%smId.txt", defaultPath);
 		int mid = 1;
 		try{
 			reader = new BufferedReader(new FileReader(filename));
