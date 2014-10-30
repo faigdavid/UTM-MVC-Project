@@ -90,11 +90,11 @@ public class MessageLocalDAO implements MessageDAO{
 	try {
 		writer = new BufferedWriter(new OutputStreamWriter(
 				new FileOutputStream(filename), "utf-8"));
-		writer.write(String.format("%d \n", MID));
-		writer.write(String.format("%s \n", bid));
-		writer.write(String.format("%s \n", username));
-		writer.write(String.format("%s \n", date.toString()));
-		writer.write(String.format("%s \n", text));
+		writer.write(String.format("%d\n", MID));
+		writer.write(String.format("%s\n", bid));
+		writer.write(String.format("%s\n", username));
+		writer.write(String.format("%s\n", date.toString()));
+		writer.write(String.format("%s\n", text));
 	} catch (IOException e) {
 		e.printStackTrace();
 	} finally {
