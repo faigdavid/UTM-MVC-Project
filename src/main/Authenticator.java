@@ -11,7 +11,7 @@ public class Authenticator {
 	public User authenticateUser(String username, String password) {
 		UserDAO udao = new UserLocalDAO();
 
-		User actualUser = udao.GetUser(username);
+		User actualUser = udao.getUser(username);
 
 		if (actualUser != null) {
 			if (password.equals(actualUser.getPassword())) {
