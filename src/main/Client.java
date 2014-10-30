@@ -152,8 +152,7 @@ public class Client {
 								j.next().printMessage(user.getUsername());
 							}
 							System.out.println("Enter Text Here");
-							user.post(br.readLine());
-							Runtime.getRuntime().exec("cls");
+							user.post(br.readLine()); //mId.txt works. No file created.
 							// *****************MAKE MSG OBJECT HERE
 						}
 					}

@@ -68,7 +68,7 @@ public class MessageLocalDAO implements MessageDAO{
 		    	msgbuild.setMid(mid);
 		    }
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			return null; //Message not found.
 		} finally {
 		   try {reader.close();} catch (Exception ex) {}
 		}
@@ -119,7 +119,7 @@ public class MessageLocalDAO implements MessageDAO{
 		newMid = Integer.toString(Integer.parseInt(getMID()) + 1);
 		try {
 			writer = new PrintWriter(filename);
-			writer.write(String.format("%d", newMid));
+			writer.write(String.format("%s", newMid));
 		}catch (IOException e) {
 			e.printStackTrace();
 		} finally {
