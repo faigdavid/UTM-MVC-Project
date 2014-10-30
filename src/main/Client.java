@@ -128,7 +128,7 @@ public class Client {
 					// print all boards avaliable
 					while (allBoards.hasNext()) {
 						Board temp = allBoards.next();
-						System.out.println(Integer.toString(temp.getBid())
+						System.out.println(temp.getBid()
 								+ " - " + temp.getName());
 					}
 
@@ -143,31 +143,22 @@ public class Client {
 					if (input.equals("quit")) {
 						return;
 					}
-
-					// exception might be needed here
-					choice = Integer.parseInt(input);
-					cboard = boardDao.getBoard(choice);
-					// user has set its current board
-					if (cboard != null) {
-						user.setCurrent_board(cboard);
+					if (user.joinBoard(input) != 0){//May need try/catch block.
+						System.out.println("Invalid Board choice");
+					}
 						while (true) {
-							Iterator<Message> j = messageDao.getMessages(cboard.getBid());
+							Iterator<Message> j = messageDao.getMessages(user.getcurrentBoard().getBid());
 							while (j.hasNext()) {
 								// ****************NEED FUNCTION HERE TO GET
-								// MID? SO I CAN GET THE ACTUAL TEXT? SO I CAN
+								// mid? SO I CAN GET THE ACTUAL TEXT? SO I CAN
 								// PRINT
 							}
 							System.out.println("Enter Text Here");
 							user.post(br.readLine());
 							// *****************MAKE MSG OBJECT HERE
 						}
-
-					} else {
-						System.out.println("Invalid Board choice");
-					}
 				}
-
-			} else {
+				} else {
 				System.out.println("Password/Username Is Invalid");
 				System.out.println("YOU SHALL NOT PASS");
 			}

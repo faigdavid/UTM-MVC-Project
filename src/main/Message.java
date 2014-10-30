@@ -39,10 +39,10 @@ public class Message {
 		return "You do not have permission to see this message.";
 	}
 
-	public String getmid(){
+	public String getMid(){
 		return mid;
 	}
-	public String getusername() {
+	public String getUsername() {
 		return username;
 	}
 	public String getBid() {
