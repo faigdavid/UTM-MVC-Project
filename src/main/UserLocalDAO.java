@@ -6,23 +6,24 @@ import java.io.IOException;
 
 public class UserLocalDAO implements UserDAO {
 	//this string should work on my computer
-	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/USERS";
+	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/USERS/";
 	@Override
 	public User getUser(String username) {
-		
+		String password;
 		BufferedReader reader = null;
-		String filename = String.format(linuxPath + username);
+		String filename = linuxPath + username;
 		
 		try{
 			reader = new BufferedReader(new FileReader(filename));
-			String password = reader.readLine();
-			return new User.Builder().password(password).username(username).build();
+			password = reader.readLine();
+			
 		}catch (IOException e) {
+			e.printStackTrace();
 			return null;
 		} finally {
 			   try {reader.close();} catch (Exception ex) {}
 		}
-		 
+		return new User.Builder().password(password).username(username).build();
 	}
 
 	@Override
