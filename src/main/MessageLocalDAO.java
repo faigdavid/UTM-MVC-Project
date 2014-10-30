@@ -33,7 +33,7 @@ public class MessageLocalDAO implements MessageDAO{
 
 	@Override
 	public Message getMessage(String mid) {
-		String filename = String.format("%s/%s.txt", defaultPath, mid);
+		String filename = String.format("%s%s.txt", defaultPath, mid);
 		BufferedReader reader = null;
 		Message.Builder msgbuild = new Message.Builder();
 		try {
@@ -62,7 +62,7 @@ public class MessageLocalDAO implements MessageDAO{
 		    	}
 		    }
 		} catch (IOException ex) {
-		  // report
+			ex.printStackTrace();
 		} finally {
 		   try {reader.close();} catch (Exception ex) {}
 		}
@@ -120,7 +120,7 @@ public class MessageLocalDAO implements MessageDAO{
 		}
 		return 1;
 	}
-	//Gets the next MID.
+	//Gets the next MID. Increments the MID right after.
 	private String getMID(){
 		BufferedReader reader = null;
 		String filename = String.format("%smId.txt", defaultPath);
