@@ -3,8 +3,8 @@ package main;
 public class User {
 	private String username;
 	private String password;
-	private Board current_board;
-	private Board home_board;
+	private Board currentBoard;
+	private Board homeBoard;
 	private UserLocalDAO userLocalDAO;
 	private BoardLocalDAO boardLocalDAO;
 
@@ -12,8 +12,8 @@ public class User {
 	private User(Builder builder) {
 		this.username = builder.username;
 		this.password = builder.password;
-		this.current_board = builder.current_board;
-		this.home_board = builder.home_board;
+		this.currentBoard = builder.currentBoard;
+		this.homeBoard = builder.homeBoard;
 		this.boardLocalDAO = new BoardLocalDAO();
 		this.userLocalDAO = new UserLocalDAO();
 	}
@@ -23,12 +23,12 @@ public class User {
 		return this.username;
 	}
 
-	public Board getCurrent_board() {
-		return this.current_board;
+	public Board getcurrentBoard() {
+		return this.currentBoard;
 	}
 
-	public Board gethome_board() {
-		return this.home_board;
+	public Board gethomeBoard() {
+		return this.homeBoard;
 	}
 
 	/* METHODS */
@@ -39,10 +39,10 @@ public class User {
 		return B.postMessage(this, text);
 	}
 
-	// posts to current_board.
+	// posts to currentBoard.
 	public int post(String text) {
-		if (current_board != null) {
-			return postTo(current_board.getBid(), text);
+		if (currentBoard != null) {
+			return postTo(currentBoard.getBid(), text);
 		}
 		return 1;
 	}
@@ -54,18 +54,18 @@ public class User {
 		while (boardLocalDAO.getAllBoards().hasNext()) {
 			current = boardLocalDAO.getAllBoards().next();
 			if (current.getBid() == bid) {
-				this.current_board = current;
+				this.currentBoard = current;
 				status = 0;
 			}
 		}
 		return status;
 	}
 
-	// leaves current_board. cannot leave if not joined to a board
+	// leaves currentBoard. cannot leave if not joined to a board
 	public int leaveBoard() {
 		int status = 1; // assume it's false
-		if (this.current_board != null) {
-			this.current_board = null;
+		if (this.currentBoard != null) {
+			this.currentBoard = null;
 			status = 0;
 		}
 		return status;
@@ -84,8 +84,8 @@ public class User {
 	public static class Builder {
 		private String username;
 		private String password;
-		private Board current_board = null; // defaults to null.
-		private Board home_board = null; // defaults to null.
+		private Board currentBoard = null; // defaults to null.
+		private Board homeBoard = null; // defaults to null.
 
 		public Builder username(String username) {
 			this.username = username;
@@ -97,13 +97,13 @@ public class User {
 			return this;
 		}
 
-		public Builder current_board(Board current_board) {
-			this.current_board = current_board;
+		public Builder currentBoard(Board currentBoard) {
+			this.currentBoard = currentBoard;
 			return this;
 		}
 
-		public Builder home_board(Board home_board) {
-			this.home_board = home_board;
+		public Builder homeBoard(Board homeBoard) {
+			this.homeBoard = homeBoard;
 			return this;
 		}
 

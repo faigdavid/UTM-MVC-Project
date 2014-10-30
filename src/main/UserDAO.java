@@ -17,7 +17,7 @@ public interface UserDAO {
 	 *            User object to be saved.
 	 * @return User object that got saved; null on error.
 	 */
-	public User saveUser(User user);
+	public int saveUser(User user);
 
 	/**
 	 * Create User object in the database with given username and password.

@@ -1,8 +1,13 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.Date;
 
 public class UserLocalDAO implements UserDAO {
 	//this string should work on my computer
@@ -27,10 +32,30 @@ public class UserLocalDAO implements UserDAO {
 	}
 
 	@Override
-	public User saveUser(User user) {
+	public int saveUser(User user) {
 		// TODO Auto-generated method stub
 		//needs to create files in the format username.txt
-		return null;
+		
+
+		String filename = linuxPath + user.getUsername();
+		Writer writer = null;
+		try {
+			writer = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream(filename), "utf-8"));
+			
+			writer.write(String.format("%s\n", user.getPassword()));
+			//anything after here can be added to make more information
+			// for the user to be made with
+	
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			   try {writer.close();} catch (Exception ex) {}
+		}
+		
+		
+		
+		return 0;
 	}
 
 	@Override
