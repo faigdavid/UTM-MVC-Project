@@ -151,8 +151,7 @@ public class Client {
 					if (cboard != null) {
 						user.setCurrent_board(cboard);
 						while (true) {
-							Iterator<Message> j = messageDao
-									.getMessages(cboard);
+							Iterator<Message> j = messageDao.getMessages(cboard.getBid());
 							while (j.hasNext()) {
 								// ****************NEED FUNCTION HERE TO GET
 								// MID? SO I CAN GET THE ACTUAL TEXT? SO I CAN
