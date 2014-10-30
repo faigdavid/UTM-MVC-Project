@@ -1,13 +1,13 @@
 package main;
 
 public class Board {
-	private int BID;
-	private String Name;
+	private int bid;
+	private String name;
 	private String password;
 	
-	private Board(int id, String name, String password){
-		this.BID = id;
-		this.Name = name;
+	public Board(int id, String name, String password){
+		this.bid = id;
+		this.name = name;
 		this.password = password;
 	}
 	
@@ -24,11 +24,11 @@ public class Board {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getPassword() {
@@ -39,8 +39,8 @@ public class Board {
 		this.password = password;
 	}
 
-	public int getBID() {
-		return BID;
+	public int getBid() {
+		return bid;
 	}
 
 }
