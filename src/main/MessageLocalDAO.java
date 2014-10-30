@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -26,9 +27,16 @@ public class MessageLocalDAO implements MessageDAO{
 
 	@Override
 	public Iterator<Message> getMessages(String bid) {
-		
-		
-		return null;
+		ArrayList<Message> messages = new ArrayList<Message>();
+	
+		for (int i=1;i<=Integer.parseInt(getMID());i++){
+			Message msg = getMessage(Integer.toString(i));
+			if (msg != null && msg.getBid() == bid){
+				messages.add(msg);
+			}
+		}
+		Iterator<Message> allmessages = messages.iterator();
+		return allmessages;
 	}
 
 	@Override
@@ -42,24 +50,22 @@ public class MessageLocalDAO implements MessageDAO{
 		    for (int i=1;i<6;i++) {
 		    	line = reader.readLine();
 		    	if (line == null){
-		    		//Corrupted message.
+		    		//Corrupted or deleted message.
 		    		return null;
 		    	}
 		    	else if (i == 1){
-		    		msgbuild.setmId(line);
+		    		msgbuild.setBid(line);
 		    	}
 		    	else if (i == 2){
-		    		msgbuild.setBoardId(line);
-		    	}
-		    	else if (i == 3){
 		    		msgbuild.setusername(line);
 		    	}
-		    	else if (i == 4){
+		    	else if (i == 3){
 		    		msgbuild.setDate(line);
 		    	}
-		    	else if (i == 5){
+		    	else if (i == 4){
 		    		msgbuild.setText(line);
 		    	}
+		    	msgbuild.setMid(mid);
 		    }
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -71,7 +77,7 @@ public class MessageLocalDAO implements MessageDAO{
 
 	@Override
 	public Iterator<Message> getMessagesSinceTime(String bid, String date) {
-		
+		//Do in another sprint.
 		return null;
 	}
 
@@ -84,13 +90,13 @@ public class MessageLocalDAO implements MessageDAO{
 	@Override
 	public int addMessage(String username, String bid, String text) {
 	String MID = getMID();
+	incrementMID();
 	Date date = new Date();
 	String filename = String.format("%s%s.txt", defaultPath, MID);
 	Writer writer = null;
 	try {
 		writer = new BufferedWriter(new OutputStreamWriter(
 				new FileOutputStream(filename), "utf-8"));
-		writer.write(String.format("%d\n", MID));
 		writer.write(String.format("%s\n", bid));
 		writer.write(String.format("%s\n", username));
 		writer.write(String.format("%s\n", date.toString()));
@@ -106,13 +112,14 @@ public class MessageLocalDAO implements MessageDAO{
 	
 	/*PRIVATE FUNCTIONS*/
 	//Updates the MID that the next post will have.
-	private int incrementMID(int oldMID){
+	private int incrementMID(){
 		String filename = String.format("%smId.txt", defaultPath);
 		Writer writer = null;
-		
+		String newMid;
+		newMid = Integer.toString(Integer.parseInt(getMID()) + 1);
 		try {
 			writer = new PrintWriter(filename);
-			writer.write(String.format("%d", oldMID));
+			writer.write(String.format("%d", newMid));
 		}catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -137,7 +144,6 @@ public class MessageLocalDAO implements MessageDAO{
 		} finally {
 			   try {reader.close();} catch (Exception ex) {}
 		}
-		incrementMID(mid);
 		return String.valueOf(mid);
 		
 	}

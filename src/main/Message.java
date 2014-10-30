@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Message {
-	private String mId;
+	private String mid;
 	private String username;
-	private String boardId;
+	private String bid;
 	private String text;
 	private String date;
 	private ArrayList<String> whitelist;
 	
-	/*IMPORTANT: The builder cannot make a date or mId, since those
+	/*IMPORTANT: The builder cannot make a date or mid, since those
 	 are pre-determined for each message.*/
 	private Message(Builder builder){
-		this.mId = builder.mId;
+		this.mid = builder.mid;
 		this.date = builder.date;
 		this.username = builder.username;
-		this.boardId = builder.boardId;
+		this.bid = builder.bid;
 		this.text = builder.text;
 		this.whitelist = builder.whitelist;
 	}
@@ -25,7 +25,7 @@ public class Message {
 	public String printMessage(String username) {
 		String msg = null;
 		msg = String.format("[%s][%s][%s][%s][%s]",
-				mId, boardId, username, date, text);
+				mid, bid, username, date, text);
 		
 		if(whitelist == null){ //No whitelist == public message.
 			return msg;
@@ -39,14 +39,14 @@ public class Message {
 		return "You do not have permission to see this message.";
 	}
 
-	public String getmId(){
-		return mId;
+	public String getmid(){
+		return mid;
 	}
 	public String getusername() {
 		return username;
 	}
-	public String getboardId() {
-		return boardId;
+	public String getBid() {
+		return bid;
 	}
 	public String getText() {
 		return text;
@@ -63,17 +63,17 @@ public class Message {
 	}
 
 	//make sure to check variable names with actual implementation
-	//calling setmId(String) is not required. The DAO will handle that.
+	//calling setmid(String) is not required. The DAO will handle that.
 	public static class Builder{
-		private String mId = "-1"; //Gets changed by the DAO.
+		private String mid = "-1"; //Gets changed by the DAO.
 		private String username;
-		private String boardId;
+		private String bid;
 		private String text;
 		private String date;
 		private ArrayList<String> whitelist;
 		
-		public Builder setmId(String mid){
-			this.mId = mid;
+		public Builder setMid(String mid){
+			this.mid = mid;
 			return this;
 		}
 		
@@ -82,8 +82,8 @@ public class Message {
 			return this;
 		}
 		
-		public Builder setBoardId(String boardId){
-			this.boardId = boardId;
+		public Builder setBid(String Bid){
+			this.bid = Bid;
 			return this;
 		}
 		
