@@ -19,7 +19,7 @@ public interface BoardDAO {
 	 *            Board object that will be created on the database.
 	 * @return Board object that got created; null on error.
 	 */
-	public Board createBoard(Board board);
+	public Board createBoard(String name);
 
 	/**
 	 * delete given board from the database.
