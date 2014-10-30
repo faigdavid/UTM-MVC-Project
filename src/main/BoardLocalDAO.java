@@ -7,11 +7,12 @@ import java.util.Iterator;
 
 public class BoardLocalDAO implements BoardDAO {
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/BOARDS/";
+	private String davidsPath = "C:\\Users\\David\\git\\Proj-UTM-Team6-repo\\src\\database\\BOARDS\\";
 	@Override
 	
 	public Board getBoard(String bid) {
 		BufferedReader reader = null;
-		String filename = linuxPath +bid;
+		String filename = davidsPath +bid+ ".txt";
 		String name;
 		String password = null;
 		

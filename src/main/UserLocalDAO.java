@@ -12,11 +12,12 @@ import java.util.Date;
 public class UserLocalDAO implements UserDAO {
 	//this string should work on my computer
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/USERS/";
+	private String davidsPath = "C:\\Users\\David\\git\\Proj-UTM-Team6-repo\\src\\database\\USERS\\";
 	@Override
 	public User getUser(String username) {
 		String password;
 		BufferedReader reader = null;
-		String filename = linuxPath + username;
+		String filename = davidsPath + username+ ".txt";
 		
 		try{
 			reader = new BufferedReader(new FileReader(filename));
@@ -37,7 +38,7 @@ public class UserLocalDAO implements UserDAO {
 		//needs to create files in the format username.txt
 		
 
-		String filename = linuxPath + user.getUsername();
+		String filename = davidsPath + user.getUsername()+ ".txt";
 		Writer writer = null;
 		try {
 			writer = new BufferedWriter(new OutputStreamWriter(
