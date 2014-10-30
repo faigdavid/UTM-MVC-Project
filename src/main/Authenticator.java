@@ -8,7 +8,7 @@ public class Authenticator {
 	 * @return User object with given username and password; null if
 	 *         authenticate fails.
 	 */
-	public User AuthenticateUser(String username, String password) {
+	public User authenticateUser(String username, String password) {
 		UserDAO udao = new UserLocalDAO();
 
 		User actualUser = udao.GetUser(username);

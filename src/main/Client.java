@@ -78,24 +78,20 @@ public class Client {
 		String password2;
 
 		while (true) {
-			boolean check;
-			do {
-				System.out.println("Enter A Unique Username:");
-				username = br.readLine();
-				username.trim();
-				check = userDao.GetUser(username) != null;
-				if (check)
-					System.out.println("Username already exists!");
-			} while (check);
-
+			System.out.println("Enter A Unique Username:");
+			username = br.readLine();
+			username.trim();
 			System.out.println("Enter Your Password: ");
 			password1 = br.readLine();
 			System.out.println("Confirm Your Password: ");
 			password2 = br.readLine();
 
 			if (password1.equals(password2)) {
-				if (userDao.GetUser(username).equals(null)) {
+				User newUser = userDao.createUser(username, password1);
+				if (newUser != null) { // create success
 					break;
+				} else {
+					System.out.println("Failed to create new user.");
 				}
 			} else {
 				System.out
@@ -104,8 +100,6 @@ public class Client {
 		}
 		// *************create UserObject here
 
-		
-		
 	}
 
 	public static void login() throws IOException {
@@ -130,7 +124,7 @@ public class Client {
 
 			// authenticate the username and password
 			Authenticator auth = new Authenticator();
-			user = auth.Authenticate(username, password);
+			user = auth.AuthenticateUser(username, password);
 
 			if (user != null) {
 				while (true) {
