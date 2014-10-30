@@ -3,7 +3,6 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Client {
@@ -72,7 +71,6 @@ public class Client {
 	private static void register() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		UserDAO userDao = new UserLocalDAO();
-		User user;
 		String username;
 		String password1;
 		String password2;
@@ -87,8 +85,8 @@ public class Client {
 			password2 = br.readLine();
 
 			if (password1.equals(password2)) {
-				User newUser = userDao.createUser(username, password1);
-				if (newUser != null) { // create success
+				if (userDao.createUser(username, password1) != null) {
+					// create success
 					break;
 				} else {
 					System.out.println("Failed to create new user.");
@@ -104,11 +102,9 @@ public class Client {
 
 	public static void login() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		UserDAO userDao = new UserLocalDAO();
 		BoardDAO boardDao = new BoardLocalDAO();
 		MessageDAO messageDao = new MessageLocalDAO();
 		User user;
-		ArrayList<Board> boards = new ArrayList<Board>();
 		String username;
 		String password;
 		String input;
@@ -123,44 +119,37 @@ public class Client {
 			Board cboard;
 
 			// authenticate the username and password
-			Authenticator auth = new Authenticator();
-			user = auth.AuthenticateUser(username, password);
+			user = new Authenticator().authenticateUser(username, password);
 
 			if (user != null) {
 				while (true) {
-					Iterator<Board> i = boardDao.getAllBoards();
-
-					// Use Iterator to make our own arraylist
-					while (i.hasNext()) {
-						boards.add(i.next());
-					}
+					Iterator<Board> allBoards = boardDao.getAllBoards();
 
 					// print all boards avaliable
-					int counter = 0;
-					for (Board b : boards) {
-						System.out.println(Integer.toString(counter) + " - "
-								+ b.getTopic());
-						counter++;
+					while (allBoards.hasNext()) {
+						Board temp = allBoards.next();
+						System.out.println(Integer.toString(temp.getBid())
+								+ " - " + temp.getName());
 					}
 
 					System.out
-							.println("Enter The Number Of The Board You Would Like To Join");
+							.println("Enter The Board ID of the Board You Would Like to Join");
 					System.out
-							.println("Or Type Quit To Return To the Login Menu");
+							.println("Or Type 'Quit' to Return to the Main Menu");
 					input = br.readLine();
 					input.trim();
 
 					// Type Quit To Return To the Login Menu
 					if (input.equals("quit")) {
-						break;
+						return;
 					}
 
 					// exception might be needed here
 					choice = Integer.parseInt(input);
-
-					if (choice >= 0 && choice <= (boards.size() - 1)) {
-						cboard = boards.get(choice);
-
+					cboard = boardDao.getBoard(choice);
+					// user has set its current board
+					if (cboard != null) {
+						user.setCurrent_board(cboard);
 						while (true) {
 							Iterator<Message> j = messageDao
 									.getMessages(cboard);
@@ -170,13 +159,12 @@ public class Client {
 								// PRINT
 							}
 							System.out.println("Enter Text Here");
-							input = br.readLine();
+							user.post(br.readLine());
 							// *****************MAKE MSG OBJECT HERE
 						}
 
 					} else {
-						System.out
-								.println("Index Out Of Bound, Please Try Again");
+						System.out.println("Invalid Board choice");
 					}
 				}
 
