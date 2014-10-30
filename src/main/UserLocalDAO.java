@@ -23,20 +23,26 @@ public class UserLocalDAO implements UserDAO {
 			   try {reader.close();} catch (Exception ex) {}
 		}
 		 
-		
-		return user
 	}
 
 	@Override
 	public User saveUser(User user) {
 		// TODO Auto-generated method stub
+		//needs to create files in the format username.txt
 		return null;
 	}
 
 	@Override
 	public User createUser(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		User user = this.getUser(username);
+		if(user != null){
+			return null;
+	
+		}
+		user = new User.Builder().password(password).username(username).build();
+		this.saveUser(user);
+		return user;
 	}
 
 	@Override
