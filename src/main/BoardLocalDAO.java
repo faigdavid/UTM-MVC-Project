@@ -3,6 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BoardLocalDAO implements BoardDAO {
@@ -22,7 +23,6 @@ public class BoardLocalDAO implements BoardDAO {
 			password = reader.readLine();
 			
 		}catch (IOException e) {
-			e.printStackTrace();
 			return null;
 		} finally {
 			   try {reader.close();} catch (Exception ex) {}
@@ -46,8 +46,16 @@ public class BoardLocalDAO implements BoardDAO {
 
 	@Override
 	public Iterator<Board> getAllBoards() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Board> boards = new ArrayList<Board>();
+		
+		for (int i=1;i<=10;i++){ //I AM ONLY READING 10 FILES FOR NOW.
+			Board b = getBoard(Integer.toString(i));
+			if (b != null){
+				boards.add(b);
+			}
+		}
+		Iterator<Board> allboards = boards.iterator();
+		return allboards;
 	}
 
 }

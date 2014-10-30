@@ -138,25 +138,25 @@ public class Client {
 							.println("Or Type 'Quit' to Return to the Main Menu");
 					input = br.readLine();
 					input.trim();
-
+					System.out.println("trimed input");
 					// Type Quit To Return To the Login Menu
 					if (input.equals("quit")) {
 						return;
 					}
 					if (user.joinBoard(input) != 0){//May need try/catch block.
 						System.out.println("Invalid Board choice");
-					}
+					}else{
 						while (true) {
 							Iterator<Message> j = messageDao.getMessages(user.getcurrentBoard().getBid());
 							while (j.hasNext()) {
-								// ****************NEED FUNCTION HERE TO GET
-								// mid? SO I CAN GET THE ACTUAL TEXT? SO I CAN
-								// PRINT
+								j.next().printMessage(user.getUsername());
 							}
 							System.out.println("Enter Text Here");
 							user.post(br.readLine());
+							Runtime.getRuntime().exec("cls");
 							// *****************MAKE MSG OBJECT HERE
 						}
+					}
 				}
 				} else {
 				System.out.println("Password/Username Is Invalid");

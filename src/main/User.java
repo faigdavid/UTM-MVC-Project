@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Iterator;
+
 public class User {
 	private String username;
 	private String password;
@@ -51,9 +53,11 @@ public class User {
 	public int joinBoard(String bid) {
 		int status = 1; // assume we fail
 		Board current;
-		while (boardLocalDAO.getAllBoards().hasNext()) {
-			current = boardLocalDAO.getAllBoards().next();
-			if (current.getBid() == bid) {
+		Iterator<Board> allBoards = boardLocalDAO.getAllBoards();
+		while (allBoards.hasNext()) {
+			current = allBoards.next();
+			System.out.println(current.getBid());
+			if (current.getBid().equals(bid)) {
 				this.currentBoard = current;
 				status = 0;
 			}
