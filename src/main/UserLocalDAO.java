@@ -24,7 +24,6 @@ public class UserLocalDAO implements UserDAO {
 			password = reader.readLine();
 			
 		}catch (IOException e) {
-			e.printStackTrace();
 			return null;
 		} finally {
 			   try {reader.close();} catch (Exception ex) {}
