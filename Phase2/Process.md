@@ -2,6 +2,12 @@ Meeting 1
 Date: October 22nd, 2014
 Location: TA's office in DH builduing
 
+Quick Summary: This was our first meeting and we discussed the various features that we hoped to implement with the TA, how the program should be designed and asked various questions about the marking. 
+
+Important Ideas:
+We were slightly overzealous in terms of what features we wanted to do and the TA cooled our enthusiasm. We decided to stick to the bare minimum and just deliver a basic working project rather than promising features like anonymous posting during Phase 2. We decided that in general, we should be able to post and read messages, join boards, and log in.
+
+We decided against implementing actual features and code during this sprint and thought that it would be far more effective if we perfected our designs and how everything worked together before starting actual code. 
 
 Meeting 2
 Date: October 27th, 2014
@@ -17,36 +23,50 @@ Important Ideas:
 
 We decided to complete the basic skeleton code and non-DAO classes for our first sprint. This would mean that we should complete the basic outline of the program and every class that is not a DAO, like Authenticate, Board, and User. We decided to split these tasks up a bit vaguely, that is a general topic was assigned to each person but they could with another person at any time and some parts were up for grabs. 
 
+User Stories:
+
 Our main focus was on two user stories. One of these was to effectively authenticate and create a user as per Bin's user story we discussed in the release plan. This would include a user being able to create an account and log in. 
 
 The second user story we hoped to implement was to be able to join specific boards. For this stage we decided that being able to join one board at a time was enough for this sprint and decided not to focus on subcribing to multiple boards.
 
+Meeting 3: 
+Date: October 29th, 2014
+Location: Davis Builduing in UTM
 
- 
- 
+Quick Summary: Since we were running on a very tight schedule we decided to combine the retrospective/review meeting and the meeting for the next sprint. There was simply not enough time for all of our group members to meet twice. During this meeting we discussed the necessity of having proper naming conventions and how the DAOs should function. 
+
+Important Ideas: 
+  After a review of our previous code we saw that the way everyone named variables was very inconsistent. This was a problem because it made our code harder to read and could prove to be problematic in the future. So we agreed on number of common conventions like naming variables starting with a lower case letter and the rest of the words in the name starting with a capital letter for example, userLocalDAO. 
   
- 
+  This was also the meeting during which we focused on our DAOs. We decided how we would utilize the interfaces and the actual DAO classes, since during a review of the code we saw that the interfaces were implemented incorrectly in terms of syntax. We also decided on how we should store the information since some consistency was desperatly needed. In the end a major decision was to move board info from one giant file, to a collection of files where each .txt represented a board. This simplified the error checking process by quite a bit since we could just check whether a certain file exists to see whether a board exists. 
+  
+Review:
+  The main decisions that came from the review are listed above, mainly naming conventions and the DAO. As to who finished what, it was slightly more confusing. While everyone in the team did the work assigned to them a lot of people decided to rewrite and modify other people's files to fix bugs and reflect their own code better. This was problematic as not everybody decided to use github issues to communicate. Percentage wise, everyone did 100% of the work assigned to them but around 30-40% of the work was later re-written by someone else. This wasn't necessarily a problem but it did create some issues that could have been solved by better communication.
+  
+User Stories:
+
+We decided to improve the board utilizing the user story that called for the ability to subscribe to multiple boards. This would allow the user to read messages from more than a single board and topic.
+
+A new user story that we decided to do was the basic ability to post and read messages. Every board that the user subscribed to could both be posted to and send messages to be read to the client. 
+
+Meeting 4:
+Date: October 31st 2014
+Location: IB250 room in UTM
+
+Quick Summary: This was our final meeting in which the primary focus was on reviewing the work that we did and fixing some last minute bugs. It was a relatively short meeting since everything we wanted to do was done and there wasn't much to discuss. 
+
+Important Ideas: There was a bug where the messages did not print the correct names and instead printed the username of the current loggen in user. This was one of the bugfixes we focused on during the meeting.
+
+Review: Looking over the code everything seemed coherent as the communication process was smoothed out since the last meeting. The main things we discussed was how the code worked, but in general every class did what we agreed it should do in our previous sprint and everything worked smoothly together. There were some issues with using absolute paths vs relative paths, but it was not a major problem. 
+
+User Stories: None, since we effectively completed them all. 
 
 
 
+Scrum Process Decisions:
 
-#### `Phase2/Process.md`
- 
- A report describing your scrum-like process. The report should include the following items:
- 
-  * A summary of your planning and review meetings for both sprints (i.e. 4 meetings in total).
-    * Includes date and location.
-    * Please keep it short, and give us the highlights.
-    * Include important decisions you've made, and arguments for/against them.
-    * Tip: You can use GitHub to label all the user stories you plan to complete during a sprint, and include a link to an issue search result ([example](https://github.com/csc301-fall2014/CSC301H1F-L5101-Home/issues?q=is%3Aissue+label%3ARelease-Plan-1+)) in your planning meeting summary.
-    * For the review/retrospective meeting, we would like to see some numbers and/or interesting statistics.   
-      For example: Percentage of planned work that was actually completed, distribution of completed work among team members, percentage of planned work completed categorized by priority, etc.    
-      The point is to evaluate the estimations that you've made during the planning meeting.
-  * A summary of your "daily" scrum meetings.
-    * Please include date and location.
-    * If you use a chat, you can simply copy-paste the highlight of the chat.
-    * Otherwise, please give us a very quick summary.    
-      A good format would be a list, specifying the highlights of each member's update (each highlights should be 1-3 sentences long).
-  * Description of how you used GitHub issue management system (e.g. naming conventions, labels, team's conventions, etc.)
-  * Description of any other major decisions/conventions you may have made/used during the process, and why.
-    * For example: Did you have a "scrum master"? Why? Do you think it was the right decision?
+In all probability our biggest decision was that we stayed away from daily scrum meetings. This was because everyone in the group was incredibly busy during midterm season, and there was no feasible way for everyone to work in regular intervals or meet as a team. We decided to instead have large scrum meetings, which happened at essentially every other day due to our schedule. Our scrum meetings were then essentially the same as the supposed daily meetings. We of course could have done daily meetings but it would have taken an inordinate amount of time and would hae severely slowed our process and impacted our marks. 
+
+Another decision that we made was regarding to the leader of the team. At first one of the group members volunteered to be the scrum leader, but this didn't particularly work out as it didn't seem like there was anything the scrum leader should have done different than the other team members. We met together, discussed things together, assigned issues together and worked together. A leader wasn't necessary since we arrived at our decisions via a discussion involving the entire group. 
+
+As to our usage of the issuing system, while we agreed we would use it more it was mostly an afterthought rather than something we actually did to increase efficiency. It would often be the case that everyone would agree on what the issue is and how we would fix it and someone would submit the issue for the sake of formality. Initially we planned to use the issuing system to distinguish what each user was working on at the time, but this turned out to be innefective. 
