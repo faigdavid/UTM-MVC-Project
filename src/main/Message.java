@@ -26,7 +26,7 @@ public class Message {
 		String msg = null;
 		String boardName = new BoardLocalDAO().getBoard(bid).getName();
 		msg = String.format("[%s][%s][%s][%s][%s]",
-				mid, boardName, username, date, text);
+				mid, boardName, this.username, date, text);
 		
 		if(whitelist == null){ //No whitelist == public message.
 			System.out.println(msg);
