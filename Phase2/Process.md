@@ -1,14 +1,27 @@
 Meeting 1
+Date: October 22nd, 2014
+Location: TA's office in DH builduing
+
+
+Meeting 2
 Date: October 27th, 2014
 Location: Davis builduing in UTM
 
-Quick Summary: During this meeting we completely revamped the design of our program and clarified our CRC cards. 
+Quick Summary: During this meeting we completely revamped the design of our program and clarified our CRC cards, and this was the focus of our sprint from the previous week rather than actual code. Doing a retrospective meeting for this section would not make much sense since in the last sprint we mainly discussed what our design should be like and we discussed it together rather than implementing actual features. 
 
 Important Ideas:
 -Removed Superboard class
   We decided to do this because it did not seem like it was useful. It's function was replaced by getAllBoards() in the      Boards DAO.
+-Changed the responsibilities of the Board class and Messaging class
+  This was due to an agreement between team members that the board class should not be storing the messages, and should only store info directly related to the board.
 
 We decided to complete the basic skeleton code and non-DAO classes for our first sprint. This would mean that we should complete the basic outline of the program and every class that is not a DAO, like Authenticate, Board, and User. We decided to split these tasks up a bit vaguely, that is a general topic was assigned to each person but they could with another person at any time and some parts were up for grabs. 
+
+Our main focus was on two user stories. One of these was to effectively authenticate and create a user as per Bin's user story we discussed in the release plan. This would include a user being able to create an account and log in. 
+
+The second user story we hoped to implement was to be able to join specific boards. For this stage we decided that being able to join one board at a time was enough for this sprint and decided not to focus on subcribing to multiple boards.
+
+
  
  
   
