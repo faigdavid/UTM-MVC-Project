@@ -1,3 +1,5 @@
+#Please look at CRC-cards3.0.md, this file is here just for record keeping#
+
 #Authenticator#
 | Responsibilities                      | Collaborators |
 |:--------------------------------------|:-------------:|
