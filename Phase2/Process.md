@@ -55,7 +55,7 @@ Important Ideas:
   
 Review:
 
-  The main decisions that came from the review are listed above, mainly naming conventions and the DAO. As to who finished what, it was slightly more confusing. While everyone in the team did the work assigned to them a lot of people decided to rewrite and modify other people's files to fix bugs and reflect their own code better. This was problematic as not everybody decided to use github issues to communicate. Percentage wise, everyone did 100% of the work assigned to them but around 30-40% of the work was later re-written by someone else. This wasn't necessarily a problem but it did create some issues that could have been solved by better communication.
+  The main decisions that came from the review are listed above, mainly naming conventions and the DAO. As to who finished what, it was slightly more confusing. While everyone in the team did the work assigned to them a lot of people decided to rewrite and modify other people's files to fix bugs and reflect their own code better. This was problematic as not everybody decided to use github issues to communicate. Percentage wise, everyone did 100% of the work assigned to them but around 30-40% of the work was later re-written by someone else. This wasn't necessarily a problem but it did create some issues that could have been solved by better communication. On average we likely spend around 3-4 hours planning the sprint and around 5-6 hours actually executing it to completion. Overall our planning for this sprint was likely a little too ambitious as we didn't have much left to do for the next sprint.
   
 User Stories:
 
@@ -79,7 +79,7 @@ There was a bug where the messages did not print the correct names and instead p
 
 Review:
 
-Looking over the code everything seemed coherent as the communication process was smoothed out since the last meeting. The main things we discussed was how the code worked, but in general every class did what we agreed it should do in our previous sprint and everything worked smoothly together. There were some issues with using absolute paths vs relative paths, but it was not a major problem. 
+Looking over the code everything seemed coherent as the communication process was smoothed out since the last meeting. The main things we discussed was how the code worked, but in general every class did what we agreed it should do in our previous sprint and everything worked smoothly together. There were some issues with using absolute paths vs relative paths, but it was not a major problem. Overall we completed all planned features on time, and did not experience any major roadblocks during this sprint. Our estimations gave us a large window during which we could test and get rid of bugs.
 
 User Stories: 
 
