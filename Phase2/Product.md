@@ -1,7 +1,3 @@
-#### `Phase2/Product.md`
+For our product we mainly decided to focus on very basic functionality during this phase. Our input and output would be delivered via a command line, which will replace our GUI for now. We focused primarily on 3 user stories, which demanded that the user should be able to register and log in, that he or she is able to post messages and read them, and that the user would be able to subscribe to certain boards. We achieved the basic functionality of all these 3 features and our product can now be used in those 3 manners. When the program is ran the user can choose what he or she wishes to do and can make choices using the command line interface. Although the program does not currently communicate with any server, the data is still persistent and does not end after program is terminated.
 
- * A report describing your __product__ (i.e. The _what_, not the _how_).
- * Please keep it short (2 min' read, seriously).
- * Be informative, but concise.
- * You can use your submissions from phase-1 as a starting point.
- * Focus on the features that you built during this phase, not on future plans.
+
