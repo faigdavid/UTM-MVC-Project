@@ -6,7 +6,6 @@ public class User {
 	private String username;
 	private String password;
 	private Board currentBoard;
-	private Board homeBoard;
 	private UserLocalDAO userLocalDAO;
 	private BoardLocalDAO boardLocalDAO;
 
@@ -15,7 +14,6 @@ public class User {
 		this.username = builder.username;
 		this.password = builder.password;
 		this.currentBoard = builder.currentBoard;
-		this.homeBoard = builder.homeBoard;
 		this.boardLocalDAO = new BoardLocalDAO();
 		this.userLocalDAO = new UserLocalDAO();
 	}
@@ -29,9 +27,6 @@ public class User {
 		return this.currentBoard;
 	}
 
-	public Board gethomeBoard() {
-		return this.homeBoard;
-	}
 
 	/* METHODS */
 	// Does not need to be implemented for now.
@@ -88,7 +83,6 @@ public class User {
 		private String username;
 		private String password;
 		private Board currentBoard = null; // defaults to null.
-		private Board homeBoard = null; // defaults to null.
 
 		public Builder username(String username) {
 			this.username = username;
@@ -105,10 +99,6 @@ public class User {
 			return this;
 		}
 
-		public Builder homeBoard(Board homeBoard) {
-			this.homeBoard = homeBoard;
-			return this;
-		}
 
 		public User build() {
 			return new User(this);

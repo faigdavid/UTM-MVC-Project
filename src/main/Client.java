@@ -68,38 +68,7 @@ public class Client {
 				.println("-------------------------------BenNi---------------------------------");
 	}
 
-	private static void register() throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		UserDAO userDao = new UserLocalDAO();
-		String username;
-		String password1;
-		String password2;
-
-		while (true) {
-			System.out.println("Enter A Unique Username:");
-			username = br.readLine();
-			username.trim();
-			System.out.println("Enter Your Password: ");
-			password1 = br.readLine();
-			System.out.println("Confirm Your Password: ");
-			password2 = br.readLine();
-
-			if (password1.equals(password2)) {
-				if (userDao.createUser(username, password1) != null) {
-					// create success
-					break;
-				} else {
-					System.out.println("Failed to create new user.");
-				}
-			} else {
-				System.out
-						.println("The Passwords You Typed Are Different, Please Try Again");
-			}
-		}
-		// *************create UserObject here
-
-	}
-
+	private static 
 	public static void login() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BoardDAO boardDao = new BoardLocalDAO();
