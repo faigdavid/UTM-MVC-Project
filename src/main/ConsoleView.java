@@ -5,17 +5,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ConsoleView implements ModelEventListener{
-
+	private ViewEventListener controller;
+	private String state;
+		
 	public void runConsoleView() throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = new String();
 		String choice = new String();
-		String state = "initial";
-		Controller controller = new Controller();
+		String username;
+		String password;
+		String password2;
 		
+		this.controller = new Controller(this);
+		this.state = "initial";
 		// main loop
 		while (true) {
-			
+		
 			// login print
 			initPrint();
 			input = br.readLine();
@@ -24,15 +29,25 @@ public class ConsoleView implements ModelEventListener{
 			switch (choice) {
 			case "login":
 				printString("You Chose To Login");
-				// login function
-				controller.login();
+				username = getInput("Please enter your"
+						+ "username", br);
+			    password = getInput("Please input your password", br);
+				controller.login(username, password);
 				break;
 
 			case "register":
 				printString("You Chose To Register");
 				// Register function
-				//change the 3 states to a way to get input, does not work atm
-				controller.register(state, state, state);
+				// Gets the 3 needed inputs then put them in
+				//if register fails it will make the view print something
+				//informing the user
+				username = getInput("Please enter a unique "
+						+ "Username", br);
+				password = getInput("Please input a password", br);
+				password2 = getInput("Please repeat the "+ 
+				"same password", br); 
+				
+				controller.register(username, password, password2);
 				break;
 
 			case "credits":
@@ -49,7 +64,7 @@ public class ConsoleView implements ModelEventListener{
 			case "private message":
 				//the (very temporary) format will be /w username MESSAGE
 				//this case will get the input into a proper form.
-				controller.messageUser();
+				//controller.messageUser();
 			case "change board by name":
 				//
 				controller.changeBoardByName(input);
@@ -82,5 +97,25 @@ public class ConsoleView implements ModelEventListener{
 		return 1;
 		
 	}
+	public void changeMenuState(String state){
+		this.state = state;
+		return;
+	}
+	
+	
+	private String getInput(String message, BufferedReader br){
+		System.out.println(message);
+		String input;
+		try {
+			input = br.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			input = null;
+			System.out.println("FAILED TO GET INPUT");
+		}
+		input.trim();
+		return input;
+	}
+	
 }
 

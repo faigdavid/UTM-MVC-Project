@@ -7,9 +7,10 @@ import java.util.Iterator;
 
 public class Controller implements ViewEventListener{
 	private User user;
-	
-	public Controller(){
+	private ModelEventListener view;
+	public Controller(ModelEventListener view){
 		this.user = null;
+		this.view = view;
 	}
 	
 	@Override
@@ -20,18 +21,15 @@ public class Controller implements ViewEventListener{
 			this.user = userDao.createUser(userName, password1);
 			if (this.user != null) {
 				// create success
-				System.out.println("User Created.");
-			} else {
-				System.out.println("Failed to create new user.");
+				view.printString("User Created.");
+				
+			}else{
+				view.printString("Failed to create new user.");
 			}
 		} else {
-			System.out
-					.println("The Passwords You Typed Are Different, Please Try Again");
+			view.printString("The passwords did not match!");
 		}
 	}
-		// *************create UserObject her
-
-
 	@Override
 	public void changeBoardByName(String name) {
 		if (assertLoggedIn()){
@@ -39,7 +37,7 @@ public class Controller implements ViewEventListener{
 			Board toChange = DAO.getBoardByName(name);
 			this.user.joinBoard(toChange.getBid());
 		}else{
-			System.out.println("You are not logged in.");
+			view.printString("You are not logged in.");
 		}
 		
 	}
@@ -48,7 +46,7 @@ public class Controller implements ViewEventListener{
 		if (assertLoggedIn()){
 			this.user.joinBoard(bid);
 		}else{
-			System.out.println("You are not logged in.");
+			view.printString("You are not logged in.");
 		}
 		
 		
@@ -59,15 +57,21 @@ public class Controller implements ViewEventListener{
 			MessageLocalDAO DAO = new MessageLocalDAO();
 			DAO.getMessages(this.user.getcurrentBoard().getBid());
 		}else{
-			System.out.println("You are not logged in.");
+			view.printString("You are not logged in.");
 		}
 		
 	}
 
 	
 	@Override
-	public void login() {
-		// TODO Auto-generated method stub
+	public void login(String username, String password) {
+		user = new Authenticator().authenticateUser(username, password);
+		if (user == null){
+			view.printString("FAILED TO LOG IN");
+		return;	
+		}
+		view.changeMenuState("logged in");
+		return;
 		
 	}
 	
