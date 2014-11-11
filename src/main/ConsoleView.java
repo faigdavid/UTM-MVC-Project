@@ -149,7 +149,7 @@ public class ConsoleView implements ModelEventListener{
 	/*--------------------------Private Methods--------------------------*/
 
 	private static String inputInterpreter(String input, String state){
-		if (state == "logged out"){
+		if (state.equals("logged out")){
 			
 			if(input.equals("login")){
 				return "login";
@@ -158,22 +158,13 @@ public class ConsoleView implements ModelEventListener{
 			if(input.equals("register")){
 				return "register";
 			}
+			return "bad input";
 		}
-		else if(state == "logged in"){
-			Pattern p = Pattern.compile("/*");
-			Matcher m = p.matcher(input);
-			if(m.matches()){
-				p = Pattern.compile("/post");
-			}
+		else if(state.equals("logged in") || state.equals("in board")){
 			
+			return "post";
 		}
-		
-	
-		}
-	private static boolean userWantLogin(String input) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		return "bad input";
 	}
 	
 	private String getInput(String message, BufferedReader br){
