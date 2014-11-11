@@ -20,7 +20,7 @@ public interface MessageDAO {
 	 *            String of message id.
 	 * @return Message object which given mid.
 	 */
-	public Message getMessage(String mid);
+	public Message getMessage(String bid, String mid);
 
 	/**
 	 * get all new messages of a given board since given time from the database.

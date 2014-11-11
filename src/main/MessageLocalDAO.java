@@ -21,7 +21,7 @@ public class MessageLocalDAO implements MessageDAO{
 	 * If you wish to change it for linux, then change the path names in
 	 the  methods to linuxpath.*/
 	private String linuxpath = "/CSC301/Messages/";
-	private String davidsPath = "C:\\Users\\David\\git\\Proj-UTM-Team6-repo\\src\\database\\messages\\";;
+	private String davidsPath = "C:\\Users\\David\\git\\Proj-UTM-Team6-repo\\src\\database\\boards\\";;
 	private String defaultPath = davidsPath;
 	private ArrayList<Message> messages = null;
 	private Iterator<Message> allmessages = null;
@@ -31,9 +31,11 @@ public class MessageLocalDAO implements MessageDAO{
 		ArrayList<Message> messages = new ArrayList<Message>();
 		
 		for (int i=1;i<Integer.parseInt(getMID());i++){
-			Message msg = getMessage(Integer.toString(i));
-			if (msg.getBid().equals(bid)){
-				messages.add(msg);
+			Message msg = getMessage(bid, Integer.toString(i));
+			if (msg != null){
+				if (msg.getBid().equals(bid)){
+					messages.add(msg);
+				}
 			}
 		}
 		Iterator<Message> allmessages = messages.iterator();
@@ -41,8 +43,8 @@ public class MessageLocalDAO implements MessageDAO{
 	}
 
 	@Override
-	public Message getMessage(String mid) {
-		String filename = String.format("%s%s.txt", defaultPath, mid);
+	public Message getMessage(String bid, String mid) {
+		String filename = String.format("%s%s%s.txt", defaultPath, bid, mid);
 		BufferedReader reader = null;
 		Message.Builder msgbuild = new Message.Builder();
 		try {
@@ -50,7 +52,6 @@ public class MessageLocalDAO implements MessageDAO{
 			String line = null;
 		    line = reader.readLine();
 		    if (line == null){
-		    	System.out.println(String.format("Message %s was deleted", mid));
 		    	//Corrupted or deleted message.
 		    	return null;
 		    }
@@ -60,12 +61,10 @@ public class MessageLocalDAO implements MessageDAO{
     		msgbuild.setText(reader.readLine());
 	    	msgbuild.setMid(mid);
 		} catch (IOException ex) {
-			System.out.println(String.format("Message %s not found", mid));
 			return null; //Message not found.
 		} finally {
 		   try {reader.close();} catch (Exception ex) {}
 		}
-		System.out.println(String.format("message %s found", mid));
 		return msgbuild.build();
 	}
 
@@ -86,7 +85,7 @@ public class MessageLocalDAO implements MessageDAO{
 	String MID = getMID();
 	incrementMID();
 	Date date = new Date();
-	String filename = String.format("%s%s.txt", defaultPath, MID);
+	String filename = String.format("%s%s%s.txt", defaultPath, bid, MID);
 	Writer writer = null;
 	try {
 		writer = new BufferedWriter(new OutputStreamWriter(

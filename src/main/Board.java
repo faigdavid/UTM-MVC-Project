@@ -14,7 +14,7 @@ public class Board {
 	//Deletes a message
 	public int deleteMessage(String mid){
 		MessageDAO mdao = new MessageLocalDAO();
-		Message msg = mdao.getMessage(mid);
+		Message msg = mdao.getMessage(this.bid, mid);
 		return mdao.deleteMessage(msg.getMid());
 	}
 

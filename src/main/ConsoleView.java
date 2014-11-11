@@ -3,6 +3,8 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ConsoleView implements ModelEventListener{
 	private ViewEventListener controller;
@@ -16,19 +18,22 @@ public class ConsoleView implements ModelEventListener{
 		String password;
 		String password2;
 		
-		this.controller = new Controller(this);
-		this.state = "initial";
+		this.state = "logged out";
+		printString("Welcome to Team6's Chat Boards!");
 		// main loop
 		while (true) {
-		
+			
 			// login print
-			initPrint();
+			printString("Please Input: ");
 			input = br.readLine();
 			input.trim();
 			choice = inputInterpreter(input, state);
 			switch (choice) {
 			case "login":
-				printString("You Chose To Login");
+				if (state != "logged out"){
+					printString("You're already logged in.");
+					break;
+				}
 				username = getInput("Please enter your"
 						+ "username", br);
 			    password = getInput("Please input your password", br);
@@ -36,6 +41,10 @@ public class ConsoleView implements ModelEventListener{
 				break;
 
 			case "register":
+				if (state != "logged out"){
+					printString("You're already logged in.");
+					break;
+				}
 				printString("You Chose To Register");
 				// Register function
 				// Gets the 3 needed inputs then put them in
@@ -54,42 +63,46 @@ public class ConsoleView implements ModelEventListener{
 				printString("You Chose To See Credits");
 				//make this do shit
 				break;
+				
 			case "refresh":
 				//make this update the current screen (ie get new messages)
 				break;
 			
 			case "post":
+				if (state != "in board"){
+					printString("You're already logged in.");
+					break;
+				}
 				controller.post(input);
-					
+				break;
+				
 			case "private message":
 				//the (very temporary) format will be /w username MESSAGE
 				//this case will get the input into a proper form.
 				//controller.messageUser();
 			case "change board by name":
-				//
+				if (state == "logged out"){
+					printString("You are not logged in.");
+					break;
+				}
 				controller.changeBoardByName(input);
-			
+				break;
+				
 			case "change board by bid":
-				//
+				if (state == "logged out"){
+					printString("You are not logged in.");
+					break;
+				}
 				controller.changeBoardByBid(input);
+				break;
+				
 			default:
 				printString("Invalid Choice");
 				break;
 			}
 		}
 	}
-	
-	public static String inputInterpreter(String login, String state){
 
-		return null;
-}
-
-	public static int initPrint() {
-		
-		
-		return 1;
-		
-	}
 	@Override
 	public int printString(String string){
 		
@@ -97,11 +110,71 @@ public class ConsoleView implements ModelEventListener{
 		return 1;
 		
 	}
-	public void changeMenuState(String state){
-		this.state = state;
-		return;
+	@Override
+	public void addViewEventListener(ViewEventListener listener) {
+		this.controller = listener;
+		
+	}
+
+	@Override
+	public void removeViewEventListener(ViewEventListener listener) {
+		this.controller = null;
+		
+	}
+
+	@Override
+	public void changeStateLoggedIn() {
+		state = "logged in";
+		
+	}
+
+	@Override
+	public void changeStateLoggedOut() {
+		state = "logged out";
+		
+	}
+
+	@Override
+	public void changeStateInBoard() {
+		state = "in board";
+		
+	}
+
+	@Override
+	public void changeStateNoBoard() {
+		state = "logged in";
+		
 	}
 	
+	/*--------------------------Private Methods--------------------------*/
+
+	private static String inputInterpreter(String input, String state){
+		if (state == "logged out"){
+			
+			if(input.equals("login")){
+				return "login";
+			}
+			
+			if(input.equals("register")){
+				return "register";
+			}
+		}
+		else if(state == "logged in"){
+			Pattern p = Pattern.compile("/*");
+			Matcher m = p.matcher(input);
+			if(m.matches()){
+				p = Pattern.compile("/post");
+			}
+			
+		}
+		
+	
+		}
+	private static boolean userWantLogin(String input) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	}
 	
 	private String getInput(String message, BufferedReader br){
 		System.out.println(message);
@@ -116,6 +189,5 @@ public class ConsoleView implements ModelEventListener{
 		input.trim();
 		return input;
 	}
-	
 }
 

@@ -46,14 +46,14 @@ public class User {
 
 	// joins a board
 	public int joinBoard(String bid) {
-		int status = 1; // assume we fail
+		int status = 0; // assume we fail
 		Board current;
 		Iterator<Board> allBoards = boardLocalDAO.getAllBoards();
 		while (allBoards.hasNext()) {
 			current = allBoards.next();
 			if (current.getBid().equals(bid)) {
 				this.currentBoard = current;
-				status = 0;
+				status = 1;
 			}
 		}
 		return status;
@@ -61,10 +61,10 @@ public class User {
 
 	// leaves currentBoard. cannot leave if not joined to a board
 	public int leaveBoard() {
-		int status = 1; // assume it's false
+		int status = 0; // assume it's false
 		if (this.currentBoard != null) {
 			this.currentBoard = null;
-			status = 0;
+			status = 1;
 		}
 		return status;
 	}

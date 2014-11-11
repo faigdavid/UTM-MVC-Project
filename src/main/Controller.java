@@ -1,16 +1,12 @@
 package main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Iterator;
-
 public class Controller implements ViewEventListener{
 	private User user;
 	private ModelEventListener view;
 	public Controller(ModelEventListener view){
 		this.user = null;
 		this.view = view;
+		view.addViewEventListener(this);
 	}
 	
 	@Override
@@ -20,7 +16,7 @@ public class Controller implements ViewEventListener{
 		if (password1.equals(password2)) {
 			this.user = userDao.createUser(userName, password1);
 			if (this.user != null) {
-				// create success
+				view.changeStateLoggedIn();
 				view.printString("User Created.");
 				
 			}else{
@@ -35,7 +31,11 @@ public class Controller implements ViewEventListener{
 		if (assertLoggedIn()){
 			BoardLocalDAO DAO = new BoardLocalDAO();
 			Board toChange = DAO.getBoardByName(name);
-			this.user.joinBoard(toChange.getBid());
+			if (this.user.joinBoard(toChange.getBid()) == 1){
+				view.changeStateInBoard();
+			} else {
+				view.printString("Failed to join the board.");
+			}
 		}else{
 			view.printString("You are not logged in.");
 		}
@@ -44,7 +44,11 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void changeBoardByBid(String bid) {
 		if (assertLoggedIn()){
-			this.user.joinBoard(bid);
+			if (this.user.joinBoard(bid) == 1){
+				view.changeStateInBoard();
+			} else {
+				view.printString("Failed to join the board.");
+			}
 		}else{
 			view.printString("You are not logged in.");
 		}
@@ -52,7 +56,7 @@ public class Controller implements ViewEventListener{
 		
 	}
 	@Override
-	public void displayBoardMessages() {
+	public void getBoardMessages() {
 		if (assertLoggedIn()){
 			MessageLocalDAO DAO = new MessageLocalDAO();
 			DAO.getMessages(this.user.getcurrentBoard().getBid());
@@ -68,24 +72,23 @@ public class Controller implements ViewEventListener{
 		user = new Authenticator().authenticateUser(username, password);
 		if (user == null){
 			view.printString("FAILED TO LOG IN");
-		return;	
+		} else {
+			view.changeStateLoggedIn();
 		}
-		view.changeMenuState("logged in");
 		return;
 		
 	}
 	
 	@Override
 	public void post(String message) {
-		// TODO Auto-generated method stub
-		
+		if (user.post(message) != 1){
+			view.printString("Message failed to post.");
+		}
 	}
 	
-	@Override
-	public void changeState(String state) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+	
 	/*NON-OVERRIDES*/
 	
 	/*ALways call this to check that you've logged in.*/

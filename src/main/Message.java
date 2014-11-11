@@ -22,10 +22,10 @@ public class Message {
 		this.whitelist = builder.whitelist;
 	}
 	
-	public String printMessage(String username) {
+	public String formatMessage(String username) {
 		String msg = null;
 		String boardName = new BoardLocalDAO().getBoard(bid).getName();
-		msg = String.format("[%s][%s][%s][%s][%s]",
+		msg = String.format("[%s][%s][%s][%s][%s]\n",
 				mid, boardName, this.username, date, text);
 		
 		if(whitelist == null){ //No whitelist == public message.
@@ -39,7 +39,7 @@ public class Message {
 				}
 			}
 		}
-		return "You do not have permission to see this message.";
+		return "<Permission Denied>";
 	}
 
 	public String getMid(){
