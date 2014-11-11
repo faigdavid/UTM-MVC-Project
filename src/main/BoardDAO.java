@@ -19,6 +19,8 @@ public interface BoardDAO {
 	 *            Board object that will be created on the database.
 	 * @return Board object that got created; null on error.
 	 */
+	public Board getBoardByName(String name);
+	
 	public Board createBoard(String name);
 
 	/**

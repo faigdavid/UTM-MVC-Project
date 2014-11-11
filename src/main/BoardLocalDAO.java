@@ -57,5 +57,18 @@ public class BoardLocalDAO implements BoardDAO {
 		Iterator<Board> allboards = boards.iterator();
 		return allboards;
 	}
+	
+	@Override
+	public Board getBoardByName(String name){
+		Iterator<Board> boards = getAllBoards();
+		Board toJoin = null;
+		while (boards.hasNext()){
+			Board temp = boards.next();
+			if (temp.getName() == name){
+				toJoin = temp;
+			}
+		}
+		return toJoin;
+	}
 
 }

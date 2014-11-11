@@ -4,10 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ConsoleView {
+public class ConsoleView implements ModelEventListener{
 
-	
-	public static void main(String[] args) throws IOException {
+	public void runConsoleView() throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = new String();
 		String choice = new String();
@@ -24,20 +23,20 @@ public class ConsoleView {
 			choice = inputInterpreter(input, state);
 			switch (choice) {
 			case "login":
-				System.out.println("You Chose To Login");
+				printString("You Chose To Login");
 				// login function
 				controller.login();
 				break;
 
 			case "register":
-				System.out.println("You Chose To Register");
+				printString("You Chose To Register");
 				// Register function
 				//change the 3 states to a way to get input, does not work atm
 				controller.register(state, state, state);
 				break;
 
 			case "credits":
-				System.out.println("You Chose To See Credits");
+				printString("You Chose To See Credits");
 				//make this do shit
 				break;
 			case "refresh":
@@ -59,7 +58,7 @@ public class ConsoleView {
 				//
 				controller.changeBoardByBid(input);
 			default:
-				System.out.println("Invalid Choice");
+				printString("Invalid Choice");
 				break;
 			}
 		}
@@ -76,8 +75,8 @@ public class ConsoleView {
 		return 1;
 		
 	}
-	
-	public static int printString(String string){
+	@Override
+	public int printString(String string){
 		
 		System.out.println(string);
 		return 1;
