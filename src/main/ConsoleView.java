@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class ConsoleView implements ModelEventListener{
 	private ViewEventListener controller;
 	private String state;
-		
+	
 	public void runConsoleView() throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = new String();
@@ -17,7 +17,7 @@ public class ConsoleView implements ModelEventListener{
 		String username;
 		String password;
 		String password2;
-		
+		int toStrip;
 		this.state = "logged out";
 		printString("Welcome to Team6's Chat Boards!");
 		// main loop
@@ -30,10 +30,6 @@ public class ConsoleView implements ModelEventListener{
 			choice = inputInterpreter(input, state);
 			switch (choice) {
 			case "login":
-				if (state != "logged out"){
-					printString("You're already logged in.");
-					break;
-				}
 				username = getInput("Please enter your"
 						+ "username", br);
 			    password = getInput("Please input your password", br);
@@ -41,10 +37,7 @@ public class ConsoleView implements ModelEventListener{
 				break;
 
 			case "register":
-				if (state != "logged out"){
-					printString("You're already logged in.");
-					break;
-				}
+				
 				printString("You Chose To Register");
 				// Register function
 				// Gets the 3 needed inputs then put them in
@@ -69,10 +62,6 @@ public class ConsoleView implements ModelEventListener{
 				break;
 			
 			case "post":
-				if (state != "in board"){
-					printString("You're already logged in.");
-					break;
-				}
 				controller.post(input);
 				break;
 				
@@ -80,20 +69,14 @@ public class ConsoleView implements ModelEventListener{
 				//the (very temporary) format will be /w username MESSAGE
 				//this case will get the input into a proper form.
 				//controller.messageUser();
-			case "change board by name":
-				if (state == "logged out"){
-					printString("You are not logged in.");
-					break;
-				}
-				controller.changeBoardByName(input);
+			case "join board by name":
+				toStrip = input.indexOf(' ');
+				controller.changeBoardByName(input.substring(toStrip).trim());
 				break;
 				
-			case "change board by bid":
-				if (state == "logged out"){
-					printString("You are not logged in.");
-					break;
-				}
-				controller.changeBoardByBid(input);
+			case "join board by bid":
+				toStrip = input.indexOf(' ');
+				controller.changeBoardByBid(input.substring(toStrip).trim());
 				break;
 				
 			default:
@@ -149,20 +132,46 @@ public class ConsoleView implements ModelEventListener{
 	/*--------------------------Private Methods--------------------------*/
 
 	private static String inputInterpreter(String input, String state){
-		if (state.equals("logged out")){
-			
-			if(input.equals("login")){
+		if(Pattern.matches("^credits$", input)){
+			return "credits";
+		}
+		else if (state.equals("logged out")){
+			if(Pattern.matches("^l(ogin)?$", input)){
+				
 				return "login";
 			}
-			
-			if(input.equals("register")){
+			if(Pattern.matches("^r(egister)?$", input)){
 				return "register";
 			}
 			return "bad input";
 		}
-		else if(state.equals("logged in") || state.equals("in board")){
+		else if(state.equals("logged in")){
 			
-			return "post";
+			if(Pattern.matches("^/?j(oinboard)?[ \t]+[0-9]+$", input)){
+				System.out.println("stat=loged in");
+				return "join board by bid";
+			}
+			if(Pattern.matches("^/?j(oinboard)?[ \t]+.+$", input)){
+				System.out.println("stat=loged in");
+				return "join board by name";
+			}
+			return "bad input";
+		}
+		else if(state.equals("in board")){
+			if(Pattern.matches("^/j(oinboard)?[ \t]+[0-9]+$", input)){
+				return "join board by bid";
+			}
+			if(Pattern.matches("/j(oinboard)?[ \t]+.*$", input)){
+				return "join board by name";
+			}
+			if(Pattern.matches("/r(efresh)?.*$", input)){
+				return "refresh";
+			}
+			if(Pattern.matches("(/w|[ \t]+.*$", input)){
+				return "refresh";
+			}
+			
+			return "bad input";
 		}
 		return "bad input";
 	}
