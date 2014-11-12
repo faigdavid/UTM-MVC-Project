@@ -10,13 +10,15 @@ public class LoginGUI extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
+	private Controller control = new Controller(null);
+	
 	private static final long serialVersionUID = 1L;
-	JPanel pane = new JPanel();
-	JLabel LB_username = new JLabel ("Username: ");
-	JLabel LB_password = new JLabel ("Password: ");
-	JLabel LB_result = new JLabel ("");
-	JTextField TA_username = new JTextField(15);
-	JTextField TA_password = new JTextField(15);
+	private JPanel pane = new JPanel();
+	private JLabel LB_username = new JLabel ("Username: ");
+	private JLabel LB_password = new JLabel ("Password: ");
+	private JLabel LB_result = new JLabel ("");
+	private JTextField TA_username = new JTextField(15);
+	private JTextField TA_password = new JTextField(15);
 	
 	JButton BT_register = new JButton("Register");
 	JButton BT_signin = new JButton("Sign In");
@@ -58,11 +60,28 @@ public class LoginGUI extends JFrame implements ActionListener{
 		if (event.getSource() == BT_signin){
 			//GO TO MAIN GUI, set GUI as visible
 			JOptionPane.showMessageDialog(pane,"You are Signing in");
+			
+			//if we're logged in, we're going to open the app
+			if(control.login(LB_username.getText(), LB_password.getText())) {
 				
+			}
+			else { //we launch an authentication error popup
+				JPanel errorPanel = new JPanel();
+				JLabel errorMessage = new JLabel();
+				
+				errorPanel.setVisible(true);    
+			    setBounds(100,100,280,150); //From upper left corner (right, down, width, height)		
+				pane.setLayout(new FlowLayout());
+				
+				LB_username.setBounds(0, 0, 30, 10);
+				errorPanel.add(errorMessage);
+			}
+			
 		}
 		if (event.getSource() == BT_register){
 			new RegisterGUI();
 			//JOptionPane.showMessageDialog(pane,"You are registering");
+			
 		}
 
 	}   
