@@ -3,6 +3,7 @@ package main;
 import java.io.IOException;
 
 public interface ModelEventListener {
+	public void runView() throws IOException;
 	public int printString(String text);
 	public void changeStateLoggedIn();
 	public void changeStateLoggedOut();

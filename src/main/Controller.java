@@ -6,7 +6,7 @@ public class Controller implements ViewEventListener{
 	public Controller(ModelEventListener view){
 		this.user = null;
 		this.view = view;
-		view.addViewEventListener(this);
+
 	}
 	
 	@Override

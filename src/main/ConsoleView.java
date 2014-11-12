@@ -10,7 +10,7 @@ public class ConsoleView implements ModelEventListener{
 	private ViewEventListener controller;
 	private String state;
 	
-	public void runConsoleView() throws IOException{
+	public void runView() throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = new String();
 		String choice = new String();
