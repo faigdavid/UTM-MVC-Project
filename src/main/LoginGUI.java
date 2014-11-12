@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+
 import java.awt.FlowLayout;
 import java.awt.event.*;
 // HOW TO CALL GUI
@@ -16,6 +17,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 	JLabel LB_result = new JLabel ("");
 	JTextField TA_username = new JTextField(15);
 	JTextField TA_password = new JTextField(15);
+	
 	JButton BT_register = new JButton("Register");
 	JButton BT_signin = new JButton("Sign In");
 	int i = 0;
@@ -59,8 +61,8 @@ public class LoginGUI extends JFrame implements ActionListener{
 				
 		}
 		if (event.getSource() == BT_register){
-			//go to register GUI, set GUI as visible
-			JOptionPane.showMessageDialog(pane,"You are registering");
+			new RegisterGUI();
+			//JOptionPane.showMessageDialog(pane,"You are registering");
 		}
 
 	}   

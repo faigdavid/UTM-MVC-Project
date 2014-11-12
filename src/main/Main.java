@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Main {
 
 	public static void main(String[] args) {
-		
+		new LoginGUI();
 		ModelEventListener view = new ConsoleView();
 		Controller controller = new Controller(view);
 		view.addViewEventListener(controller);
