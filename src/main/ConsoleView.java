@@ -3,6 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -85,7 +86,21 @@ public class ConsoleView implements ModelEventListener{
 			}
 		}
 	}
-
+	@Override
+	public void recieveBoardMessages(Iterator<Message> messages) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void recieveBoards(Iterator<Message> messages) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void recieveSubscribedBoards(Iterator<Message> messages) {
+		// TODO Auto-generated method stub
+		
+	}
 	@Override
 	public int printString(String string){
 		
@@ -189,5 +204,8 @@ public class ConsoleView implements ModelEventListener{
 		input.trim();
 		return input;
 	}
+
+
+
 }
 

@@ -10,7 +10,9 @@ public interface ModelEventListener {
 	public void changeStateLoggedOut();
 	public void changeStateInBoard();
 	public void changeStateNoBoard();
-	public void updateBoardMessages(Iterator<Message> messages);
 	public void addViewEventListener(ViewEventListener listener);
 	public void removeViewEventListener(ViewEventListener listener);
+	public void recieveBoardMessages(Iterator<Message> messages);
+	public void recieveBoards(Iterator<Message> messages);
+	public void recieveSubscribedBoards(Iterator<Message> messages);
 }

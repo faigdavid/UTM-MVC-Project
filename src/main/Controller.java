@@ -10,7 +10,7 @@ public class Controller implements ViewEventListener{
 		this.view = view;
 
 	}
-	
+	/*-------------State-Change requests---------*/
 	@Override
 	public void register(String userName, String password1, String password2){
 		UserDAO userDao = new UserLocalDAO();
@@ -57,19 +57,7 @@ public class Controller implements ViewEventListener{
 		
 		
 	}
-	@Override
-	public void getBoardMessages() {
-		if (assertLoggedIn()){
-			MessageLocalDAO DAO = new MessageLocalDAO();
-			Iterator<Message> msgs = 
-					DAO.getMessages(this.user.getcurrentBoard().getBid());
-			
-			view.updateBoardMessages(msgs);
-		}else{
-			view.printString("You are not logged in.");
-		}
-		
-	}
+
 
 	
 	@Override
@@ -90,16 +78,44 @@ public class Controller implements ViewEventListener{
 			view.printString("Message failed to post.");
 		}
 	}
-	
 
+	/*-----------------DATA REQUESTS-------------------*/
+	
+	@Override
+	public void requestBoardMessages() {
+		if (assertLoggedIn()){
+			MessageLocalDAO DAO = new MessageLocalDAO();
+			Iterator<Message> msgs = 
+					DAO.getMessages(this.user.getcurrentBoard().getBid());
+			
+			view.recieveBoardMessages(msgs);
+		}else{
+			view.printString("You are not logged in.");
+		}
+		
+	}
+	
+	@Override
+	public void requestBoards() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void requestSubscribedBoards() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
-	/*NON-OVERRIDES*/
+	/*-------------NON-OVERRIDES-------------*/
 	
 	/*ALways call this to check that you've logged in.*/
 	private boolean assertLoggedIn(){
 		return this.user != null;
 	}
+
+	
 
 
 	
