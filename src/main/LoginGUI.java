@@ -10,7 +10,8 @@ public class LoginGUI extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
-	private Controller control = new Controller(null);
+	MessagingApp mdl_listener = new MessagingApp();
+	private Controller control = new Controller(mdl_listener);
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel pane = new JPanel();
@@ -62,8 +63,10 @@ public class LoginGUI extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(pane,"You are Signing in");
 			
 			//if we're logged in, we're going to open the app
-			if(control.login(LB_username.getText(), LB_password.getText())) {
-				
+			control.login(TA_username.getText(), TA_password.getText());
+			
+			if(mdl_listener.getIsLoggedIn()) {
+				//launch messaging app gui
 			}
 			else { //we launch an authentication error popup
 				JPanel errorPanel = new JPanel();
@@ -76,13 +79,13 @@ public class LoginGUI extends JFrame implements ActionListener{
 				LB_username.setBounds(0, 0, 30, 10);
 				errorPanel.add(errorMessage);
 			}
-			
-		}
+	
 		if (event.getSource() == BT_register){
 			new RegisterGUI();
 			//JOptionPane.showMessageDialog(pane,"You are registering");
 			
 		}
-
-	}   
-} //end class
+		
+		}
+	} //end class
+}
