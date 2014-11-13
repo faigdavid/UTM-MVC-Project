@@ -1,13 +1,17 @@
 package main;
 
+
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class GUIView implements ModelEventListener {
 	private static GUIView singleton;
 	private boolean isLoggedIn; 
 	private boolean isInBoard; 
 	
-	
+	private GUIView() {
+		super();
+	}
 	
 	/**
 	 * Instantiates the MessagingApp. All further calls to newMessagingApp 
@@ -19,7 +23,6 @@ public class GUIView implements ModelEventListener {
 			singleton = new GUIView();
 		return singleton;
 	}
-	
 	
 	public boolean getIsLoggedIn() {
 		return isLoggedIn;
