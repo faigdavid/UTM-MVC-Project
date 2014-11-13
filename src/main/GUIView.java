@@ -2,12 +2,12 @@ package main;
 
 
 import java.io.IOException;
-import java.util.regex.Pattern;
 
 public class GUIView implements ModelEventListener {
 	private static GUIView singleton;
-	private boolean isLoggedIn; 
-	private boolean isInBoard; 
+	private ViewEventListener controller;
+	private enum stateType {LOGGEDOUT, REGISTER, LOGGEDIN, INBOARD};
+	private stateType state;
 	
 	private GUIView() {
 		super();
@@ -25,58 +25,69 @@ public class GUIView implements ModelEventListener {
 	}
 	
 	public boolean getIsLoggedIn() {
-		return isLoggedIn;
+		return state == stateType.LOGGEDIN;
 	}
 	public boolean getIsInBoard() {
-		return isInBoard;
+		return state == stateType.INBOARD;
 	}
 	
 	@Override
 	public void runView() throws IOException {
 		// TODO Auto-generated method stub
+		new LoginGUI();
 		
 	}
 
 	@Override
 	public int printString(String text) {
 		// TODO Auto-generated method stub
+		System.out.println(text); // just for testing
 		return 0;
 	}
 
 	@Override
 	public void changeStateLoggedIn() {
 		// TODO Auto-generated method stub
-		isLoggedIn = true;
+		this.state = stateType.LOGGEDIN;
 	}
 
 	@Override
 	public void changeStateLoggedOut() {
 		// TODO Auto-generated method stub
-		isLoggedIn = false;
+		this.state = stateType.LOGGEDOUT;
 	}
 
 	@Override
 	public void changeStateInBoard() {
 		// TODO Auto-generated method stub
-		
+		this.state = stateType.INBOARD;
 	}
 
 	@Override
 	public void changeStateNoBoard() {
 		// TODO Auto-generated method stub
+		this.state = stateType.LOGGEDIN;
 		
 	}
 
 	@Override
 	public void addViewEventListener(ViewEventListener listener) {
 		// TODO Auto-generated method stub
-		
+		this.controller = listener;
 	}
 
 	@Override
 	public void removeViewEventListener(ViewEventListener listener) {
 		// TODO Auto-generated method stub
-		
+		this.controller = null;
 	}
 
+	/*--------------------------Methods used only in GUI's--------------------------*/
+	
+	public ViewEventListener getViewEventListener(){
+		return this.controller;
+	}
+	
+	
+	
 }

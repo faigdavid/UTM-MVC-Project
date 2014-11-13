@@ -5,8 +5,8 @@ import java.io.IOException;
 public class Main {
 
 	public static void main(String[] args) {
-		new LoginGUI();
-		ModelEventListener view = new ConsoleView();
+
+		ModelEventListener view = GUIView.newMessagingApp();
 		Controller controller = new Controller(view);
 		view.addViewEventListener(controller);
 		try {
@@ -14,7 +14,6 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
