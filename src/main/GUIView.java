@@ -2,10 +2,24 @@ package main;
 
 import java.io.IOException;
 
-public class MessagingApp implements ModelEventListener {
-
+public class GUIView implements ModelEventListener {
+	private static GUIView singleton;
 	private boolean isLoggedIn; 
 	private boolean isInBoard; 
+	
+	
+	
+	/**
+	 * Instantiates the MessagingApp. All further calls to newMessagingApp 
+	 * will return the same instance. MessagingApp acts as a singleton.
+	 * @return a MessagingApp instance.
+	 */
+	public static GUIView newMessagingApp() {
+		if (singleton == null)
+			singleton = new GUIView();
+		return singleton;
+	}
+	
 	
 	public boolean getIsLoggedIn() {
 		return isLoggedIn;

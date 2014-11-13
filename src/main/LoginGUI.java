@@ -10,7 +10,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
-	MessagingApp mdl_listener = new MessagingApp();
+	GUIView mdl_listener = new GUIView();
 	private Controller control = new Controller(mdl_listener);
 	
 	private static final long serialVersionUID = 1L;
