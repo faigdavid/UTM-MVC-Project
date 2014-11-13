@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Iterator;
+
 public class Controller implements ViewEventListener{
 	private User user;
 	private ModelEventListener view;
@@ -59,7 +61,10 @@ public class Controller implements ViewEventListener{
 	public void getBoardMessages() {
 		if (assertLoggedIn()){
 			MessageLocalDAO DAO = new MessageLocalDAO();
-			DAO.getMessages(this.user.getcurrentBoard().getBid());
+			Iterator<Message> msgs = 
+					DAO.getMessages(this.user.getcurrentBoard().getBid());
+			
+			view.updateBoardMessages(msgs);
 		}else{
 			view.printString("You are not logged in.");
 		}
