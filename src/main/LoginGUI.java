@@ -47,40 +47,31 @@ public class LoginGUI extends JFrame implements ActionListener{
 	    
 	    BT_register.setSize(100,20);
 	    BT_register.setLocation(10,10); 
-	    BT_register.addActionListener(this);
+	    BT_register.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		new RegisterGUI();	
+	    	}
+	    });
 	    pane.add(BT_register);
 	    
 	    BT_signin.setSize(100,20);
 	    BT_signin.setLocation(10,10); 
-	    BT_signin.addActionListener(this);
+	    BT_signin.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+				if(mdl_listener.getIsLoggedIn()) {
+					new BoardGUI();
+				}
+				else { //we launch an authentication error popup
+				    String message = "Wrong username or password!";
+				        JOptionPane.showMessageDialog(new JFrame(), message, "Error",
+				            JOptionPane.ERROR_MESSAGE);
+				}	
+	    	}
+	    });
 	    pane.add(BT_signin);
 	    
 
 	} //end constructor
 
-	public void actionPerformed(ActionEvent event){
-		if (event.getSource() == BT_signin){
-			//GO TO MAIN GUI, set GUI as visible
-			JOptionPane.showMessageDialog(pane,"You are Signing in");
-			
-			//if we're logged in, we're going to open the app
-			control.login(TA_username.getText(), TA_password.getText());
-			
-			if(mdl_listener.getIsLoggedIn()) {
-				new BoardGUI();
-			}
-			else { //we launch an authentication error popup
-			    String message = "Wrong username or password!";
-			        JOptionPane.showMessageDialog(new JFrame(), message, "Error",
-			            JOptionPane.ERROR_MESSAGE);
-			}
-	
-		if (event.getSource() == BT_register){
-			new RegisterGUI();
-			//JOptionPane.showMessageDialog(pane,"You are registering");
-			
-		}
-		
-		}
-	} //end class
+	public void actionPerformed(ActionEvent event){} //end class
 }
