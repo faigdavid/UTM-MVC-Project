@@ -17,7 +17,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 	private JPanel pane = new JPanel();
 	private JLabel LB_username = new JLabel ("Username: ");
 	private JLabel LB_password = new JLabel ("Password: ");
-	private JLabel LB_result = new JLabel ("");
+	//private JLabel LB_result = new JLabel ("");
 	private JTextField TA_username = new JTextField(15);
 	private JTextField TA_password = new JTextField(15);
 	
