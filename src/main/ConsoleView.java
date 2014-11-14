@@ -59,7 +59,7 @@ public class ConsoleView implements ModelEventListener{
 				break;
 				
 			case "refresh":
-				//make this update the current screen (ie get new messages)
+				//make a request for boards or messages depending on state.
 				break;
 			
 			case "post":
@@ -88,17 +88,17 @@ public class ConsoleView implements ModelEventListener{
 	}
 	@Override
 	public void recieveBoardMessages(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
+		//PRINT OUT ALL THE MESSAGES ON THE CURRENT BOARD.
 		
 	}
 	@Override
-	public void recieveBoards(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
+	public void recieveBoards(Iterator<Board> boards) {
+		//PRINT OUT ALL THE BOARDS.
 		
 	}
 	@Override
-	public void recieveSubscribedBoards(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
+	public void recieveSubscribedBoards(Iterator<Board> boards) {
+		//PRINT OUT ALL BOARDS.
 		
 	}
 	@Override
