@@ -2,6 +2,7 @@ package main;
 
 
 import java.io.IOException;
+import java.util.Iterator;
 
 public class GUIView implements ModelEventListener {
 	private static GUIView singleton;
@@ -81,13 +82,31 @@ public class GUIView implements ModelEventListener {
 		// TODO Auto-generated method stub
 		this.controller = null;
 	}
+	@Override
+	public void recieveBoardMessages(Iterator<String> messages) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void recieveBoards(Iterator<String> Boards) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void recieveSubscribedBoards(Iterator<String> Boards) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	/*--------------------------Methods used only in GUI's--------------------------*/
 	
 	public ViewEventListener getViewEventListener(){
 		return this.controller;
 	}
-	
+
+
 	
 	
 }
