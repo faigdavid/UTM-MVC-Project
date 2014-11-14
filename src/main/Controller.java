@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Controller implements ViewEventListener{
@@ -87,8 +88,12 @@ public class Controller implements ViewEventListener{
 			MessageLocalDAO DAO = new MessageLocalDAO();
 			Iterator<Message> msgs = 
 					DAO.getMessages(this.user.getcurrentBoard().getBid());
-			
-			view.recieveBoardMessages(msgs);
+			ArrayList<String> messages = new ArrayList<String>();
+			while (msgs.hasNext()){
+				Message m = msgs.next();
+				messages.add(m.formatMessage(m.getUsername()));
+			}
+			view.recieveBoardMessages(messages.iterator());
 		}else{
 			view.printString("You are not logged in.");
 		}

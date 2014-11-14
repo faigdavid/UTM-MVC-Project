@@ -86,21 +86,7 @@ public class ConsoleView implements ModelEventListener{
 			}
 		}
 	}
-	@Override
-	public void recieveBoardMessages(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void recieveBoards(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void recieveSubscribedBoards(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public int printString(String string){
 		
@@ -141,6 +127,23 @@ public class ConsoleView implements ModelEventListener{
 	@Override
 	public void changeStateNoBoard() {
 		state = "logged in";
+		
+	}
+	@Override
+	public void recieveBoardMessages(Iterator<String> messages) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void recieveBoards(Iterator<String> Boards) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void recieveSubscribedBoards(Iterator<String> Boards) {
+		// TODO Auto-generated method stub
 		
 	}
 	
@@ -204,6 +207,8 @@ public class ConsoleView implements ModelEventListener{
 		input.trim();
 		return input;
 	}
+
+
 
 
 
