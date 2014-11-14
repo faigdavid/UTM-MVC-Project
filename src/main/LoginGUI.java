@@ -24,6 +24,7 @@ public class LoginGUI extends JFrame implements ActionListener{
 	JButton BT_register = new JButton("Register");
 	JButton BT_signin = new JButton("Sign In");
 	int i = 0;
+	
 	LoginGUI(){
 	    super("Login Screen");
 	    setVisible(true);
@@ -66,18 +67,12 @@ public class LoginGUI extends JFrame implements ActionListener{
 			control.login(TA_username.getText(), TA_password.getText());
 			
 			if(mdl_listener.getIsLoggedIn()) {
-				//launch messaging app gui
+				new BoardGUI();
 			}
 			else { //we launch an authentication error popup
-				JPanel errorPanel = new JPanel();
-				JLabel errorMessage = new JLabel();
-				
-				errorPanel.setVisible(true);    
-			    setBounds(100,100,280,150); //From upper left corner (right, down, width, height)		
-				pane.setLayout(new FlowLayout());
-				
-				LB_username.setBounds(0, 0, 30, 10);
-				errorPanel.add(errorMessage);
+			    String message = "Wrong username or password!";
+			        JOptionPane.showMessageDialog(new JFrame(), message, "Error",
+			            JOptionPane.ERROR_MESSAGE);
 			}
 	
 		if (event.getSource() == BT_register){
