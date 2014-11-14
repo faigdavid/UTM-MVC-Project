@@ -47,7 +47,11 @@ public class LoginGUI extends JFrame implements ActionListener{
 	    
 	    BT_register.setSize(100,20);
 	    BT_register.setLocation(10,10); 
-	    BT_register.addActionListener(this);
+	    BT_register.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            	new RegisterGUI();
+            }
+        });
 	    pane.add(BT_register);
 	    
 	    BT_signin.setSize(100,20);
