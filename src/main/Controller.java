@@ -114,13 +114,15 @@ public class Controller implements ViewEventListener{
 	private boolean assertLoggedIn(){
 		return this.user != null;
 	}
-
-	
-
-
-	
-	
-
-	
+	@Override
+	public void subscribeToBoard(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void unsubscribeFromBoard(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

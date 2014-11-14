@@ -9,4 +9,7 @@ public interface ViewEventListener {
 	public void requestBoardMessages();
 	public void requestBoards();
 	public void requestSubscribedBoards();
+	//Carlito added these abstract methods()
+	public void subscribeToBoard(Board board);
+	public void unsubscribeFromBoard(Board board);
 }
