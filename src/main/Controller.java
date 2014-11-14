@@ -29,7 +29,7 @@ public class Controller implements ViewEventListener{
 			view.printString("The passwords did not match!");
 		}
 	}
-	@Override
+	@Override 
 	public void changeBoardByName(String name) {
 		if (assertLoggedIn()){
 			BoardLocalDAO DAO = new BoardLocalDAO();

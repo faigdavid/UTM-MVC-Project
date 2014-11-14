@@ -12,7 +12,7 @@ public class Message {
 	private ArrayList<String> whitelist;
 	
 	/*IMPORTANT: The builder cannot make a date or mid, since those
-	 are pre-determined for each message.*/
+	 are pre-determined for each message.*/ 
 	private Message(Builder builder){
 		this.mid = builder.mid;
 		this.date = builder.date;
