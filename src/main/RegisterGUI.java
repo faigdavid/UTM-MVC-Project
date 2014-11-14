@@ -1,76 +1,95 @@
 package main;
 
-import javax.swing.*;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.*;
+
+import javax.swing.*;
 // HOW TO CALL GUI
 //new GUI();
-public class RegisterGUI extends JFrame implements ActionListener{
-	/**
-	 * 
-	 */
+public class RegisterGUI extends JFrame{
 	private static final long serialVersionUID = 1L;
-	JPanel pane = new JPanel();
-	JLabel LB_username = new JLabel        ("Username: ");
-	JLabel LB_password = new JLabel        ("Password: ");
-	JLabel LB_confirmpassword = new JLabel ("   Confirm: ");
-	JLabel LB_result = new JLabel ("");
-	JTextField TF_username = new JTextField(15);
-	JTextField TF_password = new JTextField(15);
-	JTextField TF_confirmpassword = new JTextField(15);
-	JButton BT_register = new JButton("Register");
-	JButton BT_cancel = new JButton("Cancel");
 	
-	int i = 0;
-	RegisterGUI(){
-	    super("Register Screen");
-	    setVisible(true);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     
-	    setBounds(100,100,280,170); //From upper left corner (right, down, width, height)
-	    this.add(pane); 
-	    pane.setLayout(new FlowLayout());
-	    
-	    LB_username.setBounds(0, 50, 300, 30);
-	    pane.add(LB_username);
-	        
-	    TF_username.setBounds(100,50,100,30);
-	    pane.add(TF_username);
-	    
-	    LB_password.setBounds(0, 50, 300, 30);
-	    pane.add(LB_password);
-	    
-	    TF_password.setBounds(0,50,100,30);
-	    pane.add(TF_password);
-	    
-	    LB_confirmpassword.setBounds(0, 50, 300, 30);
-	    pane.add(LB_confirmpassword);
-	    
-	    TF_confirmpassword.setBounds(0,50,100,30);
-	    pane.add(TF_confirmpassword);
-	    
-	    BT_register.setSize(100,20);
-	    BT_register.setLocation(10,10); 
-	    BT_register.addActionListener(this);
-	    pane.add(BT_register);
-	    
-	    BT_cancel.setSize(100,20);
-	    BT_cancel.setLocation(10,10); 
-	    BT_cancel.addActionListener(this);
-	    pane.add(BT_cancel);
-	    
-
-	} //end constructor
-
-	public void actionPerformed(ActionEvent event){
-		if (event.getSource() == BT_cancel){
-			//GO TO MAIN GUI, set GUI as visible
-			JOptionPane.showMessageDialog(pane,"You are Signing in");
-				
-		}
-		if (event.getSource() == BT_register){
-			//go to register GUI, set GUI as visible
-			JOptionPane.showMessageDialog(pane,"You are registering");
-		}
-
-	}   
+    final static int maxGap = 20;
+    JButton BT_register = new JButton("Register");
+    JButton BT_cancel = new JButton("cancel");
+    
+	private JTextField TA_username = new JTextField(15);
+	private JTextField TA_password = new JTextField(15);
+	private JTextField TA_passwordConfirm = new JTextField(15);
+    
+    public RegisterGUI() {
+        super("Register");
+        //setResizable(false);
+        
+        
+        /* Use an appropriate Look and Feel */
+        try {
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+        } catch (UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        } catch (InstantiationException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        /* Turn off metal's use of bold fonts */
+        UIManager.put("swing.boldMetal", Boolean.FALSE);
+         
+        //Create and set up the window.
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Set up the content pane.
+        this.addComponentsToPane(this.getContentPane());
+        //Display the window.
+        this.pack();
+        this.setVisible(true);
+        
+        
+    }
+	
+    public void addComponentsToPane(final Container pane) {
+        GridLayout inputLayout = new GridLayout(0,2);
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(inputLayout);
+        
+        GridLayout controlLayout = new GridLayout(0,2);
+        JPanel controls = new JPanel();
+        controls.setLayout(controlLayout);
+         
+        //Add buttons to experiment with Grid Layout
+        inputPanel.add(new JLabel ("Username: "));
+        inputPanel.add(TA_username);
+        inputPanel.add(new JLabel ("Password: "));
+        inputPanel.add(TA_password);
+        inputPanel.add(new JLabel ("Confirm Password: "));
+        inputPanel.add(TA_passwordConfirm);
+        inputPanel.add(Box.createVerticalStrut(4));
+        inputLayout.setVgap(10);
+         
+        //Add controls to set up horizontal and vertical gaps
+        controls.add(BT_register);
+        controls.add(BT_cancel);
+        controlLayout.setHgap(10);
+        
+         
+        //Process the Apply gaps button press
+        BT_register.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            	//System.out.println("Asdfadsf");
+            	
+            	
+                //Set up the horizontal gap value
+            	//textLayout.setHgap(10);
+                //Set up the vertical gap value
+            	//textLayout.setVgap(10);
+                //Set up the layout of the buttons
+            	//textLayout.layoutContainer(compsToExperiment);
+            }
+        });
+        pane.add(inputPanel, BorderLayout.NORTH);
+        pane.add(new JSeparator(), BorderLayout.CENTER);
+        pane.add(controls, BorderLayout.SOUTH);
+    }
 } //end class
