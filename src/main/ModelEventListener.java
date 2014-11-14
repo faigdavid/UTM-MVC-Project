@@ -13,6 +13,7 @@ public interface ModelEventListener {
 	public void addViewEventListener(ViewEventListener listener);
 	public void removeViewEventListener(ViewEventListener listener);
 	public void recieveBoardMessages(Iterator<Message> messages);
-	public void recieveBoards(Iterator<Message> messages);
-	public void recieveSubscribedBoards(Iterator<Message> messages);
+	public void recieveBoards(Iterator<Board> boards);
+	public void recieveSubscribedBoards(Iterator<Board> boards);
 }
+
