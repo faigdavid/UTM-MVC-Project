@@ -47,17 +47,20 @@ public class BoardGUI extends JFrame implements ActionListener {
 		
 		if(event.getSource() == subscribeButton) {
 			BoardLocalDAO dao = new BoardLocalDAO();
-			control.subscribeToBoard(dao.getBoardByName(selectedBoard));			
+			control.subscribeUserToBoard(dao.getBoardByName(selectedBoard));			
 		}
 		else if(event.getSource() == unsubscribeButton) {
 			BoardLocalDAO dao = new BoardLocalDAO();
-			control.unsubscribeFromBoard(dao.getBoardByName(selectedBoard));			
+			control.unsubscribeUserFromBoard(dao.getBoardByName(selectedBoard));			
 		}
 		else if(event.getSource() == postButton) {
 			control.post(message.getText());
 		}
-		else if(event.getSource() == subscribedBoards ||event.getSource() == notSubscribedBoards ) {
+		else if(event.getSource() == subscribedBoards ) {
 			selectedBoard = (String) subscribedBoards.getSelectedItem();
+		}
+		else if(event.getSource() == notSubscribedBoards) {
+			selectedBoard = (String) notSubscribedBoards.getSelectedItem();
 		}
 		
 	}

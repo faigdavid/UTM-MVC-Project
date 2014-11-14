@@ -107,22 +107,26 @@ public class Controller implements ViewEventListener{
 		
 	}
 
-	
+	@Override
+	public void subscribeUserToBoard(Board board) {
+		// TODO Auto-generated method stub
+		SubscriptionLocalDAO dao = new SubscriptionLocalDAO();
+		dao.subUserToBoard(user, board);
+		
+		
+	}
+	@Override
+	public void unsubscribeUserFromBoard(Board board) {
+		// TODO Auto-generated method stub
+		SubscriptionLocalDAO dao = new SubscriptionLocalDAO();
+		dao.unSubUserFromBoard(user, board);
+	}	
 	/*-------------NON-OVERRIDES-------------*/
 	
 	/*ALways call this to check that you've logged in.*/
 	private boolean assertLoggedIn(){
 		return this.user != null;
 	}
-	@Override
-	public void subscribeToBoard(Board board) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void unsubscribeFromBoard(Board board) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 }

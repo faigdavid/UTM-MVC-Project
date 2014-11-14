@@ -10,6 +10,6 @@ public interface ViewEventListener {
 	public void requestBoards();
 	public void requestSubscribedBoards();
 	//Carlito added these abstract methods()
-	public void subscribeToBoard(Board board);
-	public void unsubscribeFromBoard(Board board);
+	public void subscribeUserToBoard(Board board);
+	public void unsubscribeUserFromBoard(Board board);
 }
