@@ -14,7 +14,11 @@
 The features which I focused most during this review are the credit section, the fixed regex, and the refresh function which can all be found here: https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/commit/57e2b236e45fea32e334c9765b0ae3eacf6da2a7. The code that you wrote for the credit section was both succint and humorous. The refresh function worked in both cases and was easily understandable. However, the regex portion may not be entirely correct because it says /w would be an acceptable input for private messaging, which is problematic since we didn't actually implement private messaging. This would create some problems if the user entered /w as an input. However overall your code was of high quality and was very easily understandable.  
 
 #Reviewer: benbennza1 #
-<type review here>
+* reminded that we do not need to implement more features when we do not have our release plan done yet
+* suggested that since we have literally 6 assignments due in one weeks, we DO NOT need to implement GUI or anything fancy
+* helped out with skeleton code, client, console I/O
+
+NOTE: Our group had a really busy week, we had 2 assignments due on Monday, 1 assignment due on Wednesday, 2 on Friday (today). Please take that as an excuse for not making everything perfect. 
 
 #Reviewer: shk0307 #
 Major commit of benbennza1: client.java (https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/commit/a50cd5a838a6a0390d39f18d9a7ad5d96eedc312)
