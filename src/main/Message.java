@@ -29,12 +29,10 @@ public class Message {
 				mid, boardName, this.username, date, text);
 		
 		if(whitelist == null){ //No whitelist == public message.
-			System.out.println(msg);
 			return msg;
 		}else{
 			for (String name : whitelist){
 				if (name == username){
-					System.out.println(msg);
 					return msg;
 				}
 			}
