@@ -100,7 +100,7 @@ public class MessageLocalDAO implements MessageDAO{
 		   try {writer.close();} catch (Exception ex) {}
 	}
 	
-	return 0;
+	return 1;
 	}
 	
 	/*PRIVATE FUNCTIONS*/
