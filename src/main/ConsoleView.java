@@ -134,7 +134,10 @@ public class ConsoleView implements ModelEventListener{
 	@Override
 	public void recieveSubscribedBoards(Iterator<Board> boards) {
 		//PRINT OUT ALL BOARDS.
-		
+		while(boards.hasNext()) {
+			Board nextBoard = boards.next();
+			System.out.println(nextBoard.getName());
+		}		
 	}
 	@Override
 	public int printString(String string){
