@@ -183,7 +183,8 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void createBoard(String name) {
 		// TODO Auto-generated method stub
-		
+	        BoardDAO BDAO = new BoardLocalDAO();
+		BDAO.createBoard(name);
 	}
 	/*-------------NON-OVERRIDES-------------*/
 	
