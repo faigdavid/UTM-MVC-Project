@@ -26,6 +26,18 @@ public class ConsoleView implements ModelEventListener{
 			
 			// login print
 			printString("Please Input: ");
+			if (state.equals("logged out"))
+			{
+				printString("Please enter l to login, or r to register");
+			}
+			else if (state.equals("logged in"))
+			{
+				printString("");
+			}
+			else if (state.equals("in board"))
+			{
+				printString("");
+			}
 			input = br.readLine();
 			input.trim();
 			choice = inputInterpreter(input, state);
@@ -172,11 +184,11 @@ public class ConsoleView implements ModelEventListener{
 		else if(state.equals("logged in")){
 			
 			if(Pattern.matches("^/?j(oinboard)?[ \t]+[0-9]+$", input)){
-				System.out.println("stat=loged in");
+				System.out.println("state=logged in");
 				return "join board by bid";
 			}
 			if(Pattern.matches("^/?j(oinboard)?[ \t]+.+$", input)){
-				System.out.println("stat=loged in");
+				System.out.println("state=logged in");
 				return "join board by name";
 			}
 			return "bad input";
