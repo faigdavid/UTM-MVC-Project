@@ -13,6 +13,7 @@ to solve the issue, they had to discuss it between each other. However due to th
 as pointless bureaucracy. 
 
 Kanban VS Scrum
+
 There were certainly benefits to both systems but we ended up deciding that Scrum seemed slightly better at organizing our workflow. The main idea behind this is that the Scrum process helped us to create and stick to deadlines.
 The Scrum meetings were treated as deadlines which really helped motivate the team to finish the task at hand. Kanban, on the other hand had the benefit of allowing far more freedom and was a lot less constricting than Scrum.
 This was mainly due to the fact that it didn't require set meetings, or really rigid deadlines. We could meet whenever it was best for us, and work when we saw fit which was apreciated by the team. This however was a double edge
