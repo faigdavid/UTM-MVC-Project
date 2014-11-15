@@ -21,7 +21,7 @@ public interface BoardDAO {
 	 */
 	public Board getBoardByName(String name);
 	
-	public Board createBoard(String name);
+	public int createBoard(String name);
 
 	/**
 	 * delete given board from the database.

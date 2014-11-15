@@ -1,14 +1,21 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 public class BoardLocalDAO implements BoardDAO {
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/BOARDS/";
 	private String davidsPath = (System.getProperty("user.dir")+"/src/database/BOARDS/");
+	private String defaultPath = davidsPath;
 	@Override
 	
 	public Board getBoard(String bid) {
@@ -33,9 +40,23 @@ public class BoardLocalDAO implements BoardDAO {
 	}
 
 	@Override
-	public Board createBoard(String name) {
+	public int createBoard(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		String BID = getBID();
+		incrementBID();
+		String filename = String.format("%s%s.txt", defaultPath, BID);
+		Writer writer = null;
+		try {
+			writer = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream(filename), "utf-8"));
+			writer.write(String.format("%s\n", name));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			   try {writer.close();} catch (Exception ex) {}
+		}
+		
+		return 1;
 	}
 
 	@Override
@@ -70,5 +91,39 @@ public class BoardLocalDAO implements BoardDAO {
 		}
 		return toJoin;
 	}
-
+	private int incrementBID(){
+		String filename = String.format("%smId.txt", defaultPath);
+		Writer writer = null;
+		String newBid;
+		newBid = Integer.toString(Integer.parseInt(getBID()) + 1);
+		try {
+			writer = new PrintWriter(filename);
+			writer.write(String.format("%s", newBid));
+		}catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			   try {writer.close();} catch (Exception ex) {}
+		}
+		return 1;
+	}
+	//Gets the next MID. Increments the MID right after.
+	private String getBID(){
+		BufferedReader reader = null;
+		String filename = String.format("%sbId.txt", defaultPath);
+		int bid = 1;
+		try{
+			reader = new BufferedReader(new FileReader(filename));
+			String line = null;
+			line = reader.readLine();
+			if (line != null){ //null = first message.
+				bid = Integer.parseInt(line);
+			}
+		}catch (IOException e) {
+			
+		} finally {
+			   try {reader.close();} catch (Exception ex) {}
+		}
+		return String.valueOf(bid);
+		
+	}
 }

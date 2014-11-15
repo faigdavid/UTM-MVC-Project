@@ -184,7 +184,9 @@ public class Controller implements ViewEventListener{
 	public void createBoard(String name) {
 		// TODO Auto-generated method stub
 	        BoardDAO BDAO = new BoardLocalDAO();
-		BDAO.createBoard(name);
+		if (BDAO.createBoard(name) != 1){
+			//nothing for now.
+		}
 	}
 	/*-------------NON-OVERRIDES-------------*/
 	
