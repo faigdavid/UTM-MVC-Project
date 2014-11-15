@@ -21,7 +21,7 @@ public class MessageLocalDAO implements MessageDAO{
 	 * If you wish to change it for linux, then change the path names in
 	 the  methods to linuxpath.*/
 	private String linuxpath = "/CSC301/Messages/";
-	private String davidsPath = "C:\\Users\\David\\git\\Proj-UTM-Team6-repo\\src\\database\\boards\\";;
+	private String davidsPath = (System.getProperty("user.dir")+"/src/database/USERS/");
 	private String defaultPath = davidsPath;
 	private ArrayList<Message> messages = null;
 	private Iterator<Message> allmessages = null;

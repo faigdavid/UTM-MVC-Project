@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 public class BoardLocalDAO implements BoardDAO {
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/BOARDS/";
-	private String davidsPath = "C:\\Users\\David\\git\\Proj-UTM-Team6-repo\\src\\database\\BOARDS\\";
+	private String davidsPath = (System.getProperty("user.dir")+"/src/database/USERS/");
 	@Override
 	
 	public Board getBoard(String bid) {
