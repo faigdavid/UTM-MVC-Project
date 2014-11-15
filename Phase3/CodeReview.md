@@ -30,3 +30,8 @@ I particularly like how you implemented the MVC as we saw in class to allow for 
 
 #Reviewer: faigdavid #
 <type review here>
+The multpile commits for ConsoleView:
+
+His implementation of ConsoleView on November 10 was lightweight and simple. The use of switch cases bothered me, but for the sake of quick and simple code, it was the obvious choice. We discussed the sort of issues that might come up in the future, and agreed on final skeleton for ConsoleView that was eventually completed by the while team.
+
+I particularly liked the use of strings to keep states. It could have been an enumeration, but for the sake of quick and simple code, it was very effective.
