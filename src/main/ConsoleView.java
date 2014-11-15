@@ -200,16 +200,18 @@ public class ConsoleView implements ModelEventListener{
 			if(Pattern.matches("^/j(oinboard)?[ \t]+[0-9]+$", input)){
 				return "join board by bid";
 			}
-			if(Pattern.matches("/j(oinboard)?[ \t]+.*$", input)){
+			if(Pattern.matches("^/j(oinboard)?[ \t]+.*$", input)){
 				return "join board by name";
 			}
-			if(Pattern.matches("/r(efresh)?.*$", input)){
+			if(Pattern.matches("^/r(efresh)?.*$", input)){
 				return "refresh";
 			}
-			if(Pattern.matches("(/w|[ \t]+.*$", input)){
-				return "refresh";
+			if(Pattern.matches("^/w[ \t]+.*$", input)){
+				return "private message";
 			}
-			
+			if(Pattern.matches("^/p[ \t]+.*$", input)){
+				return "post";
+			}
 			return "bad input";
 		}
 		return "bad input";
