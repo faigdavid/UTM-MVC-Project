@@ -2,8 +2,8 @@
 |:---------|:-----:|
 | Carlito  | Dmitry |
 | Dmitry   | Carlito |
-| Zhang An (Ben) | Seung (Shaun) | 
-| Seung (Shaun) | Zhang An (Ben) |
+| Zhang An (Ben) | Seung Hyun (Shaun) | 
+| Seung Hyun (Shaun) | Zhang An (Ben) |
 | Henry   | David |
 |David | Henry |
 
@@ -16,7 +16,7 @@
 #Reviewer: Zhang An (Ben) #
 <type review here>
 
-#Reviewer: Seung (Shaun) #
+#Reviewer: Seung Hyun (Shaun) #
 <type review here>
 
 #Reviewer: Henry #
