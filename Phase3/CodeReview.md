@@ -17,7 +17,11 @@ The features which I focused most during this review are the credit section, the
 <type review here>
 
 #Reviewer: shk0307 #
-<type review here>
+Major commit of benbennza1: client.java (https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/commit/a50cd5a838a6a0390d39f18d9a7ad5d96eedc312)
+
+- I found several minor bugs in the initial commit of client.java, but most of those were due to some critical methods in other classes were not done at the moment. ( https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/issues/1)
+- Those bugs were fixed in the end, and in doing so, we collaborated together to make some important decision on design of DAO and other classes. 
+- His initial implementation of GUI (https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/commit/db0ba845c3900f64f4777a5bbfdef4c34ea72308) was okay starter to implementing GUI for the program.
 
 #Reviewer: ekelundh #
 <type review here>
