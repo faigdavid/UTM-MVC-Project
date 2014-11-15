@@ -1,8 +1,11 @@
 The list of columns which we  chose to reprsent our process on the Kanban board is as follows:
 
 Concept: This stage was for conceptualizing and visualizing how the idea should work, and how it should interact with the rest of the code in theory.
+
 Skeleton Code: This stage made sure that the functions were represented by skeleton code, for example an empty collection of functions with descriptions of what they should return and what they should take in. 
+
 Implementation: Here we actually coded the functions based on the first two progressions. This made sure that what we were returning was the data we were actually looking for.
+
 Testing: This is self-explanatory. During this phase the code we wrote in the third stage is rigourously tested and bugs are fixed. 
 
 We chose a fairly small WIP limit as we wanted to make sure that features were finished in the short time frame that we had, rather than being too spread out and starting a lot of functions and ending up not finishing any.
