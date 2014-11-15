@@ -64,7 +64,6 @@ public class ConsoleView implements ModelEventListener{
 				System.out.println("......");
 				System.out.println("and Ben....for ordering pizza");
 				break;
-				break;
 				
 			case "refresh": //Carlito coded this
 				//make a request for boards or messages depending on state.
