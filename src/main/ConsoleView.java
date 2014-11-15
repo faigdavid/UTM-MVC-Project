@@ -106,6 +106,11 @@ public class ConsoleView implements ModelEventListener{
 				controller.changeBoardByBid(input.substring(toStrip).trim());
 				break;
 				
+			case "create board":
+				toStrip = input.indexOf(' ');
+				controller.createBoard(input.substring(toStrip).trim());
+				break;
+				
 			default:
 				printString("Invalid Choice");
 				break;
