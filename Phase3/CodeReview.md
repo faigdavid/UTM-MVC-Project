@@ -8,7 +8,21 @@
 |faigdavid | ekelundh |
 
 #Reviewer: R-ed #
-<type review here>
+
+-I found several issues on github such as: dirty worktrees, non fast-forward errors, and conflicts.
+ I found these errors when working in CodeReview.md and ConsoleView.java.  I believe these errors
+ occurred when Dmitry and I were both coding on the same files.
+ 
+-Dmitry coded the instructions on how to use the console.  He made well use of user made functions
+ to print the instructions, he could've used System.out.println but instead used the printString
+ function coded by David.
+ 
+-We had a bug where the console commands would be taken in as part of a message when we post to a board.
+ Dmitry solved this bug by omitting the first three characters of the user input.
+ 
+-Dmitry fixed the problem where all of us would manually fix the directory path in the database.  He
+ added a function ((System.getProperty("user.dir")) that would automatically fix the directory 
+ path regardless which computer we use.
 
 #Reviewer: trallgorm #
 The features which I focused most during this review are the credit section, the fixed regex, and the refresh function which can all be found here: https://github.com/csc301-fall2014/Proj-UTM-Team6-repo/commit/57e2b236e45fea32e334c9765b0ae3eacf6da2a7. The code that you wrote for the credit section was both succint and humorous. The refresh function worked in both cases and was easily understandable. However, the regex portion may not be entirely correct because it says /w would be an acceptable input for private messaging, which is problematic since we didn't actually implement private messaging. This would create some problems if the user entered /w as an input. However overall your code was of high quality and was very easily understandable.  
