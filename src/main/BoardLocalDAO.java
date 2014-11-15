@@ -92,7 +92,7 @@ public class BoardLocalDAO implements BoardDAO {
 		return toJoin;
 	}
 	private int incrementBID(){
-		String filename = String.format("%smId.txt", defaultPath);
+		String filename = String.format("%sbId.txt", defaultPath);
 		Writer writer = null;
 		String newBid;
 		newBid = Integer.toString(Integer.parseInt(getBID()) + 1);

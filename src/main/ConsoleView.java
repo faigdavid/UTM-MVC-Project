@@ -230,6 +230,9 @@ public class ConsoleView implements ModelEventListener{
 			if(Pattern.matches("^/p[ \t]+.*$", input)){
 				return "post";
 			}
+			if(Pattern.matches("^/b[ \t]+.*$", input)){
+				return "create board";
+			}
 			return "bad input";
 		}
 		return "bad input";
