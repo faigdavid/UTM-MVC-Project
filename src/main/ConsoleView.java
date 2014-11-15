@@ -53,13 +53,28 @@ public class ConsoleView implements ModelEventListener{
 				controller.register(username, password, password2);
 				break;
 
-			case "credits":
+			case "credits": //carlito coded this
 				printString("You Chose To See Credits");
-				//make this do shit
+				System.out.println("-------------------------------");
+				System.out.println("Henry Ekelund");
+				System.out.println("David Faig");
+				System.out.println("Seung Hyun");
+				System.out.println("Carlito Llena");
+				System.out.println("Dmitry 'Cyka' Vasin");
+				System.out.println("......");
+				System.out.println("and Ben....for ordering pizza");
+				break;
 				break;
 				
-			case "refresh":
+			case "refresh": //Carlito coded this
 				//make a request for boards or messages depending on state.
+				if(this.state.equals("logged in")) {
+					controller.requestBoards();				
+				}
+				else if(this.state.equals("in board")) {
+					controller.requestBoardMessages();
+				}
+				
 				break;
 			
 			case "post":
