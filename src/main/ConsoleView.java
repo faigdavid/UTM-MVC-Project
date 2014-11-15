@@ -89,6 +89,8 @@ public class ConsoleView implements ModelEventListener{
 				break;
 			
 			case "post":
+				input.trim();
+				input=input.substring(toStrip = input.indexOf(' ')+1);
 				controller.post(input);
 				break;
 				
