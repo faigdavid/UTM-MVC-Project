@@ -36,7 +36,7 @@ public class ConsoleView implements ModelEventListener{
 			}
 			else if (state.equals("in board"))
 			{
-				printString("Type j and the bid or name to enter a board, r to refresh the board, and /p followed by message to post a message");
+				printString("Type j and the bid or name to enter a board, /r to refresh the board, and /p followed by message to post a message");
 			}
 			input = br.readLine();
 			input.trim();
