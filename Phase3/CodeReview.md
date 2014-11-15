@@ -7,19 +7,19 @@
 | ekelundh | faigdavid |
 |faigdavid | ekelundh |
 
-#Reviewer: Carlito #
+#Reviewer: R-ed #
 <type review here>
 
-#Reviewer: Dmitry #
+#Reviewer: trallgorm #
 <type review here>
 
-#Reviewer: Zhang An (Ben) #
+#Reviewer: benbennza1 #
 <type review here>
 
-#Reviewer: Seung (Shaun) #
+#Reviewer: shk0307 #
 <type review here>
 
-#Reviewer: Henry #
+#Reviewer: ekelundh #
 <type review here>
 
 The multiples commits from the creation of Controller:
@@ -28,5 +28,5 @@ I looked through the creation of controller on monday the 10th november 2014. (T
 
 I particularly like how you implemented the MVC as we saw in class to allow for multiple view use (will likely be useful for the GUI).
 
-#Reviewer: David #
+#Reviewer: faigdavid #
 <type review here>
