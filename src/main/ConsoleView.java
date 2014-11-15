@@ -227,9 +227,6 @@ public class ConsoleView implements ModelEventListener{
 			if(Pattern.matches("^/r(efresh)?.*$", input)){
 				return "refresh";
 			}
-			if(Pattern.matches("^/w[ \t]+.*$", input)){
-				return "private message";
-			}
 			if(Pattern.matches("^/p[ \t]+.*$", input)){
 				return "post";
 			}
