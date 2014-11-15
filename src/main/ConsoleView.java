@@ -10,12 +10,12 @@ import java.util.regex.Pattern;
 public class ConsoleView implements ModelEventListener{
 	private ViewEventListener controller;
 	private String state;
+	private String username;
 	
 	public void runView() throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = new String();
 		String choice = new String();
-		String username;
 		String password;
 		String password2;
 		int toStrip;
@@ -89,6 +89,10 @@ public class ConsoleView implements ModelEventListener{
 	@Override
 	public void recieveBoardMessages(Iterator<Message> messages) {
 		//PRINT OUT ALL THE MESSAGES ON THE CURRENT BOARD.
+			while (messages.hasNext()) {
+				Message msg = messages.next();
+				System.out.println(msg.formatMessage(username));
+			}
 		
 	}
 	@Override
