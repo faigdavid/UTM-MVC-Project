@@ -1,4 +1,4 @@
-package main;
+package DAOlocals;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,15 +9,17 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
-public class BoardLocalDAO implements BoardDAO {
+import main.Board;
+import DAOinterfaces.BoardDAOInterface;
+
+public class BoardDAO implements BoardDAOInterface {
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/BOARDS/";
 	private String davidsPath = (System.getProperty("user.dir")+"/src/database/BOARDS/");
 	private String defaultPath = davidsPath;
-	@Override
 	
+	@Override
 	public Board getBoard(String bid) {
 		BufferedReader reader = null;
 		String filename = davidsPath +bid+ ".txt";

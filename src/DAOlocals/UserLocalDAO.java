@@ -1,4 +1,4 @@
-package main;
+package DAOlocals;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,6 +8,10 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Date;
+
+import DAOinterfaces.UserDAO;
+import main.User;
+import main.User.Builder;
 
 public class UserLocalDAO implements UserDAO {
 	//this string should work on my computer

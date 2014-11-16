@@ -1,20 +1,23 @@
 package main;
 
+import DAOlocals.*;
 import java.util.Iterator;
+
+
 
 public class User {
 	private String username;
 	private String password;
 	private Board currentBoard;
 	private UserLocalDAO userLocalDAO;
-	private BoardLocalDAO boardLocalDAO;
+	private BoardDAO BoardDAO;
 
 	// The builder is at the bottom.
 	private User(Builder builder) {
 		this.username = builder.username;
 		this.password = builder.password;
 		this.currentBoard = builder.currentBoard;
-		this.boardLocalDAO = new BoardLocalDAO();
+		this.BoardDAO = new BoardDAO();
 		this.userLocalDAO = new UserLocalDAO();
 	}
 
@@ -31,7 +34,7 @@ public class User {
 	/* METHODS */
 	// Does not need to be implemented for now.
 	public int postTo(String bid, String text) {
-		BoardLocalDAO BDAO = new BoardLocalDAO();
+		BoardDAO BDAO = new BoardDAO();
 		Board B = BDAO.getBoard(bid);
 		return B.postMessage(this, text);
 	}
@@ -48,7 +51,7 @@ public class User {
 	public int joinBoard(String bid) {
 		int status = 0; // assume we fail
 		Board current;
-		Iterator<Board> allBoards = boardLocalDAO.getAllBoards();
+		Iterator<Board> allBoards = BoardDAO.getAllBoards();
 		while (allBoards.hasNext()) {
 			current = allBoards.next();
 			if (current.getBid().equals(bid)) {

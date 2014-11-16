@@ -1,7 +1,9 @@
-package main;
+package DAOinterfaces;
 
 import java.sql.Timestamp;
 import java.util.Iterator;
+
+import main.Message;
 
 public interface MessageDAO {
 	/**

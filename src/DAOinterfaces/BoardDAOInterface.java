@@ -1,8 +1,10 @@
-package main;
+package DAOinterfaces;
 
 import java.util.Iterator;
 
-public interface BoardDAO {
+import main.Board;
+
+public interface BoardDAOInterface {
 	/**
 	 * get Board object with given bid from the database.
 	 * 

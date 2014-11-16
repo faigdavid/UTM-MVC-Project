@@ -1,6 +1,10 @@
-package main;
+package DAOlocals;
 
 import java.util.Iterator;
+
+import DAOinterfaces.SubscriptionDAO;
+import main.Board;
+import main.User;
 
 public class SubscriptionLocalDAO implements SubscriptionDAO{
 

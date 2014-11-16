@@ -1,5 +1,8 @@
 package main;
 
+import DAOinterfaces.UserDAO;
+import DAOlocals.UserLocalDAO;
+
 public class Authenticator {
 	/**
 	 * Authenticates a user with username and password in the Authenticator

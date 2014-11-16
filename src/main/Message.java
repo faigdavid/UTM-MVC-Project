@@ -1,5 +1,6 @@
 package main;
 
+import DAOlocals.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,7 +25,7 @@ public class Message {
 	
 	public String formatMessage(String username) {
 		String msg = null;
-		String boardName = new BoardLocalDAO().getBoard(bid).getName();
+		String boardName = new BoardDAO().getBoard(bid).getName();
 		msg = String.format("[%s][%s][%s][%s][%s]\n",
 				mid, boardName, this.username, date, text);
 		

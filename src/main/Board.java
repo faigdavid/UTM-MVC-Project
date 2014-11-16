@@ -1,5 +1,8 @@
 package main;
 
+import DAOinterfaces.MessageDAO;
+import DAOlocals.MessageLocalDAO;
+
 public class Board {
 	private String bid;
 	private String name;

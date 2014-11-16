@@ -1,6 +1,9 @@
-package main;
+package DAOinterfaces;
 
 import java.util.Iterator;
+
+import main.Board;
+import main.User;
 
 public interface SubscriptionDAO {
 	/**

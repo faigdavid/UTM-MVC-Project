@@ -1,7 +1,8 @@
 package main;
 
+import DAOlocals.*;
 import javax.swing.*;
-
+import DAOinterfaces.BoardDAOInterface;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 
@@ -46,11 +47,11 @@ public class BoardGUI extends JFrame implements ActionListener {
 		String selectedBoard = null;
 		
 		if(event.getSource() == subscribeButton) {
-			BoardLocalDAO dao = new BoardLocalDAO();
+			BoardDAOInterface dao = new BoardDAO();
 			control.subscribeUserToBoard(dao.getBoardByName(selectedBoard));			
 		}
 		else if(event.getSource() == unsubscribeButton) {
-			BoardLocalDAO dao = new BoardLocalDAO();
+			BoardDAOInterface dao = new BoardDAO();
 			control.unsubscribeUserFromBoard(dao.getBoardByName(selectedBoard));			
 		}
 		else if(event.getSource() == postButton) {

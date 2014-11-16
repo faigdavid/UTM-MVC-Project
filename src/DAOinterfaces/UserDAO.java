@@ -1,4 +1,6 @@
-package main;
+package DAOinterfaces;
+
+import main.User;
 
 public interface UserDAO {
 	/**

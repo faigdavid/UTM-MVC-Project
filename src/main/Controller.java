@@ -1,8 +1,12 @@
 package main;
 
+import DAOlocals.*;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
+import DAOinterfaces.UserDAO;
+import DAOlocals.MessageLocalDAO;
+import DAOlocals.SubscriptionLocalDAO;
+import DAOlocals.UserLocalDAO;
 
 public class Controller implements ViewEventListener{
 	private User user;
@@ -41,7 +45,7 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void changeBoardByName(String name) {
 		if (assertLoggedIn()){
-			BoardLocalDAO DAO = new BoardLocalDAO();
+			BoardDAO DAO = new BoardDAO();
 			Board toChange = DAO.getBoardByName(name);
 			if (this.user.joinBoard(toChange.getBid()) == 1){
 				for (ModelEventListener view : views){
@@ -135,7 +139,7 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void requestBoards() {
 		if (assertLoggedIn()){
-			BoardLocalDAO DAO = new BoardLocalDAO();
+			BoardDAO DAO = new BoardDAO();
 			Iterator<Board> boards = DAO.getAllBoards();
 			for (ModelEventListener view : views){
 				view.recieveBoards(boards);
@@ -183,7 +187,7 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void createBoard(String name) {
 		// TODO Auto-generated method stub
-	        BoardDAO BDAO = new BoardLocalDAO();
+	        BoardDAO BDAO = new BoardDAO();
 		if (BDAO.createBoard(name) != 1){
 			//nothing for now.
 		}
