@@ -4,6 +4,8 @@ package main;
 import java.io.IOException;
 import java.util.Iterator;
 
+import GUIViews.LoginGUI;
+
 public class GUIView implements ModelEventListener {
 	private static GUIView singleton;
 	private ViewEventListener controller;

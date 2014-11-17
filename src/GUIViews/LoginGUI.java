@@ -1,6 +1,10 @@
-package main;
+package GUIViews;
 
 import javax.swing.*;
+
+import main.BoardGUI;
+import main.GUIView;
+import main.ViewEventListener;
 
 import java.awt.FlowLayout;
 import java.awt.event.*;
