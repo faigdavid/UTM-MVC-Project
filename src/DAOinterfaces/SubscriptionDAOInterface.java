@@ -5,7 +5,7 @@ import java.util.Iterator;
 import main.Board;
 import main.User;
 
-public interface SubscriptionDAO {
+public interface SubscriptionDAOInterface{
 	/**
 	 * get all subscribed Users of the board (by bid).
 	 * 

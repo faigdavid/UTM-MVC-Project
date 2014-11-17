@@ -9,7 +9,7 @@ public class User {
 	private String username;
 	private String password;
 	private Board currentBoard;
-	private UserLocalDAO userLocalDAO;
+	private UserDAO UserDAO;
 	private BoardDAO BoardDAO;
 
 	// The builder is at the bottom.
@@ -18,7 +18,7 @@ public class User {
 		this.password = builder.password;
 		this.currentBoard = builder.currentBoard;
 		this.BoardDAO = new BoardDAO();
-		this.userLocalDAO = new UserLocalDAO();
+		this.UserDAO = new UserDAO();
 	}
 
 	/* GETTERS */
@@ -74,7 +74,7 @@ public class User {
 
 	// deletes current user from DAO and then exits program
 	public int deleteUser() {
-		return userLocalDAO.deleteUser(this);
+		return UserDAO.deleteUser(this);
 	}
 
 	public String getPassword() {

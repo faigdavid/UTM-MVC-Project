@@ -2,7 +2,7 @@ package DAOinterfaces;
 
 import main.User;
 
-public interface UserDAO {
+public interface UserDAOInterface {
 	/**
 	 * Grabs the User object with given username from the database.
 	 * 

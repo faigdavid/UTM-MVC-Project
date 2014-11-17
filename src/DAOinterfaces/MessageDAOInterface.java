@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import main.Message;
 
-public interface MessageDAO {
+public interface MessageDAOInterface {
 	/**
 	 * get all messages of a given board from the database.
 	 * 

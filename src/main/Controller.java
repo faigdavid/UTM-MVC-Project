@@ -3,10 +3,7 @@ package main;
 import DAOlocals.*;
 import java.util.HashSet;
 import java.util.Iterator;
-import DAOinterfaces.UserDAO;
-import DAOlocals.MessageLocalDAO;
-import DAOlocals.SubscriptionLocalDAO;
-import DAOlocals.UserLocalDAO;
+import DAOlocals.*;
 
 public class Controller implements ViewEventListener{
 	private User user;
@@ -19,7 +16,7 @@ public class Controller implements ViewEventListener{
 	/*-------------State-Change requests---------*/
 	@Override
 	public void register(String userName, String password1, String password2){
-		UserDAO userDao = new UserLocalDAO();
+		UserDAO userDao = new UserDAO();
 
 		if (password1.equals(password2)) {
 			this.user = userDao.createUser(userName, password1);
@@ -121,7 +118,7 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void requestBoardMessages() {
 		if (assertLoggedIn()){
-			MessageLocalDAO DAO = new MessageLocalDAO();
+			MessageDAO DAO = new MessageDAO();
 			Iterator<Message> msgs = 
 					DAO.getMessages(this.user.getcurrentBoard().getBid());
 			for (ModelEventListener view : views){
@@ -160,7 +157,7 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void subscribeUserToBoard(Board board) {
 		// TODO Auto-generated method stub
-		SubscriptionLocalDAO dao = new SubscriptionLocalDAO();
+		SubscriptionDAO dao = new SubscriptionDAO();
 		dao.subUserToBoard(user, board);
 		
 		
@@ -168,7 +165,7 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void unsubscribeUserFromBoard(Board board) {
 		// TODO Auto-generated method stub
-		SubscriptionLocalDAO dao = new SubscriptionLocalDAO();
+		SubscriptionDAO dao = new SubscriptionDAO();
 		dao.unSubUserFromBoard(user, board);
 	}
 	

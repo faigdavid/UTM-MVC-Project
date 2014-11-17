@@ -1,12 +1,11 @@
 package DAOlocals;
 
 import java.util.Iterator;
-
-import DAOinterfaces.SubscriptionDAO;
+import DAOinterfaces.SubscriptionDAOInterface;
 import main.Board;
 import main.User;
 
-public class SubscriptionLocalDAO implements SubscriptionDAO{
+public class SubscriptionDAO implements SubscriptionDAOInterface{
 
 	@Override
 	public Iterator<User> getSubscriptionsByBoard(String bid) {

@@ -1,7 +1,6 @@
 package main;
 
-import DAOinterfaces.MessageDAO;
-import DAOlocals.MessageLocalDAO;
+import DAOlocals.*;
 
 public class Board {
 	private String bid;
@@ -16,14 +15,14 @@ public class Board {
 	
 	//Deletes a message
 	public int deleteMessage(String mid){
-		MessageDAO mdao = new MessageLocalDAO();
+		MessageDAO mdao = new MessageDAO();
 		Message msg = mdao.getMessage(this.bid, mid);
 		return mdao.deleteMessage(msg.getMid());
 	}
 
 	public int postMessage(User user, String text) {
 		//david is responsible for making sure this works
-		return new MessageLocalDAO().addMessage(
+		return new MessageDAO().addMessage(
 				this.getBid(), user.getUsername(), text);
 	}
 

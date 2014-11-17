@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-import DAOinterfaces.MessageDAO;
+import DAOinterfaces.*;
 import main.Message;
 
-public class MessageLocalDAO implements MessageDAO{
+public class MessageDAO implements MessageDAOInterface{
 	/*Note: Messages will be stored by mId, board, username, date, and text,
 	 separated by newlines "\n" */
 	

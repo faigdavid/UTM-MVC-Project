@@ -1,7 +1,7 @@
 package main;
 
-import DAOinterfaces.UserDAO;
-import DAOlocals.UserLocalDAO;
+
+import DAOlocals.*;
 
 public class Authenticator {
 	/**
@@ -12,7 +12,7 @@ public class Authenticator {
 	 *         authenticate fails.
 	 */
 	public User authenticateUser(String username, String password) {
-		UserDAO udao = new UserLocalDAO();
+		UserDAO udao = new UserDAO();
 
 		User actualUser = udao.getUser(username);
 

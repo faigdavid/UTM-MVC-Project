@@ -7,13 +7,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.util.Date;
 
-import DAOinterfaces.UserDAO;
+import DAOinterfaces.UserDAOInterface;
 import main.User;
-import main.User.Builder;
 
-public class UserLocalDAO implements UserDAO {
+public class UserDAO implements UserDAOInterface {
 	//this string should work on my computer
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/USERS/";
 	private String davidsPath = (System.getProperty("user.dir")+"/src/database/USERS/");
