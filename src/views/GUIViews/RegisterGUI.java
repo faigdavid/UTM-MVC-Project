@@ -1,13 +1,17 @@
-package views.GUIViews;
+package GUIViews;
 
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+
+import GUIViews.States.states;
 // HOW TO CALL GUI
 //new GUI();
-public class RegisterGUI extends JFrame{
+public class RegisterGUI extends JFrame implements States {
 	private static final long serialVersionUID = 1L;
+	private static RegisterGUI registerGUIReference = null;
+	private states currentState = null;
 	
     final static int maxGap = 20;
     JButton BT_register = new JButton("Register");
@@ -17,7 +21,7 @@ public class RegisterGUI extends JFrame{
 	private JTextField TA_password = new JTextField(15);
 	private JTextField TA_passwordConfirm = new JTextField(15);
     
-    public RegisterGUI() {
+    private RegisterGUI() {
         super("Register");
         //setResizable(false);
         
@@ -46,9 +50,16 @@ public class RegisterGUI extends JFrame{
         this.pack();
         this.setVisible(true);
         
-        
+        this.currentState = states.LOGGED_OUT; //we called GUI but we're not logged in yet (we need to register)
     }
 	
+    public static RegisterGUI instantiateRegisterGUI() {
+		if(RegisterGUI.registerGUIReference == null) {
+			RegisterGUI.registerGUIReference = new RegisterGUI();
+		}
+		return RegisterGUI.registerGUIReference;   	
+    }
+    
     public void addComponentsToPane(final Container pane) {
         GridLayout inputLayout = new GridLayout(0,2);
         JPanel inputPanel = new JPanel();
@@ -92,4 +103,8 @@ public class RegisterGUI extends JFrame{
         pane.add(new JSeparator(), BorderLayout.CENTER);
         pane.add(controls, BorderLayout.SOUTH);
     }
+    
+	public void updateCurrentState(states currentState) {
+		this.currentState = currentState; 
+	}
 } //end class

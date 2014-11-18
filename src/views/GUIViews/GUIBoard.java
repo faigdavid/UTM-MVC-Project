@@ -1,12 +1,27 @@
-package views.GUIViews;
+package GUIViews;
 
 import java.io.IOException;
 import java.util.Iterator;
 
+import GUIViews.States.states;
 import chatBoardsApp.*;
 
-public class GUIBoard implements ModelEventListener {
-
+public class GUIBoard implements ModelEventListener, States {
+	
+	private static GUIBoard GUIDashBoardReference = null;
+	private states currentState = null;
+	
+	private GUIBoard() {
+		this.currentState = states.IN_BOARD;  //no brainer here
+	}
+	
+	public static GUIBoard instantiateGUIDashBoard() {
+		if(GUIBoard.GUIDashBoardReference == null) {
+			GUIBoard.GUIDashBoardReference = new  GUIBoard();
+		}
+		return GUIBoard.GUIDashBoardReference;
+	}
+	
 	@Override
 	public void runView() throws IOException {
 		// TODO Auto-generated method stub
@@ -71,6 +86,11 @@ public class GUIBoard implements ModelEventListener {
 	public void recieveSubscribedBoards(Iterator<Board> boards) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void updateCurrentState(states currentState) {
+		this.currentState = currentState;
 	}
 
 }

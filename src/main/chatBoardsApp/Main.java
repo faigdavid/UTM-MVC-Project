@@ -2,13 +2,13 @@ package chatBoardsApp;
 
 import java.io.IOException;
 
-import consoleView.ConsoleView;
+import GUIViews.GUIMain;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		ModelEventListener view = new ConsoleView();
+		ModelEventListener view = new GUIMain();
 		Controller controller = new Controller();
 		controller.addModelEventListener(view);
 		view.addViewEventListener(controller);

@@ -1,12 +1,26 @@
-package views.GUIViews;
+package GUIViews;
 
 import java.io.IOException;
 import java.util.Iterator;
 
 import chatBoardsApp.*;
 
-public class GUIDashBoard implements ModelEventListener {
+public class GUIDashBoard implements ModelEventListener, States {
 
+	private static GUIDashBoard GUIDashBoardReference = null;
+	private states currentState = null;
+	
+	private GUIDashBoard() {
+		this.currentState = states.LOGGED_IN;  //being in dash board implies we're logged in.
+	}
+	
+	public static GUIDashBoard instantiateGUIDashBoard() {
+		if(GUIDashBoard.GUIDashBoardReference == null) {
+			GUIDashBoard.GUIDashBoardReference = new  GUIDashBoard();
+		}
+		return GUIDashBoard.GUIDashBoardReference;
+	}
+	
 	@Override
 	public void runView() throws IOException {
 		// TODO Auto-generated method stub
@@ -71,6 +85,12 @@ public class GUIDashBoard implements ModelEventListener {
 	public void recieveSubscribedBoards(Iterator<Board> boards) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void updateCurrentState(states currentState) {
+		this.currentState = currentState;
+		
 	}
 
 }
