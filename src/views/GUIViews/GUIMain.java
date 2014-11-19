@@ -3,9 +3,9 @@ package GUIViews;
 import java.io.IOException;
 import java.util.Iterator;
 
-import mvcInterfaces.ModelEventListener;
-import mvcInterfaces.ViewEventListener;
-import chatBoardsApp.*;
+import model.*;
+import mvc.ModelEventListener;
+import mvc.ViewEventListener;
 import exceptions.StateException;
 /**
  * This GUI will be act as the "startup"  for all the other GUIs.

@@ -1,6 +1,6 @@
 package sqlServer;
 
-import chatBoardsApp.User;
+import model.User;
 import interfaces.UserDAOInterface;
 
 public class UserDAO implements UserDAOInterface {

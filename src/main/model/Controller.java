@@ -1,12 +1,12 @@
-package chatBoardsApp;
+package model;
 
 import java.util.HashSet;
 import java.util.Iterator;
 
 import exceptions.StateException;
 import local.*;
-import mvcInterfaces.ModelEventListener;
-import mvcInterfaces.ViewEventListener;
+import mvc.ModelEventListener;
+import mvc.ViewEventListener;
 /**
  * THIS IS HOW YOU TALK TO THE PROGRAM. IT ACTS AS A "middle man" between
  * view and model.

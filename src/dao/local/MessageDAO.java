@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-import chatBoardsApp.*;
+import model.*;
 
 public class MessageDAO implements MessageDAOInterface{
 	/*Note: Messages will be stored by mId, board, username, date, and text,

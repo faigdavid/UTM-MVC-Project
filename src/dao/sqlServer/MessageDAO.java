@@ -4,7 +4,7 @@ import interfaces.MessageDAOInterface;
 
 import java.util.Iterator;
 
-import chatBoardsApp.Message;
+import model.Message;
 
 public class MessageDAO implements MessageDAOInterface {
 

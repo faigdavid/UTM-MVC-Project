@@ -7,10 +7,10 @@ import java.util.Iterator;
 
 import javax.swing.*;
 
-import mvcInterfaces.ModelEventListener;
-import mvcInterfaces.ViewEventListener;
-import chatBoardsApp.Board;
-import chatBoardsApp.Message;
+import model.Board;
+import model.Message;
+import mvc.ModelEventListener;
+import mvc.ViewEventListener;
 import GUIViews.States.states;
 // HOW TO CALL GUI
 //new GUI();

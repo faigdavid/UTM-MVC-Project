@@ -4,7 +4,7 @@ import interfaces.SubscriptionDAOInterface;
 
 import java.util.Iterator;
 
-import chatBoardsApp.*;
+import model.*;
 
 public class SubscriptionDAO implements SubscriptionDAOInterface{
 

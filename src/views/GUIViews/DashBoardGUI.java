@@ -7,8 +7,8 @@ import java.util.Iterator;
 
 import javax.swing.JFrame;
 
-import mvcInterfaces.ViewEventListener;
-import chatBoardsApp.*;
+import model.*;
+import mvc.ViewEventListener;
 
 public class DashBoardGUI implements ActionListener, GUIEventListener{
 	

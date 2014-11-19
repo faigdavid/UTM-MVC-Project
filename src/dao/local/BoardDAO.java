@@ -13,7 +13,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import chatBoardsApp.Board;
+import model.Board;
 
 public class BoardDAO implements BoardDAOInterface {
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/BOARDS/";

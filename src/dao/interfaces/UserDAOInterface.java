@@ -1,6 +1,6 @@
 package interfaces;
 
-import chatBoardsApp.User;
+import model.User;
 
 public interface UserDAOInterface {
 	/**

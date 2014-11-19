@@ -1,4 +1,4 @@
-package chatBoardsApp;
+package model;
 
 
 import local.*;

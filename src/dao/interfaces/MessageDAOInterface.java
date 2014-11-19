@@ -3,7 +3,7 @@ package interfaces;
 import java.sql.Timestamp;
 import java.util.Iterator;
 
-import chatBoardsApp.Message;
+import model.Message;
 
 public interface MessageDAOInterface {
 	/**

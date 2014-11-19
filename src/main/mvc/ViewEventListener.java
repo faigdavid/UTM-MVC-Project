@@ -1,6 +1,6 @@
-package mvcInterfaces;
+package mvc;
 
-import chatBoardsApp.Board;
+import model.Board;
 
 
 public interface ViewEventListener {

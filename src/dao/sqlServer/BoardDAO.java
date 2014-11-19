@@ -4,7 +4,7 @@ import interfaces.BoardDAOInterface;
 
 import java.util.Iterator;
 
-import chatBoardsApp.Board;
+import model.Board;
 
 public class BoardDAO implements BoardDAOInterface{
 

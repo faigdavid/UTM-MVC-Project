@@ -1,8 +1,8 @@
-package chatBoardsApp;
+package model;
 
 import java.io.IOException;
 
-import mvcInterfaces.ModelEventListener;
+import mvc.ModelEventListener;
 import GUIViews.GUIMain;
 
 public class Main {

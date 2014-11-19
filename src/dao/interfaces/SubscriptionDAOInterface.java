@@ -2,8 +2,8 @@ package interfaces;
 
 import java.util.Iterator;
 
-import chatBoardsApp.Board;
-import chatBoardsApp.User;
+import model.Board;
+import model.User;
 
 public interface SubscriptionDAOInterface{
 	/**

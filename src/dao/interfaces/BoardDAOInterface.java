@@ -2,7 +2,7 @@ package interfaces;
 
 import java.util.Iterator;
 
-import chatBoardsApp.Board;
+import model.Board;
 
 public interface BoardDAOInterface {
 	/**

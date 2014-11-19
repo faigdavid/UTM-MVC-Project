@@ -2,8 +2,8 @@ package GUIViews;
 
 import javax.swing.*;
 
-import mvcInterfaces.ViewEventListener;
-import chatBoardsApp.*;
+import model.*;
+import mvc.ViewEventListener;
 
 import java.awt.FlowLayout;
 import java.awt.event.*;

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-import chatBoardsApp.*;
+import model.*;
 
 public class UserDAO implements UserDAOInterface {
 	//this string should work on my computer
