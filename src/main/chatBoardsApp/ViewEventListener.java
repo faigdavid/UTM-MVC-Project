@@ -5,6 +5,7 @@ public interface ViewEventListener {
 	public void changeBoardByBid(String bid);
 	public void changeBoardByName(String bid);
 	public void login(String username, String password);
+	public void logout();
 	public void register(String userName, String password1,String password2);
 	public void post(String message);
 	public void createBoard(String name);
