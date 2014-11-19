@@ -5,92 +5,21 @@ import java.util.Iterator;
 
 import chatBoardsApp.*;
 
-public class GUIDashBoard implements ModelEventListener, States {
-
-	private static GUIDashBoard GUIDashBoardReference = null;
-	private states currentState = null;
+public class GUIDashBoard implements GUIEventListener{
 	
-	private GUIDashBoard() {
-		this.currentState = states.LOGGED_IN;  //being in dash board implies we're logged in.
-	}
+	private GUIMain GUIMain = null;
 	
-	public static GUIDashBoard instantiateGUIDashBoard() {
-		if(GUIDashBoard.GUIDashBoardReference == null) {
-			GUIDashBoard.GUIDashBoardReference = new  GUIDashBoard();
-		}
-		return GUIDashBoard.GUIDashBoardReference;
-	}
-	
-	@Override
-	public void runView() throws IOException {
-		// TODO Auto-generated method stub
-
+	public GUIDashBoard() { //being in dash board implies we're logged in.
 	}
 
-	@Override
-	public int printString(String text) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
-	public void changeStateLoggedIn() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void changeStateLoggedOut() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void changeStateInBoard() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void changeStateNoBoard() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addViewEventListener(ViewEventListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeViewEventListener(ViewEventListener listener) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void recieveBoardMessages(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void recieveBoards(Iterator<Board> boards) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void recieveSubscribedBoards(Iterator<Board> boards) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateCurrentState(states currentState) {
-		this.currentState = currentState;
+	public void closeGUI() {
+		//CLOSE THIS GUI.
 		
 	}
+
+	
 
 }

@@ -2,17 +2,22 @@ package GUIViews;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.Iterator;
 
 import javax.swing.*;
 
+import chatBoardsApp.Board;
+import chatBoardsApp.Message;
+import chatBoardsApp.ModelEventListener;
+import chatBoardsApp.ViewEventListener;
 import GUIViews.States.states;
 // HOW TO CALL GUI
 //new GUI();
-public class RegisterGUI extends JFrame implements States {
+public class RegisterGUI extends JFrame implements GUIEventListener {
 	private static final long serialVersionUID = 1L;
 	private static RegisterGUI registerGUIReference = null;
-	private states currentState = null;
-	
+	private GUIMain GUIMain = null;
     final static int maxGap = 20;
     JButton BT_register = new JButton("Register");
     JButton BT_cancel = new JButton("cancel");
@@ -50,7 +55,7 @@ public class RegisterGUI extends JFrame implements States {
         this.pack();
         this.setVisible(true);
         
-        this.currentState = states.LOGGED_OUT; //we called GUI but we're not logged in yet (we need to register)
+
     }
 	
     public static RegisterGUI instantiateRegisterGUI() {
@@ -103,8 +108,12 @@ public class RegisterGUI extends JFrame implements States {
         pane.add(new JSeparator(), BorderLayout.CENTER);
         pane.add(controls, BorderLayout.SOUTH);
     }
-    
-	public void updateCurrentState(states currentState) {
-		this.currentState = currentState; 
+   
+
+	@Override
+	public void closeGUI() {
+		//CLOSE THIS GUI.
+		
 	}
+
 } //end class

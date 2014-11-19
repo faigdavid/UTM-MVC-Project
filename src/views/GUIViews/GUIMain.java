@@ -16,33 +16,28 @@ import chatBoardsApp.*;
  * @authors Henry, David
  *
  */
-public class GUIMain implements ModelEventListener, States {
-
-	private static GUIMain main = null;
+public class GUIMain implements ModelEventListener{
 	
 	private LoginGUI login = null;
 	private GUIBoard board = null;
 	private GUIDashBoard dashBoard = null;
 	private RegisterGUI register = null;
+	private ViewEventListener controller = null;
 	
-	private states currentState;
-	
-	private GUIMain() {
-		this.currentState = states.LOGGED_OUT; //we initially are not in the chat board, therefore we're logged out
+	public GUIMain() {
 	}
 	
-	public static GUIMain instantiateGUIMain() {
-		if(GUIMain.main == null) {
-			GUIMain.main = new GUIMain();
-		}
-		return GUIMain.main;
+	public ViewEventListener getController(){
+		return this.controller;
 	}
 	
 	@Override
 	public void runView() throws IOException {
-
+		this.changeStateLoggedOut();
 	}
-
+	
+	//END GUI
+	
 	@Override
 	public int printString(String text) {
 		// TODO Auto-generated method stub
@@ -52,46 +47,34 @@ public class GUIMain implements ModelEventListener, States {
 
 	@Override
 	public void changeStateLoggedIn() { //synchronizes all GUIs to this state
-		login.updateCurrentState(states.LOGGED_IN);
-		board.updateCurrentState(states.LOGGED_IN);
-		dashBoard.updateCurrentState(states.LOGGED_IN);
-		register.updateCurrentState(states.LOGGED_IN);
+		this.dashBoard = new GUIDashBoard();
+
 	}
 
 	@Override
 	public void changeStateLoggedOut() { //synchronizes all GUIs to this state
-		login.updateCurrentState(states.LOGGED_OUT);
-		board.updateCurrentState(states.LOGGED_OUT);
-		dashBoard.updateCurrentState(states.LOGGED_OUT);
-		register.updateCurrentState(states.LOGGED_OUT);
+		this.login = new LoginGUI(this);
 	}
 
 	@Override
 	public void changeStateInBoard() { //synchronizes all GUIs to this state
-		login.updateCurrentState(states.IN_BOARD);
-		board.updateCurrentState(states.IN_BOARD);
-		dashBoard.updateCurrentState(states.IN_BOARD);
-		register.updateCurrentState(states.IN_BOARD);
+		this.board = new GUIBoard(this);//COPY THIS FOR OTHER ONES!!!!!!!!
 	}
 
 	@Override
 	public void changeStateNoBoard() { //synchronizes all GUIs to this state
 		// TODO Auto-generated method stub
-		login.updateCurrentState(states.NOT_IN_BOARD);
-		board.updateCurrentState(states.NOT_IN_BOARD);
-		dashBoard.updateCurrentState(states.NOT_IN_BOARD);
-		register.updateCurrentState(states.NOT_IN_BOARD);
 	}
 
 	@Override
 	public void addViewEventListener(ViewEventListener listener) {
-		// TODO Auto-generated method stub
+		this.controller = listener;
 
 	}
 
 	@Override
 	public void removeViewEventListener(ViewEventListener listener) {
-		// TODO Auto-generated method stub
+		this.controller = null;
 
 	}
 
@@ -113,9 +96,5 @@ public class GUIMain implements ModelEventListener, States {
 
 	}
 
-	@Override
-	public void updateCurrentState(states currentState) {
-		this.currentState = currentState;
-	}
 
 }
