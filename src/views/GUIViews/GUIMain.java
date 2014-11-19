@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import chatBoardsApp.*;
+import exceptions.StateException;
 /**
  * This GUI will be act as the "startup"  for all the other GUIs.
  * Running this View should set up all the GUI listeners and immediately
@@ -22,6 +23,7 @@ public class GUIMain implements ModelEventListener{
 	private ViewEventListener controller = null;
 	
 	public GUIMain() {
+		
 	}
 	
 	public ViewEventListener getController(){
@@ -38,9 +40,7 @@ public class GUIMain implements ModelEventListener{
 	@Override
 	public int printString(String text) {
 		
-		//Take a string and display it.
-		
-		return 1;
+		return currentState.displayString(text);
 	}
 
 	@Override
@@ -77,8 +77,13 @@ public class GUIMain implements ModelEventListener{
 	}
 
 	@Override
-	public void recieveBoardMessages(Iterator<Message> messages) {
-		//Send board messages to the GUIboard. So it can display them.
+	public void recieveBoardMessages(Iterator<Message> messages) throws StateException {
+		if (this.currentState instanceof BoardGUI) {
+			((BoardGUI) currentState).recieveMessages(messages);
+		}
+		else {
+			throw new StateException("GUI state is out of sync.");
+		}
 
 	}
 

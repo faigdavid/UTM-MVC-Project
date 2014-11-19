@@ -1,4 +1,4 @@
-package views.consoleView;
+package consoleView;
 
 import java.io.BufferedReader;
 import java.io.IOException;

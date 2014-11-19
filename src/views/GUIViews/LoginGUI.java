@@ -84,5 +84,12 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 		
 	}
 
+
+	@Override
+	public int displayString(String text) {
+		//RETURN 1 FOR SUCCESS!!!!
+		return 0;
+	}
+
 	
 }

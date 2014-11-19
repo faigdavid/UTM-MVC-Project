@@ -86,4 +86,15 @@ public class BoardGUI extends JFrame implements ActionListener , GUIEventListene
 		
 	}
 	
+	public void recieveMessages(Iterator<Message> messages){
+		//recieve and display the messages.
+	}
+
+
+	@Override
+	public int displayString(String text) {
+		//RETURN 1 FOR SUCCESS!!!!
+		return 0;
+	}
+	
 }

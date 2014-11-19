@@ -120,4 +120,10 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
 		
 	}
 
+	@Override
+	public int displayString(String text) {
+		//RETURN 1 FOR SUCCESS!!!!
+		return 0;
+	}
+
 } //end class

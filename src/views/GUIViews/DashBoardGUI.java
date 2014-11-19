@@ -31,6 +31,14 @@ public class DashBoardGUI implements ActionListener, GUIEventListener{
 		return JFrame.EXIT_ON_CLOSE;
 		
 	}
+
+
+
+	@Override
+	public int displayString(String text) {
+		//RETURN 1 FOR SUCCESS!!!!
+		return 0;
+	}
 	
 
 }
