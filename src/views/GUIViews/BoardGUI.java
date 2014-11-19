@@ -5,7 +5,6 @@ import interfaces.BoardDAOInterface;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Iterator;
 
 import javax.swing.JButton;
@@ -19,11 +18,12 @@ import chatBoardsApp.*;
 
 public class BoardGUI extends JFrame implements ActionListener , GUIEventListener{
 	
+	
 	private GUIMain GUIMain = null;
 	private ViewEventListener controller = null;
 	
 	private JPanel pane = new JPanel();
-	
+	private static final long serialVersionUID = 1L;
 	private JComboBox subscribedBoards = new JComboBox(); //ComboBox is the drop down menu
 	private JComboBox notSubscribedBoards = new JComboBox();
 	
