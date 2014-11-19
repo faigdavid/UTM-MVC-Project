@@ -3,7 +3,10 @@ package chatBoardsApp;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import exceptions.StateException;
 import local.*;
+import mvcInterfaces.ModelEventListener;
+import mvcInterfaces.ViewEventListener;
 /**
  * THIS IS HOW YOU TALK TO THE PROGRAM. IT ACTS AS A "middle man" between
  * view and model.
@@ -127,7 +130,11 @@ public class Controller implements ViewEventListener{
 			Iterator<Message> msgs = 
 					DAO.getMessages(this.user.getcurrentBoard().getBid());
 			for (ModelEventListener view : views){
-				view.recieveBoardMessages(msgs);
+				try {
+					view.recieveBoardMessages(msgs);
+				} catch (StateException e) {
+					e.printStackTrace();
+				}
 			}
 			
 		}else{
@@ -144,7 +151,12 @@ public class Controller implements ViewEventListener{
 			BoardDAO DAO = new BoardDAO();
 			Iterator<Board> boards = DAO.getAllBoards();
 			for (ModelEventListener view : views){
-				view.recieveBoards(boards);
+				try {
+					view.recieveBoards(boards);
+				} catch (StateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}else{
 			for (ModelEventListener view : views){
@@ -209,11 +221,5 @@ public class Controller implements ViewEventListener{
 	/*ALways call this to check that you've logged in.*/
 	private boolean assertLoggedIn(){
 		return this.user != null;
-	}
-
-
-
-
-
-	
+	}	
 }

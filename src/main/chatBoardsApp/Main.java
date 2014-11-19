@@ -2,6 +2,7 @@ package chatBoardsApp;
 
 import java.io.IOException;
 
+import mvcInterfaces.ModelEventListener;
 import GUIViews.GUIMain;
 
 public class Main {

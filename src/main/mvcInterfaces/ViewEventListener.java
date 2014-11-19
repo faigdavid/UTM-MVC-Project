@@ -1,4 +1,6 @@
-package chatBoardsApp;
+package mvcInterfaces;
+
+import chatBoardsApp.Board;
 
 
 public interface ViewEventListener {

@@ -3,6 +3,8 @@ package GUIViews;
 import java.io.IOException;
 import java.util.Iterator;
 
+import mvcInterfaces.ModelEventListener;
+import mvcInterfaces.ViewEventListener;
 import chatBoardsApp.*;
 import exceptions.StateException;
 /**

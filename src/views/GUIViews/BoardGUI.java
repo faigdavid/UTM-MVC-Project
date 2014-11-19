@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import local.BoardDAO;
+import mvcInterfaces.ViewEventListener;
 import chatBoardsApp.*;
 
 public class BoardGUI extends JFrame implements ActionListener , GUIEventListener{

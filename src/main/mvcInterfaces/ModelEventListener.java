@@ -1,8 +1,10 @@
-package chatBoardsApp;
+package mvcInterfaces;
 
 import java.io.IOException;
 import java.util.Iterator;
 
+import chatBoardsApp.Board;
+import chatBoardsApp.Message;
 import exceptions.StateException;
 
 public interface ModelEventListener {

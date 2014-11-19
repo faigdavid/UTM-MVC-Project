@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.event.*;
 
 import local.*;
+import mvcInterfaces.ViewEventListener;
 
 /*Assumption: We can open multiple messaging apps so I'm not going to make it into a singleton */
 public class BoardGUI extends JFrame implements ActionListener {

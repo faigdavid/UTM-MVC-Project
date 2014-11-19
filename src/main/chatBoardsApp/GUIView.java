@@ -4,6 +4,8 @@ package chatBoardsApp;
 import java.io.IOException;
 import java.util.Iterator;
 
+import mvcInterfaces.ModelEventListener;
+import mvcInterfaces.ViewEventListener;
 import chatBoardsApp.GUIViews.LoginGUI;
 
 public class GUIView implements ModelEventListener {

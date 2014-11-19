@@ -2,6 +2,7 @@ package GUIViews;
 
 import javax.swing.*;
 
+import mvcInterfaces.ViewEventListener;
 import chatBoardsApp.*;
 
 import java.awt.FlowLayout;

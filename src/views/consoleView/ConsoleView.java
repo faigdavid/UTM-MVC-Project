@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
+import mvcInterfaces.ModelEventListener;
+import mvcInterfaces.ViewEventListener;
 import chatBoardsApp.*;
 
 /**
