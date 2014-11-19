@@ -103,6 +103,14 @@ public class Controller implements ViewEventListener{
 		return;
 		
 	}
+	@Override
+	public void logout() {
+		for (ModelEventListener view : views){
+			view.changeStateLoggedOut();
+		}
+		return;
+		
+	}
 	
 	@Override
 	public void post(String message) {
