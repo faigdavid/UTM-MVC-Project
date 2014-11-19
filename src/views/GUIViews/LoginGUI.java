@@ -55,9 +55,15 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 	    
 	    BT_signin.setSize(100,20);
 	    BT_signin.setLocation(10,10); 
-	    BT_signin.addActionListener(null);
+	    BT_signin.addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent event){
+	    		if(event.getSource() == "BT_signin") {
+	    			controller.login(LB_username.getText(), LB_password.getText());
+	    		}
+	    	}
+	    });
 	    pane.add(BT_signin);
-	    
 	    
 	    //we called GUI but we're not logged in yet (we need to authenticate ourselves)
 	} //end constructor

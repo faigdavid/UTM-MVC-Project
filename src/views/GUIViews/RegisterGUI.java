@@ -2,16 +2,8 @@ package GUIViews;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
-import java.util.Iterator;
-
 import javax.swing.*;
-
-import model.Board;
-import model.Message;
-import mvc.ModelEventListener;
 import mvc.ViewEventListener;
-import GUIViews.States.states;
 // HOW TO CALL GUI
 //new GUI();
 public class RegisterGUI extends JFrame implements GUIEventListener {

@@ -32,7 +32,7 @@ public class GUIMain implements ModelEventListener{
 	
 	@Override
 	public void runView() throws IOException {
-		this.changeStateLoggedOut();
+		this.currentState = new LoginGUI(this);
 	}
 	
 	//END GUI
