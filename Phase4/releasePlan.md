@@ -7,5 +7,6 @@ Things to do for this phase:
 -supports multiple users so that users can send/receive messages by topic.
 -A user can subscribe to a board
 -Finish the GUI
+-Product Testing
 
 @author: Carlito Llena
