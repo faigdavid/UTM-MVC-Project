@@ -79,13 +79,6 @@ public class BoardGUI extends JFrame implements ActionListener , GUIEventListene
 		
 	}
 
-
-	@Override
-	public int closeGUI() {
-		return JFrame.EXIT_ON_CLOSE;
-		
-	}
-	
 	public void recieveMessages(Iterator<Message> messages){
 		//recieve and display the messages.
 	}
@@ -95,6 +88,12 @@ public class BoardGUI extends JFrame implements ActionListener , GUIEventListene
 	public int displayString(String text) {
 		//RETURN 1 FOR SUCCESS!!!!
 		return 0;
+	}
+	
+	@Override
+	public int closeGUI() {
+		return JFrame.EXIT_ON_CLOSE;
+		
 	}
 	
 }

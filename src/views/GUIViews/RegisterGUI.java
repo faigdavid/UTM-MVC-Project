@@ -29,7 +29,7 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
 	private JTextField TA_password = new JTextField(15);
 	private JTextField TA_passwordConfirm = new JTextField(15);
     
-    private RegisterGUI(GUIMain listener) {
+    public RegisterGUI(GUIMain listener) {
         super("Register");
 		GUIMain = listener;
 		controller = GUIMain.getController();
@@ -60,13 +60,6 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
         this.setVisible(true);
         
 
-    }
-	
-    public static RegisterGUI instantiateRegisterGUI() {
-		if(RegisterGUI.registerGUIReference == null) {
-			RegisterGUI.registerGUIReference = new RegisterGUI();
-		}
-		return RegisterGUI.registerGUIReference;   	
     }
     
     public void addComponentsToPane(final Container pane) {
@@ -113,6 +106,11 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
         pane.add(controls, BorderLayout.SOUTH);
     }
    
+	@Override
+	public int displayString(String text) {
+		//RETURN 1 FOR SUCCESS!!!!
+		return 0;
+	}
 
 	@Override
 	public int closeGUI() {
@@ -120,10 +118,5 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
 		
 	}
 
-	@Override
-	public int displayString(String text) {
-		//RETURN 1 FOR SUCCESS!!!!
-		return 0;
-	}
 
 } //end class

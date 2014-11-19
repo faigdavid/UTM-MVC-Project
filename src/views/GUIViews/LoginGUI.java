@@ -11,9 +11,6 @@ import java.util.Iterator;
 // HOW TO CALL GUI
 //new GUI();
 public class LoginGUI extends JFrame implements ActionListener, GUIEventListener{
-	/**
-	 * 
-	 */
 	private GUIMain GUIMain = null;
 	private ViewEventListener controller = null;
 	private static final long serialVersionUID = 1L;
@@ -67,12 +64,10 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 	
 	public void actionPerformed(ActionEvent event){
 		if(event.getSource() == "BT_signin") {
-			//IF YOU LOG IN:
-			this.GUIMain.changeStateLoggedIn();
-			
+			controller.login(LB_username.getText(), LB_password.getText());
 		}
 		else if(event.getSource() == "BT_register") {
-			
+			GUIMain.changeStateRegister();
 		}
 	}
 

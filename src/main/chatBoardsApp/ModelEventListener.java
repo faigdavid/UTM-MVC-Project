@@ -12,9 +12,10 @@ public interface ModelEventListener {
 	public void changeStateLoggedOut();
 	public void changeStateInBoard();
 	public void changeStateNoBoard();
+	public void changeStateRegister();
 	public void recieveBoardMessages(Iterator<Message> messages) throws StateException;
-	public void recieveBoards(Iterator<Board> boards);
-	public void recieveSubscribedBoards(Iterator<Board> boards);
+	public void recieveBoards(Iterator<Board> boards) throws StateException;
+	public void recieveSubscribedBoards(Iterator<Board> boards) throws StateException;
 	public void addViewEventListener(ViewEventListener listener);
 	public void removeViewEventListener(ViewEventListener listener);
 }

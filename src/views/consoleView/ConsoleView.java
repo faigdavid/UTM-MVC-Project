@@ -198,7 +198,11 @@ public class ConsoleView implements ModelEventListener{
 		state = "logged in";
 		
 	}
-	
+	@Override
+	public void changeStateRegister() {
+		// TODO Auto-generated method stub
+		
+	}
 	/*--------------------------Private Methods--------------------------*/
 
 	private static String inputInterpreter(String input, String state){
@@ -267,6 +271,7 @@ public class ConsoleView implements ModelEventListener{
 		input.trim();
 		return input;
 	}
+
 
 
 

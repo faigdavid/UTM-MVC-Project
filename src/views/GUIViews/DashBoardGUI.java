@@ -26,19 +26,22 @@ public class DashBoardGUI implements ActionListener, GUIEventListener{
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public int closeGUI() {
-		return JFrame.EXIT_ON_CLOSE;
+	
+	public void recieveBoards(Iterator<Board> boards) {
+		//Display the boards.
 		
 	}
-
-
-
+	
 	@Override
 	public int displayString(String text) {
 		//RETURN 1 FOR SUCCESS!!!!
 		return 0;
 	}
 	
+	@Override
+	public int closeGUI() {
+		return JFrame.EXIT_ON_CLOSE;
+		
+	}
 
 }

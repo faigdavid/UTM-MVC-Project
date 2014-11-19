@@ -22,9 +22,7 @@ public class GUIMain implements ModelEventListener{
 	private GUIEventListener currentState = null;
 	private ViewEventListener controller = null;
 	
-	public GUIMain() {
-		
-	}
+	public GUIMain() { }
 	
 	public ViewEventListener getController(){
 		return this.controller;
@@ -39,28 +37,35 @@ public class GUIMain implements ModelEventListener{
 	
 	@Override
 	public int printString(String text) {
-		
 		return currentState.displayString(text);
 	}
 
 	@Override
-	public void changeStateLoggedIn() { //synchronizes all GUIs to this state
+	public void changeStateRegister() {
+		currentState.closeGUI();
+		this.currentState = new RegisterGUI(this);
+	}
+	@Override
+	public void changeStateLoggedIn() {
+		currentState.closeGUI();
 		this.currentState = new DashBoardGUI(this);
-
 	}
 
 	@Override
-	public void changeStateLoggedOut() { //synchronizes all GUIs to this state
+	public void changeStateLoggedOut() {
+		currentState.closeGUI();
 		this.currentState = new LoginGUI(this);
 	}
 
 	@Override
-	public void changeStateInBoard() { //synchronizes all GUIs to this state
-		this.currentState = new BoardGUI(this);//COPY THIS FOR OTHER ONES!!!!!!!!
+	public void changeStateInBoard() {
+		currentState.closeGUI();
+		this.currentState = new BoardGUI(this);
 	}
 
 	@Override
-	public void changeStateNoBoard() { //synchronizes all GUIs to this state
+	public void changeStateNoBoard() { 
+		currentState.closeGUI();
 		this.currentState = new DashBoardGUI(this);
 	}
 
@@ -88,16 +93,28 @@ public class GUIMain implements ModelEventListener{
 	}
 
 	@Override
-	public void recieveBoards(Iterator<Board> boards) {
-		//Send the boards to the GUIDashBoard. So it can display them.
+	public void recieveBoards(Iterator<Board> boards) throws StateException {
+		if (this.currentState instanceof DashBoardGUI) {
+			((DashBoardGUI) currentState).recieveBoards(boards);
+		}
+		else {
+			throw new StateException("GUI state is out of sync.");
+		}
 
 	}
 
 	@Override
-	public void recieveSubscribedBoards(Iterator<Board> boards) {
-		//Send the boards to the GUIDashBoard. So it can display them.
+	public void recieveSubscribedBoards(Iterator<Board> boards) throws StateException {
+		if (this.currentState instanceof DashBoardGUI) {
+			((DashBoardGUI) currentState).recieveBoards(boards);
+		}
+		else {
+			throw new StateException("GUI state is out of sync.");
+		}
+
 
 	}
+
 
 
 }
