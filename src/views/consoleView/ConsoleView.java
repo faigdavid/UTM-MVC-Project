@@ -39,7 +39,7 @@ public class ConsoleView implements ModelEventListener{
 			}
 			else if (state.equals("logged in"))
 			{
-				printString("To join a board type j follwed by bid of the board, credits to see credits or logout to logout");
+				printString("To join a board type j follwed by bid of the board,/b follwed by the name to create a board, credits to see credits or logout to logout ");
 			}
 			else if (state.equals("in board"))
 			{
@@ -227,6 +227,9 @@ public class ConsoleView implements ModelEventListener{
 			if(Pattern.matches("^/?j(oinboard)?[ \t]+.+$", input)){
 				System.out.println("state=logged in");
 				return "join board by name";
+			}
+			if(Pattern.matches("^/b[ \t]+.*$", input)){
+				return "create board";
 			}
 			return "bad input";
 		}
