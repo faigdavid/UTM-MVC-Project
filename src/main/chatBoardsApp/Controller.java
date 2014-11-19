@@ -4,7 +4,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import local.*;
-
+/**
+ * THIS IS HOW YOU TALK TO THE PROGRAM. IT ACTS AS A "middle man" between
+ * view and model.
+ * @author David
+ *
+ */
 public class Controller implements ViewEventListener{
 	private User user;
 	private HashSet<ModelEventListener> views = new HashSet<ModelEventListener>();
