@@ -18,10 +18,7 @@ import chatBoardsApp.*;
  */
 public class GUIMain implements ModelEventListener{
 	
-	private LoginGUI login = null;
-	private GUIBoard board = null;
-	private GUIDashBoard dashBoard = null;
-	private RegisterGUI register = null;
+	private GUIEventListener currentState = null;
 	private ViewEventListener controller = null;
 	
 	public GUIMain() {
@@ -40,59 +37,60 @@ public class GUIMain implements ModelEventListener{
 	
 	@Override
 	public int printString(String text) {
-		// TODO Auto-generated method stub
-		System.out.println(text);
+		
+		//Take a string and display it.
+		
 		return 1;
 	}
 
 	@Override
 	public void changeStateLoggedIn() { //synchronizes all GUIs to this state
-		this.dashBoard = new GUIDashBoard();
+		this.currentState = new DashBoardGUI(this);
 
 	}
 
 	@Override
 	public void changeStateLoggedOut() { //synchronizes all GUIs to this state
-		this.login = new LoginGUI(this);
+		this.currentState = new LoginGUI(this);
 	}
 
 	@Override
 	public void changeStateInBoard() { //synchronizes all GUIs to this state
-		this.board = new GUIBoard(this);//COPY THIS FOR OTHER ONES!!!!!!!!
+		this.currentState = new BoardGUI(this);//COPY THIS FOR OTHER ONES!!!!!!!!
 	}
 
 	@Override
 	public void changeStateNoBoard() { //synchronizes all GUIs to this state
-		// TODO Auto-generated method stub
+		this.currentState = new DashBoardGUI(this);
 	}
 
 	@Override
-	public void addViewEventListener(ViewEventListener listener) {
-		this.controller = listener;
+	public void addViewEventListener(ViewEventListener controller) {
+		this.controller = controller;
 
 	}
 
 	@Override
-	public void removeViewEventListener(ViewEventListener listener) {
+	public void removeViewEventListener(ViewEventListener controller) {
 		this.controller = null;
 
 	}
 
 	@Override
 	public void recieveBoardMessages(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
+		//Send board messages to the GUIboard. So it can display them.
 
 	}
 
 	@Override
 	public void recieveBoards(Iterator<Board> boards) {
-		// TODO Auto-generated method stub
+		//Send the boards to the GUIDashBoard. So it can display them.
 
 	}
 
 	@Override
 	public void recieveSubscribedBoards(Iterator<Board> boards) {
-		// TODO Auto-generated method stub
+		//Send the boards to the GUIDashBoard. So it can display them.
 
 	}
 

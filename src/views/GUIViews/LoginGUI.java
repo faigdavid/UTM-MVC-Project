@@ -31,6 +31,7 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 		super("Login Screen");
 		GUIMain = listener;
 		controller = GUIMain.getController();
+		
 	    setVisible(true);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     
 	    setBounds(100,100,280,150); //From upper left corner (right, down, width, height)
@@ -78,8 +79,8 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 
 
 	@Override
-	public void closeGUI() {
-		//CLOSE THIS GUI.
+	public int closeGUI() {
+		return JFrame.EXIT_ON_CLOSE;
 		
 	}
 

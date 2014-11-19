@@ -15,9 +15,12 @@ import GUIViews.States.states;
 // HOW TO CALL GUI
 //new GUI();
 public class RegisterGUI extends JFrame implements GUIEventListener {
+	
+	private GUIMain GUIMain = null;
+	private ViewEventListener controller = null;
+	
 	private static final long serialVersionUID = 1L;
 	private static RegisterGUI registerGUIReference = null;
-	private GUIMain GUIMain = null;
     final static int maxGap = 20;
     JButton BT_register = new JButton("Register");
     JButton BT_cancel = new JButton("cancel");
@@ -26,9 +29,10 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
 	private JTextField TA_password = new JTextField(15);
 	private JTextField TA_passwordConfirm = new JTextField(15);
     
-    private RegisterGUI() {
+    private RegisterGUI(GUIMain listener) {
         super("Register");
-        //setResizable(false);
+		GUIMain = listener;
+		controller = GUIMain.getController();
         
         
         /* Use an appropriate Look and Feel */
@@ -111,8 +115,8 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
    
 
 	@Override
-	public void closeGUI() {
-		//CLOSE THIS GUI.
+	public int closeGUI() {
+		return JFrame.EXIT_ON_CLOSE;
 		
 	}
 
