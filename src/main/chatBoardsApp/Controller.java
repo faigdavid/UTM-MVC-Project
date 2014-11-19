@@ -108,14 +108,6 @@ public class Controller implements ViewEventListener{
 		return;
 		
 	}
-	@Override
-	public void logout() {
-		for (ModelEventListener view : views){
-			view.changeStateLoggedOut();
-		}
-		return;
-		
-	}
 	
 	@Override
 	public void post(String message) {
@@ -203,6 +195,14 @@ public class Controller implements ViewEventListener{
 		}
 	}
 	
+	@Override
+	public void logout() {
+		this.user = null;
+		for (ModelEventListener view : views){
+			view.changeStateLoggedOut();
+		}
+		
+	}
 	
 	/*-------------NON-OVERRIDES-------------*/
 	
@@ -210,6 +210,8 @@ public class Controller implements ViewEventListener{
 	private boolean assertLoggedIn(){
 		return this.user != null;
 	}
+
+
 
 
 
