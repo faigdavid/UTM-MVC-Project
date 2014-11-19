@@ -34,15 +34,16 @@ public class ConsoleView implements ModelEventListener{
 			printString("Please Input: ");
 			if (state.equals("logged out"))
 			{
-				printString("Please enter l to login, or r to register");
+				
+				printString("Please enter l to login, or r to register or credits to see credits");
 			}
 			else if (state.equals("logged in"))
 			{
-				printString("To join a board type j follwed by bid of the board");
+				printString("To join a board type j follwed by bid of the board, credits to see credits or logout to logout");
 			}
 			else if (state.equals("in board"))
 			{
-				printString("Type j and the bid or name to enter a board, /r to refresh the board, and /p followed by message to post a message, and /b follwed by the name to create a board");
+				printString("Type j and the bid or name to enter a board, /r to refresh the board, and /p followed by message to post a message, /b follwed by the name to create a board, credits to see credits or logout to logout");
 			}
 			input = br.readLine();
 			input.trim();
@@ -54,7 +55,10 @@ public class ConsoleView implements ModelEventListener{
 			    password = getInput("Please input your password", br);
 				controller.login(username, password);
 				break;
-
+			case "logout":
+				controller.logout();
+				break;
+				
 			case "register":
 				
 				printString("You Chose To Register");
@@ -200,6 +204,9 @@ public class ConsoleView implements ModelEventListener{
 	private static String inputInterpreter(String input, String state){
 		if(Pattern.matches("^credits$", input)){
 			return "credits";
+		}
+		if(Pattern.matches("^logout$", input)){
+			return "logout";
 		}
 		else if (state.equals("logged out")){
 			if(Pattern.matches("^l(ogin)?$", input)){
