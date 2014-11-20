@@ -273,9 +273,31 @@ public class ConsoleView implements ModelEventListener{
 		input.trim();
 		return input;
 	}
-
-
-
+	@Override
+	public void loginError() {
+		// TODO Auto-generated method stub
+		printString("Failed to login");
+	}
+	@Override
+	public void registerError() {
+		// TODO Auto-generated method stub
+		printString("Failed to register");
+	}
+	@Override
+	public void boardError() {
+		// TODO Auto-generated method stub
+		printString("Failed to join a board");
+	}
+	@Override
+	public void messageError() {
+		// TODO Auto-generated method stub
+		printString("Failed to post a message");
+	}
+	@Override
+	public void dataError() {
+		// TODO Auto-generated method stub
+		printString("Failed to retrieve data");
+	}
 
 }
 

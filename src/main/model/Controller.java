@@ -31,18 +31,17 @@ public class Controller implements ViewEventListener{
 			if (this.user != null) {
 				for (ModelEventListener view : views){
 					view.changeStateLoggedIn();
-					view.printString("User Created.");
 				}
 				
 			}else{
-				for (ModelEventListener view : views){
-					view.printString("Failed to create new user.");
+				for (ModelEventListener view : views){ //failed to regiister
+					view.registerError();
 				}
 				
 			}
 		} else {
-			for (ModelEventListener view : views){
-				view.printString("The passwords did not match!");
+			for (ModelEventListener view : views){ //passwords don't match
+				view.registerError();
 			}
 			
 		}
@@ -58,14 +57,14 @@ public class Controller implements ViewEventListener{
 				}
 				
 			} else {
-				for (ModelEventListener view : views){
-					view.printString("Failed to join the board.");
+				for (ModelEventListener view : views){ //failed to join the board
+					view.boardError();
 				}
 				
 			}
 		}else{
-			for (ModelEventListener view : views){
-				view.printString("You are not logged in.");
+			for (ModelEventListener view : views){ //failed to join the board since we're not logged in
+				view.boardError();
 			}
 		}
 		
@@ -78,14 +77,14 @@ public class Controller implements ViewEventListener{
 					view.changeStateInBoard();
 				}
 			} else {
-				for (ModelEventListener view : views){
-					view.printString("Failed to join the board.");
+				for (ModelEventListener view : views){ //failed to join the board
+					view.boardError();
 				}
 				
 			}
 		}else{
-			for (ModelEventListener view : views){
-				view.printString("You are not logged in.");
+			for (ModelEventListener view : views){ //failed to join the board since we're not logged in
+				view.boardError();
 			}
 		}
 		
@@ -99,7 +98,7 @@ public class Controller implements ViewEventListener{
 		user = new Authenticator().authenticateUser(username, password);
 		if (user == null){
 			for (ModelEventListener view : views){
-				view.printString("FAILED TO LOG IN");
+				view.loginError();
 			}
 			
 		} else {
@@ -115,8 +114,8 @@ public class Controller implements ViewEventListener{
 	@Override
 	public void post(String message) {
 		if (user.post(message) != 1){
-			for (ModelEventListener view : views){
-				view.printString("Message failed to post.");
+			for (ModelEventListener view : views){ //failed to post message
+				view.messageError();
 			}
 		}
 	}
@@ -138,8 +137,8 @@ public class Controller implements ViewEventListener{
 			}
 			
 		}else{
-			for (ModelEventListener view : views){
-				view.printString("You are not logged in.");
+			for (ModelEventListener view : views){ //failed to retrieve board messages since user is not logged in
+				view.dataError();
 			}
 		}
 		
@@ -159,8 +158,8 @@ public class Controller implements ViewEventListener{
 				}
 			}
 		}else{
-			for (ModelEventListener view : views){
-				view.printString("You are not logged in.");
+			for (ModelEventListener view : views){ //failed to retrieve boards since user is not logged in
+				view.dataError();
 			}
 	}
 	}

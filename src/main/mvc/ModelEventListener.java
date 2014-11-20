@@ -20,5 +20,16 @@ public interface ModelEventListener {
 	public void recieveSubscribedBoards(Iterator<Board> boards) throws StateException;
 	public void addViewEventListener(ViewEventListener listener);
 	public void removeViewEventListener(ViewEventListener listener);
+	
+	/*
+	 * Added error pop up messages to replace the error messages that prints to the console.
+	 * I did this since we're doing a GUI.
+	 * @author Carlito Llena
+	 */
+	public void loginError();
+	public void registerError();
+	public void boardError();
+	public void messageError();
+	public void dataError();
 }
 
