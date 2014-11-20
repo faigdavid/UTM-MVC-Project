@@ -31,29 +31,29 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(10, 60, 198, 20);
-		contentPane.add(comboBox);
+		JComboBox<String> listOfSubscribedBoards = new JComboBox<String>();
+		listOfSubscribedBoards.setBounds(10, 60, 198, 20);
+		contentPane.add(listOfSubscribedBoards);
 		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(10, 146, 198, 28);
-		contentPane.add(comboBox_1);
+		JComboBox<String> listOfBoards = new JComboBox<String>();
+		listOfBoards.setBounds(10, 146, 198, 28);
+		contentPane.add(listOfBoards);
 		
-		JButton btnUnsubscribe = new JButton("Unsubscribe");
-		btnUnsubscribe.setBounds(236, 60, 121, 20);
-		contentPane.add(btnUnsubscribe);
+		JButton unsubscribeButton = new JButton("Unsubscribe");
+		unsubscribeButton.setBounds(236, 60, 121, 20);
+		contentPane.add(unsubscribeButton);
 		
-		JButton btnSusbscribe = new JButton("Susbscribe");
-		btnSusbscribe.setBounds(236, 149, 121, 23);
-		contentPane.add(btnSusbscribe);
+		JButton subscribeButton = new JButton("Susbscribe");
+		subscribeButton.setBounds(236, 149, 121, 23);
+		contentPane.add(subscribeButton);
 		
-		JLabel lblSusbscribedBoards = new JLabel("Susbscribed Boards");
-		lblSusbscribedBoards.setBounds(10, 17, 163, 32);
-		contentPane.add(lblSusbscribedBoards);
+		JLabel labelSusbscribedBoards = new JLabel("Susbscribed Boards");
+		labelSusbscribedBoards.setBounds(10, 17, 163, 32);
+		contentPane.add(labelSusbscribedBoards);
 		
-		JLabel lblBoards = new JLabel("Boards");
-		lblBoards.setBounds(10, 121, 46, 14);
-		contentPane.add(lblBoards);
+		JLabel labelBoards = new JLabel("Boards");
+		labelBoards.setBounds(10, 121, 46, 14);
+		contentPane.add(labelBoards);
 	}
 
 	@Override
