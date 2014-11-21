@@ -13,10 +13,10 @@ import mvc.ViewEventListener;
  * @author David
  *
  */
-public class Controller implements ViewEventListener{
+public class ModelController implements ViewEventListener{
 	private User user;
 	private HashSet<ModelEventListener> views = new HashSet<ModelEventListener>();
-	public Controller(){
+	public ModelController(){
 		this.user = null;
 
 	}

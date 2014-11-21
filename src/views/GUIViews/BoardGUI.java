@@ -2,6 +2,7 @@ package GUIViews;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
+
+import model.Message;
 
 
 public class BoardGUI extends JFrame implements ActionListener, GUIEventListener {
@@ -24,7 +27,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	/**
 	 * Create the frame.
 	 */
-	public BoardGUI(GUIMain listener) {
+	public BoardGUI(GUIController listener) {
 		super("4chinz.gov");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 485, 372);
@@ -66,6 +69,11 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void recieveMessages(Iterator<Message> messages) {
 		// TODO Auto-generated method stub
 		
 	}

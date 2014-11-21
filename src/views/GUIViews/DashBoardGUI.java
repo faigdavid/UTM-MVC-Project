@@ -2,6 +2,7 @@ package GUIViews;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import model.Board;
 
 
 public class DashBoardGUI extends JFrame implements ActionListener, GUIEventListener {
@@ -22,7 +25,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	/**
 	 * Create the frame.
 	 */
-	public DashBoardGUI(GUIMain Listener) {
+	public DashBoardGUI(GUIController Listener) {
 		super("4chinz.gov");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 378, 238);
@@ -70,6 +73,11 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void recieveBoards(Iterator<Board> boards) {
 		// TODO Auto-generated method stub
 		
 	}

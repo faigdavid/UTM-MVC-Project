@@ -8,7 +8,7 @@ import mvc.ViewEventListener;
 //new GUI();
 public class RegisterGUI extends JFrame implements GUIEventListener {
 	
-	private GUIMain GUIMain = null;
+	private GUIController GUIMain = null;
 	private ViewEventListener controller = null;
 	
 	private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
 	private JTextField TA_password = new JTextField(15);
 	private JTextField TA_passwordConfirm = new JTextField(15);
     
-    public RegisterGUI(GUIMain listener) {
+    public RegisterGUI(GUIController listener) {
         super("Register");
 		GUIMain = listener;
 		controller = GUIMain.getController();
