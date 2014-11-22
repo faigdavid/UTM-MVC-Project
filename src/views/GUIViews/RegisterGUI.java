@@ -2,11 +2,13 @@ package GUIViews;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import mvc.ViewEventListener;
 // HOW TO CALL GUI
 //new GUI();
-public class RegisterGUI extends JFrame implements GUIEventListener {
+public class RegisterGUI extends JFrame implements GUIEventListener, ActionListener {
 	
 	private GUIMain GUIMain = null;
 	private ViewEventListener controller = null;
@@ -80,24 +82,13 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
         
          
         //Process the Apply gaps button press
-        BT_register.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-            	//System.out.println("Asdfadsf");
-            	
-            	
-                //Set up the horizontal gap value
-            	//textLayout.setHgap(10);
-                //Set up the vertical gap value
-            	//textLayout.setVgap(10);
-                //Set up the layout of the buttons
-            	//textLayout.layoutContainer(compsToExperiment);
-            }
-        });
+        BT_register.addActionListener(this);
         pane.add(inputPanel, BorderLayout.NORTH);
         pane.add(new JSeparator(), BorderLayout.CENTER);
         pane.add(controls, BorderLayout.SOUTH);
     }
    
+    
 	@Override
 	public int displayString(String text) {
 		//RETURN 1 FOR SUCCESS!!!!
@@ -108,6 +99,14 @@ public class RegisterGUI extends JFrame implements GUIEventListener {
 	public int closeGUI() {
 		return JFrame.EXIT_ON_CLOSE;
 		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		// TODO Auto-generated method stub
+		if(event.getSource() == BT_register) {
+			controller.register(TA_username.getText(), TA_password.getText(), TA_passwordConfirm.getText());
+		}
 	}
 
 
