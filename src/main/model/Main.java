@@ -3,14 +3,14 @@ package model;
 import java.io.IOException;
 
 import mvc.ModelEventListener;
-import GUIViews.GUIMain;
+import GUIViews.GUIController;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		ModelEventListener view = new GUIMain();
-		Controller controller = new Controller();
+		ModelEventListener view = new GUIController();
+		ModelController controller = new ModelController();
 		controller.addModelEventListener(view);
 		view.addViewEventListener(controller);
 		try {

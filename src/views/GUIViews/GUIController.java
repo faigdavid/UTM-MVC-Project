@@ -23,12 +23,12 @@ import javax.swing.JOptionPane;
  * @authors Henry, David
  *
  */
-public class GUIMain implements ModelEventListener{
+public class GUIController implements ModelEventListener{
 	
 	private GUIEventListener currentState = null;
 	private ViewEventListener controller = null;
 	
-	public GUIMain() { }
+	public GUIController() { }
 	
 	public ViewEventListener getController(){
 		return this.controller;

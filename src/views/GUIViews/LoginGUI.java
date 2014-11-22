@@ -12,7 +12,7 @@ import java.util.Iterator;
 // HOW TO CALL GUI
 //new GUI();
 public class LoginGUI extends JFrame implements ActionListener, GUIEventListener{
-	private GUIMain GUIMain = null;
+	private GUIController GUIMain = null;
 	private ViewEventListener controller = null;
 	private static final long serialVersionUID = 1L;
 	private JPanel pane = new JPanel();
@@ -25,7 +25,7 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 	JButton BT_signin = new JButton("Sign In");
 	int i = 0;
 	
-	public LoginGUI(GUIMain listener){
+	public LoginGUI(GUIController listener){
 		super("Login Screen");
 		GUIMain = listener;
 		controller = GUIMain.getController();
