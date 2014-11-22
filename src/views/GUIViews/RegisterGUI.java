@@ -103,7 +103,6 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
 		if(event.getSource() == BT_register) {
 			controller.register(TA_username.getText(), TA_password.getText(), TA_passwordConfirm.getText());
 		}

@@ -70,7 +70,7 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 
 	
 	public void actionPerformed(ActionEvent event){
-		if(event.getSource() == BT_signin) {
+		if (event.getSource() == BT_signin) {
 			controller.login(LB_username.getText(), LB_password.getText());
 		}
 		else if(event.getSource() == BT_register) {
