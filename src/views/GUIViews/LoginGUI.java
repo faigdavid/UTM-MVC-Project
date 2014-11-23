@@ -75,9 +75,9 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 
 
 	@Override
-	public int closeGUI() {
+	public void closeGUI() {
 		this.dispose();
-		return 1;
+
 	}
 
 

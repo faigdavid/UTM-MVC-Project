@@ -97,9 +97,9 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
 	}
 
 	@Override
-	public int closeGUI() {
+	public void closeGUI() {
 		this.dispose();
-		return 1;
+
 	}
 
 	@Override

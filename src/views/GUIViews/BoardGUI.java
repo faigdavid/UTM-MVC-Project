@@ -56,9 +56,8 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	}
 
 	@Override
-	public int closeGUI() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void closeGUI() {
+		this.dispose();
 	}
 
 	@Override

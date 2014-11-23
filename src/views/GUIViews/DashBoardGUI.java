@@ -60,9 +60,9 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	}
 
 	@Override
-	public int closeGUI() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void closeGUI() {
+		this.dispose();
+
 	}
 
 	@Override
