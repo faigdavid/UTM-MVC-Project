@@ -95,13 +95,16 @@ public class ModelController implements ViewEventListener{
 		
 	}
 	
-	
 	@Override
-	public void post(String message) throws StateException {
-		if (user.post(message) != 1){//failed to post.
-			throw new StateException();
+	public void logout() {
+		this.user = null;
+		for (ModelEventListener view : views){
+			view.changeStateLoggedOut();
 		}
+		
 	}
+	
+
 
 	/*-----------------DATA REQUESTS-------------------*/
 	
@@ -174,16 +177,13 @@ public class ModelController implements ViewEventListener{
 			throw new DataException();
 		}
 	}
-	
 	@Override
-	public void logout() {
-		this.user = null;
-		for (ModelEventListener view : views){
-			view.changeStateLoggedOut();
+	public void post(String message) throws StateException {
+		if (user.post(message) != 1){//failed to post.
+			throw new StateException();
 		}
-		
 	}
-	
+
 	/*-------------NON-OVERRIDES-------------*/
 	
 	/*ALways call this to check that you've logged in.*/
