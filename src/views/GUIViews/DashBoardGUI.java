@@ -1,68 +1,112 @@
 package GUIViews;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.Box;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 
 import model.Board;
+import mvc.ViewEventListener;
 
 
 public class DashBoardGUI extends JFrame implements ActionListener, GUIEventListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-
+	private GUIController GUIMain = null;
+	private ViewEventListener controller = null;
+	
+	//list of board names
+	private List<String> boardList = new ArrayList<>();
+	
+	//-- THIS STRING LIST IS TEMPERORY
+	private String[] temp = {"c","c","c","c","c","c","c","c","c","c","c","c"};
+	JList list = new JList(temp);
+	JScrollPane JSP_boardList = new JScrollPane(list);
+	private JButton BT_create = new JButton("Create New");
+	private JButton BT_cancel = new JButton("Cancel");
+	
+	
 	/**
 	 * Create the frame.
 	 */
-	public DashBoardGUI(GUIController Listener) {
-		super("4chinz.gov");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 378, 238);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	public DashBoardGUI(GUIController listener) {
+		super("DashBoard");
+		GUIMain = listener;
+		controller = GUIMain.getController();
 		
-		JComboBox<String> listOfSubscribedBoards = new JComboBox<String>();
-		listOfSubscribedBoards.setBounds(10, 60, 198, 20);
-		contentPane.add(listOfSubscribedBoards);
+		//----- NEED THIS THING TO RETURN ARRAY OF BOARD NAMES
+		//boardList = controller.requestBoards();
 		
-		JComboBox<String> listOfBoards = new JComboBox<String>();
-		listOfBoards.setBounds(10, 146, 198, 28);
-		contentPane.add(listOfBoards);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		JButton unsubscribeButton = new JButton("Unsubscribe");
-		unsubscribeButton.setBounds(236, 60, 121, 20);
-		contentPane.add(unsubscribeButton);
+		this.preparePanel(this.getContentPane());
 		
-		JButton subscribeButton = new JButton("Susbscribe");
-		subscribeButton.setBounds(236, 149, 121, 23);
-		contentPane.add(subscribeButton);
+		this.setVisible(true);
 		
-		JLabel labelSusbscribedBoards = new JLabel("Susbscribed Boards");
-		labelSusbscribedBoards.setBounds(10, 17, 163, 32);
-		contentPane.add(labelSusbscribedBoards);
+		this.pack();
 		
-		JLabel labelBoards = new JLabel("Boards");
-		labelBoards.setBounds(10, 121, 46, 14);
-		contentPane.add(labelBoards);
+		centreWindow(this);
+		
+		addWindowListener(exitListener);
 	}
-
+	
+    public void preparePanel(Container pane) {
+        GridLayout inputLayout = new GridLayout(0,1);
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(inputLayout);
+        
+        GridLayout controlLayout = new GridLayout(0,2);
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(controlLayout);
+         
+        //Add buttons to experiment with Grid Layout
+        inputPanel.add(JSP_boardList);
+        inputLayout.setVgap(10);
+         
+        //Add controls to set up horizontal and vertical gaps
+        controlPanel.add(BT_create);
+        controlPanel.add(BT_cancel);
+        
+        
+        controlLayout.setHgap(10);
+        
+        
+        //add action listener
+        BT_cancel.addActionListener(this); 
+        
+        //Process the Apply gaps button press
+        pane.add(inputPanel, BorderLayout.NORTH);
+        pane.add(new JSeparator(), BorderLayout.CENTER);
+        pane.add(controlPanel, BorderLayout.SOUTH);
+        
+    }	
+	
+    
 	@Override
 	public void closeGUI() {
 		this.dispose();
-
 	}
 
 	@Override
@@ -72,13 +116,42 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource() == BT_create) {
+			//controller.createBoard();
+		}
+		else if(event.getSource() == BT_cancel) {
+			//GUIMain.changeStateRegister();
+			GUIMain.changeStateLoggedOut();
+		}
+	
 	}
 
 	public void recieveBoards(Iterator<Board> boards) {
 		// TODO Auto-generated method stub
-		
+		boardList.add(boards.next().getName());
+		while (boards.hasNext()){
+			boardList.add(boards.next().getName());
+		}
 	}
+	
+	
+	WindowListener exitListener = new WindowAdapter() {
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            int confirm = JOptionPane.showOptionDialog(null, "Are You Sure to Quit the Program Completly?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+            if (confirm == 0) {
+               System.exit(0);
+            }
+        }
+    };
+    
+    public static void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+    }
+
 }

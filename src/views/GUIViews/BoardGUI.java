@@ -1,58 +1,95 @@
 package GUIViews;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
 import model.Message;
+import mvc.ViewEventListener;
 
 
 public class BoardGUI extends JFrame implements ActionListener, GUIEventListener {
 
-	/**
-	 * 
-	 */
+	private GUIController GUIMain = null;
+	private ViewEventListener controller = null;
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField userInput;
+	
+	private JLabel LB_boardTitle = new JLabel("<-INSERT BOARD NAME HERE->");
+	private JTextArea TA_boardMsgs = new JTextArea(10,30);
+	private JTextField TA_userInput  = new JTextField();
+	private JButton BT_post = new JButton("Post");
+	private JButton BT_back = new JButton("Back");
 
 	/**
 	 * Create the frame.
 	 */
 	public BoardGUI(GUIController listener) {
-		super("4chinz.gov");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 485, 372);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		super("Board");
 		
-		JTextPane board = new JTextPane();
-		board.setEditable(false);
-		board.setBounds(35, 36, 397, 214);
-		contentPane.add(board);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		JLabel boardTitle = new JLabel("<Insert Board Name Here>");
-		boardTitle.setBounds(35, 11, 179, 14);
-		contentPane.add(boardTitle);
+		this.setVisible(true);
 		
-		userInput = new JTextField();
-		userInput.setBounds(35, 269, 397, 20);
-		contentPane.add(userInput);
-		userInput.setColumns(10);
+		preparePanel(this.getContentPane());
 		
-		JButton postButton = new JButton("Post");
-		postButton.setBounds(35, 300, 89, 23);
-		contentPane.add(postButton);
+		centreWindow(this);
+		
+		this.pack();
+		addWindowListener(exitListener);
+	}
+	
+	public void preparePanel(java.awt.Container pane) {
+		GridLayout inputLayout = new GridLayout(0,1);
+		JPanel inputPanel = new JPanel();
+		inputPanel.setLayout(inputLayout);
+		inputLayout.setVgap(10);
+		
+		GridLayout displayLayout = new GridLayout(0,1);
+		JPanel displayPanel = new JPanel();
+		displayPanel.setLayout(displayLayout);
+		displayLayout.setVgap(10);
+		
+        GridLayout controlLayout = new GridLayout(0,1);
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(controlLayout);
+        controlLayout.setVgap(10);
+        //---------displayPanel-------------------------
+        TA_boardMsgs.setEditable(false);
+        
+        displayPanel.add(TA_boardMsgs);
+        inputPanel.add(Box.createVerticalStrut(4));
+        //---------inputPanel-------------------------
+        inputPanel.add(TA_userInput);
+        inputPanel.add(Box.createVerticalStrut(4));
+	    controlPanel.add(BT_post);
+	    controlPanel.add(BT_back);
+	    BT_post.addActionListener(this);
+	    BT_back.addActionListener(this);
+	    
+        
+		pane.add(displayPanel, BorderLayout.NORTH);
+		pane.add(new JSeparator(), BorderLayout.CENTER);
+		pane.add(inputPanel, BorderLayout.SOUTH);
 	}
 
 	@Override
@@ -67,13 +104,38 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
-		
+		if (event.getSource() == BT_post) {
+			controller.post(TA_userInput.getText());
+		}
+		else if(event.getSource() == BT_back) {
+			//GUIMain.changeStateRegister();
+			GUIMain.changeStateNoBoard();
+		}
 	}
 
 	public void recieveMessages(Iterator<Message> messages) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+    //function for centering the frame
+    public static void centreWindow(Window frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x, y);
+    }
+	
+	WindowListener exitListener = new WindowAdapter() {
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            int confirm = JOptionPane.showOptionDialog(null, "Are You Sure to Quit the Program Completly?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+            if (confirm == 0) {
+               System.exit(0);
+            }
+        }
+    };
 }
