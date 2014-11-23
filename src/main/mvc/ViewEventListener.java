@@ -1,18 +1,20 @@
 package mvc;
 
+import exceptions.StateException;
+import exceptions.DataException;
 import model.Board;
 
 
 public interface ViewEventListener {
-	public void changeBoardByBid(String bid);
-	public void changeBoardByName(String bid);
-	public void login(String username, String password);
+	public void changeBoardByBid(String bid) throws StateException, DataException;
+	public void changeBoardByName(String bid) throws StateException, DataException;
+	public void login(String username, String password) throws StateException;
 	public void logout();
-	public void register(String userName, String password1,String password2);
-	public void post(String message);
-	public void createBoard(String name);
-	public void requestBoardMessages();
-	public void requestBoards();
+	public void register(String userName, String password1,String password2) throws DataException;
+	public void post(String message) throws StateException;
+	public void createBoard(String name) throws DataException;
+	public void requestBoardMessages() throws StateException;
+	public void requestBoards() throws StateException;
 	public void requestSubscribedBoards();
 	//Carlito added these abstract methods()
 	public void subscribeUserToBoard(Board board);

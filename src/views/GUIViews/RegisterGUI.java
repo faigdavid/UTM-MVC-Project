@@ -5,6 +5,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import exceptions.DataException;
+import exceptions.StateException;
 import mvc.ViewEventListener;
 // HOW TO CALL GUI
 //new GUI();
@@ -110,7 +112,11 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource() == BT_register) {
-			controller.register(TA_username.getText(), new String (PF_password.getPassword()), new String (PF_passwordConfirm.getPassword()));
+			try {
+				controller.register(TA_username.getText(), new String (PF_password.getPassword()), new String (PF_passwordConfirm.getPassword()));
+			} catch (DataException e) {
+				ErrorGUI.registerError();
+			}
 		}
 		else if(event.getSource()==BT_cancel)
 		{

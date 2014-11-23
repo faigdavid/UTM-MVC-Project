@@ -3,6 +3,7 @@ package model;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import exceptions.DataException;
 import exceptions.StateException;
 import local.*;
 import mvc.ModelEventListener;
@@ -23,7 +24,7 @@ public class ModelController implements ViewEventListener{
 	
 	/*-------------State-Change requests---------*/
 	@Override
-	public void register(String userName, String password1, String password2){
+	public void register(String userName, String password1, String password2) throws DataException{
 		UserDAO userDao = new UserDAO();
 
 		if (password1.equals(password2)) {
@@ -33,21 +34,16 @@ public class ModelController implements ViewEventListener{
 					view.changeStateLoggedIn();
 				}
 				
-			}else{
-				for (ModelEventListener view : views){ //failed to regiister
-					view.registerError();
-				}
-				
+			}else{//failed to register
+				throw new DataException();
 			}
-		} else {
-			for (ModelEventListener view : views){ //passwords don't match
-				view.registerError();
-			}
+		} else { //passwords don't match.
+			throw new DataException();
 			
 		}
 	}
 	@Override
-	public void changeBoardByName(String name) {
+	public void changeBoardByName(String name) throws StateException, DataException {
 		if (assertLoggedIn()){
 			BoardDAO DAO = new BoardDAO();
 			Board toChange = DAO.getBoardByName(name);
@@ -56,36 +52,27 @@ public class ModelController implements ViewEventListener{
 					view.changeStateInBoard();
 				}
 				
-			} else {
-				for (ModelEventListener view : views){ //failed to join the board
-					view.boardError();
-				}
-				
+			} else {//Board does not exist, or the DAO failed.
+					throw new DataException();
 			}
-		}else{
-			for (ModelEventListener view : views){ //failed to join the board since we're not logged in
-				view.boardError();
-			}
+		}else{//failed to join the board since we're not logged in
+			throw new StateException();
 		}
 		
 	}
 	@Override
-	public void changeBoardByBid(String bid) {
+	public void changeBoardByBid(String bid) throws StateException, DataException {
 		if (assertLoggedIn()){
 			if (this.user.joinBoard(bid) == 1){
 				for (ModelEventListener view : views){
 					view.changeStateInBoard();
 				}
-			} else {
-				for (ModelEventListener view : views){ //failed to join the board
-					view.boardError();
-				}
+			} else {//Board does not exist, or DAO failed.
+				throw new DataException();
 				
 			}
-		}else{
-			for (ModelEventListener view : views){ //failed to join the board since we're not logged in
-				view.boardError();
-			}
+		}else{//failed to join the board since we're not logged in
+			throw new StateException(); 
 		}
 		
 		
@@ -94,13 +81,10 @@ public class ModelController implements ViewEventListener{
 
 	
 	@Override
-	public void login(String username, String password) {
+	public void login(String username, String password) throws StateException {
 		user = new Authenticator().authenticateUser(username, password);
 		if (user == null){
-			for (ModelEventListener view : views){
-				view.loginError();
-			}
-			
+			throw new StateException();
 		} else {
 			for (ModelEventListener view : views){
 				view.changeStateLoggedIn();
@@ -113,55 +97,39 @@ public class ModelController implements ViewEventListener{
 	
 	
 	@Override
-	public void post(String message) {
-		if (user.post(message) != 1){
-			for (ModelEventListener view : views){ //failed to post message
-				view.messageError();
-			}
+	public void post(String message) throws StateException {
+		if (user.post(message) != 1){//failed to post.
+			throw new StateException();
 		}
 	}
 
 	/*-----------------DATA REQUESTS-------------------*/
 	
 	@Override
-	public void requestBoardMessages() {
+	public void requestBoardMessages() throws StateException {
 		if (assertLoggedIn()){
 			MessageDAO DAO = new MessageDAO();
 			Iterator<Message> msgs = 
 					DAO.getMessages(this.user.getcurrentBoard().getBid());
 			for (ModelEventListener view : views){
-				try {
-					view.recieveBoardMessages(msgs);
-				} catch (StateException e) {
-					e.printStackTrace();
-				}
+				view.recieveBoardMessages(msgs);
 			}
-			
 		}else{
-			for (ModelEventListener view : views){ //failed to retrieve board messages since user is not logged in
-				view.dataError();
-			}
+			throw new StateException();
 		}
 		
 	}
 	
 	@Override
-	public void requestBoards() {
+	public void requestBoards() throws StateException {
 		if (assertLoggedIn()){
 			BoardDAO DAO = new BoardDAO();
 			Iterator<Board> boards = DAO.getAllBoards();
 			for (ModelEventListener view : views){
-				try {
-					view.recieveBoards(boards);
-				} catch (StateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				view.recieveBoards(boards);
 			}
 		}else{
-			for (ModelEventListener view : views){ //failed to retrieve boards since user is not logged in
-				view.dataError();
-			}
+			throw new StateException();
 	}
 	}
 
@@ -199,11 +167,11 @@ public class ModelController implements ViewEventListener{
 	}
 
 	@Override
-	public void createBoard(String name) {
+	public void createBoard(String name) throws DataException {
 		// TODO Auto-generated method stub
 	        BoardDAO BDAO = new BoardDAO();
 		if (BDAO.createBoard(name) != 1){
-			//nothing for now.
+			throw new DataException();
 		}
 	}
 	

@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.sun.xml.internal.ws.api.server.Container;
 
+import exceptions.StateException;
 import model.*;
 import mvc.ViewEventListener;
 
@@ -83,7 +84,11 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 	
 	public void actionPerformed(ActionEvent event){
 		if (event.getSource() == BT_signin) {
-			controller.login(LB_username.getText(), LB_password.getText());
+			try {
+				controller.login(LB_username.getText(), LB_password.getText());
+			} catch (StateException e) {
+				ErrorGUI.loginError();
+			}
 		}
 		else if(event.getSource() == BT_register) {
 			GUIMain.changeStateRegister();
