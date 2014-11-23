@@ -82,6 +82,7 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
         
          
         //Process the Apply gaps button press
+        BT_cancel.addActionListener(this);
         BT_register.addActionListener(this);
         pane.add(inputPanel, BorderLayout.NORTH);
         pane.add(new JSeparator(), BorderLayout.CENTER);
@@ -97,8 +98,8 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
 
 	@Override
 	public int closeGUI() {
-		return JFrame.EXIT_ON_CLOSE;
-		
+		this.dispose();
+		return 1;
 	}
 
 	@Override
@@ -106,7 +107,14 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
 		if(event.getSource() == BT_register) {
 			controller.register(TA_username.getText(), TA_password.getText(), TA_passwordConfirm.getText());
 		}
+		else if(event.getSource()==BT_cancel)
+		{
+			GUIMain.changeStateLoggedOut();
+		}
 	}
+
+	
+
 
 
 } //end class

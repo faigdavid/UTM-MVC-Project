@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 public class GUIController implements ModelEventListener{
 	
 	private GUIEventListener currentState = null;
+	private GUIEventListener tempCurrentState = null;
 	private ViewEventListener controller = null;
 	
 	public GUIController() { }
@@ -48,19 +49,24 @@ public class GUIController implements ModelEventListener{
 
 	@Override
 	public void changeStateRegister() {
-		currentState.closeGUI();
+		this.tempCurrentState=this.currentState;
 		this.currentState = new RegisterGUI(this);
+		tempCurrentState.closeGUI();
+		
 	}
 	@Override
 	public void changeStateLoggedIn() {
+		
 		currentState.closeGUI();
 		this.currentState = new DashBoardGUI(this);
 	}
 
 	@Override
 	public void changeStateLoggedOut() {
-		currentState.closeGUI();
+		this.tempCurrentState=this.currentState;
 		this.currentState = new LoginGUI(this);
+		tempCurrentState.closeGUI();
+		
 	}
 
 	@Override

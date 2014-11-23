@@ -26,6 +26,7 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 	int i = 0;
 	
 	public LoginGUI(GUIController listener){
+		
 		super("Login Screen");
 		GUIMain = listener;
 		controller = GUIMain.getController();
@@ -49,20 +50,13 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 	    pane.add(TA_password);
 	    
 	    BT_register.setSize(100,20);
-	    BT_register.setLocation(10,10); 
-	    BT_register.addActionListener(null);
+	    BT_register.setLocation(10,10);
+	    BT_register.addActionListener(this);
 	    pane.add(BT_register);
 	    
 	    BT_signin.setSize(100,20);
-	    BT_signin.setLocation(10,10); 
-	    BT_signin.addActionListener(new ActionListener(){
-	    	@Override
-	    	public void actionPerformed(ActionEvent event){
-	    		if(event.getSource() == "BT_signin") {
-	    			controller.login(LB_username.getText(), LB_password.getText());
-	    		}
-	    	}
-	    });
+	    BT_signin.setLocation(10,10);
+	    BT_signin.addActionListener(this);
 	    pane.add(BT_signin);
 	    
 	    //we called GUI but we're not logged in yet (we need to authenticate ourselves)
@@ -82,8 +76,8 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 
 	@Override
 	public int closeGUI() {
-		return JFrame.EXIT_ON_CLOSE;
-		
+		this.dispose();
+		return 1;
 	}
 
 

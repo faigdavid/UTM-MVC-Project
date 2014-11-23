@@ -111,6 +111,7 @@ public class ModelController implements ViewEventListener{
 		
 	}
 	
+	
 	@Override
 	public void post(String message) {
 		if (user.post(message) != 1){
