@@ -108,6 +108,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 		// TODO Auto-generated method stub
 		if (event.getSource() == BT_post) {
 			controller.post(TA_userInput.getText());
+			TA_userInput.setText("");
 		}
 		else if(event.getSource() == BT_back) {
 			//GUIMain.changeStateRegister();
