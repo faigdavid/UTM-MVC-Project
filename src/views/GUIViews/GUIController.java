@@ -56,9 +56,9 @@ public class GUIController implements ModelEventListener{
 	}
 	@Override
 	public void changeStateLoggedIn() {
-		
-		currentState.closeGUI();
+		this.tempCurrentState=this.currentState;
 		this.currentState = new DashBoardGUI(this);
+		tempCurrentState.closeGUI();
 	}
 
 	@Override
@@ -71,14 +71,16 @@ public class GUIController implements ModelEventListener{
 
 	@Override
 	public void changeStateInBoard() {
-		currentState.closeGUI();
+		this.tempCurrentState=this.currentState;
 		this.currentState = new BoardGUI(this);
+		tempCurrentState.closeGUI();
 	}
 
 	@Override
 	public void changeStateNoBoard() { 
-		currentState.closeGUI();
+		this.tempCurrentState=this.currentState;
 		this.currentState = new DashBoardGUI(this);
+		tempCurrentState.closeGUI();
 	}
 
 	@Override
