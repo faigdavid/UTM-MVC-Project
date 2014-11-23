@@ -1,6 +1,5 @@
 package model;
 
-
 import local.*;
 
 public class Authenticator {

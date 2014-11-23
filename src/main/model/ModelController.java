@@ -1,11 +1,10 @@
 package model;
 
+import local.*;
 import java.util.HashSet;
 import java.util.Iterator;
-
 import exceptions.DataException;
 import exceptions.StateException;
-import local.*;
 import mvc.ModelEventListener;
 import mvc.ViewEventListener;
 /**
