@@ -18,28 +18,28 @@ public class UserDAO implements UserDAOInterface {
 			dbc.connect();
 			Connection con = dbc.getConnection();
 			PreparedStatement pstmt = null; // use prepared statement
-			String sqlText = "SELECT username, passwd FROM messages WHERE "
+			String sqlText = "SELECT username, passwd FROM users WHERE "
 					+ "username = ?";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, username);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs != null) {
-				usrbuild.password(rs.getString("passwd"));
-				usrbuild.username(rs.getString("username"));
-				usrbuild.currentBoard(null);
-			}	
-			else{
+				while (rs.next()) {
+					usrbuild.password(rs.getString("passwd"));
+					usrbuild.username(rs.getString("username"));
+					usrbuild.currentBoard(null);
+				}
+			} else {
 				dbc.disconnect();
 				return null;
 			}
 			dbc.disconnect();
 		} catch (Exception e) {
-			System.err.println("Exception: " + e.getMessage());
+			System.err.println("Get Exception: " + e.getMessage());
 		}
 		return usrbuild.build();
 	}
-	
 
 	@Override
 	public int saveUser(User user) {
@@ -53,10 +53,9 @@ public class UserDAO implements UserDAOInterface {
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
-			if(pstmt.execute()){
+			if (pstmt.execute()) {
 				return 1;
-			}			
-			else{
+			} else {
 				dbc.disconnect();
 				return 0;
 			}
@@ -65,13 +64,14 @@ public class UserDAO implements UserDAOInterface {
 			return 0;
 		}
 	}
+
 	@Override
 	public User createUser(String username, String password) {
-		
+
 		User user = this.getUser(username);
-		if(user != null){
+		if (user != null) {
 			return null;
-	
+
 		}
 		user = new User.Builder().password(password).username(username).build();
 		try {
@@ -84,18 +84,16 @@ public class UserDAO implements UserDAOInterface {
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
-			if(pstmt.execute()){
-				return user;
-			}			
-			else{
-				dbc.disconnect();
-				return null;
-			}
+			pstmt.executeUpdate();
+			dbc.disconnect();
+			return user;
+
 		} catch (Exception e) {
-			System.err.println("Exception: " + e.getMessage());
+			System.err.println("Create Exception: " + e.getMessage());
 			return null;
 		}
 	}
+
 	@Override
 	public int deleteUser(User user) {
 		// TODO Auto-generated method stub
