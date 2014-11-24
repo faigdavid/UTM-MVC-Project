@@ -8,7 +8,7 @@ import model.Board;
 public interface ViewEventListener {
 	public void changeBoardByBid(String bid) throws StateException, DataException;
 	public void changeBoardByName(String bid) throws StateException, DataException;
-	public void login(String username, String password) throws StateException;
+	public void login(String username, String password) throws DataException, StateException;
 	public void logout();
 	public void register(String userName, String password1,String password2) throws DataException;
 	public void post(String message) throws StateException;

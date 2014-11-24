@@ -115,7 +115,7 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
 			try {
 				controller.register(TA_username.getText(), new String (PF_password.getPassword()), new String (PF_passwordConfirm.getPassword()));
 			} catch (DataException e) {
-				ErrorGUI.registerError();
+				ErrorGUI.showError("Registration Error", e.getMessage());
 			}
 		}
 		else if(event.getSource()==BT_cancel)

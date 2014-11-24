@@ -59,7 +59,7 @@ public class ConsoleView implements ModelEventListener{
 			    password = getInput("Please input your password", br);
 				try {
 					controller.login(username, password);
-				} catch (StateException e2) {
+				} catch (StateException | DataException e2) {
 					printString("Failed to login.");
 				}
 				break;

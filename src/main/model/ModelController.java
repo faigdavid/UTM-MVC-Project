@@ -34,10 +34,10 @@ public class ModelController implements ViewEventListener{
 				}
 				
 			}else{//failed to register
-				throw new DataException();
+				throw new DataException("Failed to create user.");
 			}
 		} else { //passwords don't match.
-			throw new DataException();
+			throw new DataException("Password missmatch.");
 			
 		}
 	}
@@ -80,10 +80,13 @@ public class ModelController implements ViewEventListener{
 
 	
 	@Override
-	public void login(String username, String password) throws StateException {
+	public void login(String username, String password) throws DataException, StateException {
+		if (user != null){
+			throw new StateException();
+		}
 		user = new Authenticator().authenticateUser(username, password);
 		if (user == null){
-			throw new StateException();
+			throw new DataException();
 		} else {
 			for (ModelEventListener view : views){
 				view.changeStateLoggedIn();

@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.sun.xml.internal.ws.api.server.Container;
 
+import exceptions.DataException;
 import exceptions.StateException;
 import model.*;
 import mvc.ViewEventListener;
@@ -87,6 +88,8 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 			try {
 				controller.login(LB_username.getText(), LB_password.getText());
 			} catch (StateException e) {
+				ErrorGUI.showError("Login Error", "You are already logged in.");
+			} catch (DataException e) {
 				ErrorGUI.loginError();
 			}
 		}
