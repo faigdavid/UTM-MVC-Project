@@ -10,6 +10,8 @@ import exceptions.StateException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * This GUI will be act as the "startup"  for all the other GUIs.
@@ -37,6 +39,25 @@ public class GUIController implements ModelEventListener{
 	
 	@Override
 	public void runView() throws IOException {
+        /* Use an appropriate Look and Feel*/
+        try {
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+           //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+        	UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        } catch (InstantiationException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        /* Turn off metal's use of bold fonts */
+        //UIManager.put("swing.boldMetal", Boolean.TRUE);		
+		
 		this.currentState = new LoginGUI(this);
 	}
 	

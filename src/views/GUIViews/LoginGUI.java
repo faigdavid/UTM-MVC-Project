@@ -117,7 +117,7 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 	WindowListener exitListener = new WindowAdapter() {
         @Override
         public void windowClosing(WindowEvent e) {
-            int confirm = JOptionPane.showOptionDialog(null, "Are You Sure to Quit the Program Completly?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+            int confirm = JOptionPane.showOptionDialog(null, "Are you sure?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
             if (confirm == 0) {
                System.exit(0);
             }

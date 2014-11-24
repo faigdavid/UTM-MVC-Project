@@ -17,8 +17,8 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.Box;
+
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,7 +26,10 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
+import exceptions.DataException;
+import exceptions.StateException;
 import model.Board;
 import mvc.ViewEventListener;
 
@@ -42,9 +45,10 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	
 	//-- THIS STRING LIST IS TEMPERORY
 	private String[] temp = {"c","c","c","c","c","c","c","c","c","c","c","c"};
-	JList list = new JList(temp);
-	JScrollPane JSP_boardList = new JScrollPane(list);
+	
+	private JComboBox JCB_boardList = new JComboBox(temp);
 	private JButton BT_create = new JButton("Create New");
+	private JButton BT_join = new JButton("Join");
 	private JButton BT_cancel = new JButton("Cancel");
 	
 	
@@ -77,16 +81,17 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(inputLayout);
         
-        GridLayout controlLayout = new GridLayout(0,2);
+        GridLayout controlLayout = new GridLayout(0,3);
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(controlLayout);
          
         //Add buttons to experiment with Grid Layout
-        inputPanel.add(JSP_boardList);
+        inputPanel.add(JCB_boardList);
         inputLayout.setVgap(10);
          
         //Add controls to set up horizontal and vertical gaps
         controlPanel.add(BT_create);
+        controlPanel.add(BT_join);
         controlPanel.add(BT_cancel);
         
         
@@ -95,6 +100,8 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         
         //add action listener
         BT_cancel.addActionListener(this); 
+        BT_join.addActionListener(this); 
+        BT_create.addActionListener(this); 
         
         //Process the Apply gaps button press
         pane.add(inputPanel, BorderLayout.NORTH);
@@ -118,11 +125,29 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == BT_create) {
-			//controller.createBoard();
+		
+			JTextField TA_boardName = new JTextField();
+			String create = JOptionPane.showInputDialog("Type in your board name");
+
+			try {
+				controller.createBoard(create);
+			} catch (DataException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 		else if(event.getSource() == BT_cancel) {
 			//GUIMain.changeStateRegister();
 			GUIMain.changeStateLoggedOut();
+		}
+		else if(event.getSource() == BT_join) {
+			try {
+				controller.changeBoardByName(String.valueOf(JCB_boardList.getSelectedItem()));
+			} catch (StateException | DataException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	
 	}
@@ -140,7 +165,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 
         @Override
         public void windowClosing(WindowEvent e) {
-            int confirm = JOptionPane.showOptionDialog(null, "Are You Sure to Quit the Program Completly?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+            int confirm = JOptionPane.showOptionDialog(null, "Are you sure?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
             if (confirm == 0) {
                System.exit(0);
             }
