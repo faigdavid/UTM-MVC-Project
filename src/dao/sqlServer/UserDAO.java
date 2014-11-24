@@ -25,10 +25,16 @@ public class UserDAO implements UserDAOInterface {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs != null) {
-				while (rs.next()) {
+				System.out.println("rs not null");
+				if (rs.next()) {
+					System.out.println("userfound; name: "
+							+ rs.getString("username"));
 					usrbuild.password(rs.getString("passwd"));
 					usrbuild.username(rs.getString("username"));
 					usrbuild.currentBoard(null);
+				} else { // user does not exist
+					dbc.disconnect();
+					return null;
 				}
 			} else {
 				dbc.disconnect();
@@ -67,11 +73,10 @@ public class UserDAO implements UserDAOInterface {
 
 	@Override
 	public User createUser(String username, String password) {
-
+		System.out.println("createUser in DAO");
 		User user = this.getUser(username);
 		if (user != null) {
 			return null;
-
 		}
 		user = new User.Builder().password(password).username(username).build();
 		try {
@@ -85,9 +90,9 @@ public class UserDAO implements UserDAOInterface {
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
 			pstmt.executeUpdate();
+			System.out.println("user created");
 			dbc.disconnect();
 			return user;
-
 		} catch (Exception e) {
 			System.err.println("Create Exception: " + e.getMessage());
 			return null;
