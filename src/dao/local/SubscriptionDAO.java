@@ -9,7 +9,7 @@ import model.*;
 public class SubscriptionDAO implements SubscriptionDAOInterface{
 
 	@Override
-	public Iterator<User> getSubscriptionsByBoard(String bid) {
+	public Iterator<String> getSubscriptionsByBoard(String bid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -21,13 +21,13 @@ public class SubscriptionDAO implements SubscriptionDAOInterface{
 	}
 
 	@Override
-	public int subUserToBoard(User user, Board board) {
+	public int subUserToBoard(String user, String bid) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int unSubUserFromBoard(User user, Board board) {
+	public int unSubUserFromBoard(String user, String bid) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

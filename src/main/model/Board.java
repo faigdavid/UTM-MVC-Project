@@ -1,18 +1,27 @@
 package model;
 
 import local.*;
+import model.User.Builder;
 
 public class Board {
 	private String bid;
 	private String name;
 	private String password;
 	
+
+	
 	public Board(String id, String name, String password){
 		this.bid = id;
 		this.name = name;
 		this.password = password;
 	}
-	
+	private Board(Builder builder){
+		this.bid = builder.bid;
+		this.name = builder.name;
+		this.password = builder.password;
+	}
+
+
 	//Deletes a message
 	public int deleteMessage(String mid){
 		MessageDAO mdao = new MessageDAO();
@@ -45,5 +54,29 @@ public class Board {
 	public String getBid() {
 		return bid;
 	}
+	public static class Builder {
+		private String bid;
+		private String name;
+		private String password; // defaults to null.
 
+		public Builder bid(String bid) {
+			this.bid = bid;
+			return this;
+		}
+
+		public Builder name(String name) {
+			this.name = name;
+			return this;
+		}
+
+		public Builder password(String password) {
+			this.password = password;
+			return this;
+		}
+
+
+		public Board build() {
+			return new Board(this);
+		}
+	}
 }

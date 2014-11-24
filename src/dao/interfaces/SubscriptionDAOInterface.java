@@ -13,7 +13,7 @@ public interface SubscriptionDAOInterface{
 	 *            String of board id of a board.
 	 * @return Iterator<User> all subscribed Users of a given board (by bid)
 	 */
-	public Iterator<User> getSubscriptionsByBoard(String bid);
+	public Iterator<String> getSubscriptionsByBoard(String bid);
 
 	/**
 	 * get all boards that a User is subscribed to.
@@ -33,7 +33,7 @@ public interface SubscriptionDAOInterface{
 	 *            Board object that a user is subscribing.
 	 * @return 0 on success, -1 on error
 	 */
-	public int subUserToBoard(User user, Board board);
+	public int subUserToBoard(String user, String bid);
 
 	/**
 	 * unsubscribe user from given board
@@ -44,6 +44,6 @@ public interface SubscriptionDAOInterface{
 	 *            Board object that a user is unsubscribing.
 	 * @return 0 on success, -1 on error
 	 */
-	public int unSubUserFromBoard(User user, Board board);
+	public int unSubUserFromBoard(String user, String bid);
 
 }

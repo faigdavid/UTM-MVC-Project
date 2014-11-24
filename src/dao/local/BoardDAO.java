@@ -37,7 +37,7 @@ public class BoardDAO implements BoardDAOInterface {
 		} finally {
 			   try {reader.close();} catch (Exception ex) {}
 		}
-		return new Board(bid, name, password);
+		return new Board(bid, name, password); 
 	
 
 	}

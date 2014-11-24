@@ -21,7 +21,7 @@ CREATE TABLE boards(
 CREATE TABLE subscriptions (
     username VARCHAR(30) references users(username) ON DELETE CASCADE,
     bid INT references boards(bid) ON DELETE CASCADE,
-    type INT,
+    type INT default 1,
     PRIMARY KEY (bid, username)
 );
 

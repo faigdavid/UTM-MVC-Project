@@ -148,7 +148,7 @@ public class ModelController implements ViewEventListener{
 	public void subscribeUserToBoard(Board board) {
 		// TODO Auto-generated method stub
 		SubscriptionDAO dao = new SubscriptionDAO();
-		dao.subUserToBoard(user, board);
+		dao.subUserToBoard(user.getUsername(), board.getBid());
 		
 		
 	}
@@ -156,7 +156,7 @@ public class ModelController implements ViewEventListener{
 	public void unsubscribeUserFromBoard(Board board) {
 		// TODO Auto-generated method stub
 		SubscriptionDAO dao = new SubscriptionDAO();
-		dao.unSubUserFromBoard(user, board);
+		dao.unSubUserFromBoard(user.getUsername(), board.getBid());
 	}
 	
 	@Override
