@@ -87,7 +87,6 @@ public class GUIController implements ModelEventListener{
 		this.tempCurrentState=this.currentState;
 		this.currentState = new LoginGUI(this);
 		tempCurrentState.closeGUI();
-		
 	}
 
 	@Override

@@ -35,10 +35,11 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	private ViewEventListener controller = null;
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel LB_boardTitle = new JLabel("<-INSERT BOARD NAME HERE->");
+	private JLabel LB_boardTitle;
 	private JTextArea TA_boardMsgs = new JTextArea(10,30);
 	private JTextField TA_userInput  = new JTextField();
 	private JButton BT_post = new JButton("Post");
+	private JButton BT_subscribe = new JButton ("Subscribe");
 	private JButton BT_back = new JButton("Back");
 
 	/**
@@ -60,10 +61,18 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	}
 	
 	public void preparePanel(java.awt.Container pane) {
+		LB_boardTitle = new JLabel("<-INSERT BOARD NAME HERE->");
+		
+		/*
+		if (User sub){
+			BT_subscribe.setText("Unsubscribe");
+		}
+		*/
+				
 		GridLayout inputLayout = new GridLayout(0,1);
 		JPanel inputPanel = new JPanel();
 		inputPanel.setLayout(inputLayout);
-		inputLayout.setVgap(10);
+		inputLayout.setVgap(3);
 		
 		GridLayout displayLayout = new GridLayout(0,1);
 		JPanel displayPanel = new JPanel();
@@ -77,19 +86,23 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
         //---------displayPanel-------------------------
         TA_boardMsgs.setEditable(false);
         
+        //displayPanel.add(LB_boardTitle);
         displayPanel.add(TA_boardMsgs);
         inputPanel.add(Box.createVerticalStrut(4));
         //---------inputPanel-------------------------
         inputPanel.add(TA_userInput);
-        inputPanel.add(Box.createVerticalStrut(4));
-	    controlPanel.add(BT_post);
-	    controlPanel.add(BT_back);
+        
+	    inputPanel.add(BT_post);
+	    inputPanel.add(BT_subscribe);
+	    inputPanel.add(BT_back);
 	    BT_post.addActionListener(this);
 	    BT_back.addActionListener(this);
-	    
+	    BT_subscribe.addActionListener(this);
         
-		pane.add(displayPanel, BorderLayout.NORTH);
-		pane.add(new JSeparator(), BorderLayout.CENTER);
+	    pane.add(LB_boardTitle, BorderLayout.NORTH);
+	
+	    pane.add(displayPanel,BorderLayout.CENTER);
+		//pane.add(new JSeparator(), BorderLayout.CENTER);
 		pane.add(inputPanel, BorderLayout.SOUTH);
 	}
 
@@ -119,6 +132,9 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 			//GUIMain.changeStateRegister();
 			GUIMain.changeStateNoBoard();
 		}
+		else if(event.getSource() == BT_subscribe) {
+			//controller.subscribeUserToBoard(BOARD)
+		}
 	}
 
 	public void recieveMessages(Iterator<Message> messages) {
@@ -129,8 +145,8 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
     //function for centering the frame
     public static void centreWindow(Window frame) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2- 100);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2 - 100);
         frame.setLocation(x, y);
     }
 	

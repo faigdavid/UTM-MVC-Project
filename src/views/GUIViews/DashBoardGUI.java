@@ -139,7 +139,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 		}
 		else if(event.getSource() == BT_cancel) {
 			//GUIMain.changeStateRegister();
-			GUIMain.changeStateLoggedOut();
+			controller.logout();
 		}
 		else if(event.getSource() == BT_join) {
 			try {
