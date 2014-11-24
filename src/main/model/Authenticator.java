@@ -1,6 +1,6 @@
 package model;
 
-import local.*;
+import sqlServer.*;
 
 public class Authenticator {
 	/**

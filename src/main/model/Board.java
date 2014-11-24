@@ -1,38 +1,35 @@
 package model;
 
-import local.*;
-import model.User.Builder;
+import sqlServer.*;
 
 public class Board {
 	private String bid;
 	private String name;
 	private String password;
-	
 
-	
-	public Board(String id, String name, String password){
+	public Board(String id, String name, String password) {
 		this.bid = id;
 		this.name = name;
 		this.password = password;
 	}
-	private Board(Builder builder){
+
+	private Board(Builder builder) {
 		this.bid = builder.bid;
 		this.name = builder.name;
 		this.password = builder.password;
 	}
 
-
-	//Deletes a message
-	public int deleteMessage(String mid){
+	// Deletes a message
+	public int deleteMessage(String mid) {
 		MessageDAO mdao = new MessageDAO();
 		Message msg = mdao.getMessage(this.bid, mid);
 		return mdao.deleteMessage(msg.getMid());
 	}
 
 	public int postMessage(User user, String text) {
-		//david is responsible for making sure this works
-		return new MessageDAO().addMessage(
-				this.getBid(), user.getUsername(), text);
+		// david is responsible for making sure this works
+		return new MessageDAO().addMessage(this.getBid(), user.getUsername(),
+				text);
 	}
 
 	public String getName() {
@@ -54,6 +51,7 @@ public class Board {
 	public String getBid() {
 		return bid;
 	}
+
 	public static class Builder {
 		private String bid;
 		private String name;
@@ -73,7 +71,6 @@ public class Board {
 			this.password = password;
 			return this;
 		}
-
 
 		public Board build() {
 			return new Board(this);

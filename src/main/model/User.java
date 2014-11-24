@@ -1,6 +1,6 @@
 package model;
 
-import local.*;
+import sqlServer.*;
 import java.util.Iterator;
 
 public class User {
@@ -27,7 +27,6 @@ public class User {
 	public Board getcurrentBoard() {
 		return this.currentBoard;
 	}
-
 
 	/* METHODS */
 	// Does not need to be implemented for now.
@@ -99,7 +98,6 @@ public class User {
 			this.currentBoard = currentBoard;
 			return this;
 		}
-
 
 		public User build() {
 			return new User(this);
