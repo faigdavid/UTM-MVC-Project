@@ -24,6 +24,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
+import exceptions.StateException;
 import model.Message;
 import mvc.ViewEventListener;
 
@@ -107,7 +108,11 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
 		if (event.getSource() == BT_post) {
-			controller.post(TA_userInput.getText());
+			try {
+				controller.post(TA_userInput.getText());
+			} catch (StateException e) {
+				ErrorGUI.messageError();
+			}
 			TA_userInput.setText("");
 		}
 		else if(event.getSource() == BT_back) {

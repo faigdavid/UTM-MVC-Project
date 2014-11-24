@@ -1,5 +1,10 @@
 package exceptions;
 
+/**
+ * Throw this when the Model state does not match the method call.
+ * @author David
+ *
+ */
 public class StateException extends Exception {
 	  public StateException() {
 		  super(); 

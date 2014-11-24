@@ -1,9 +1,7 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import local.*;
+import java.util.ArrayList;
 
 public class Message {
 	private String mid;

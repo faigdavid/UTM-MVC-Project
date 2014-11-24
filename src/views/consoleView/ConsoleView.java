@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
+import exceptions.DataException;
+import exceptions.StateException;
 import model.*;
 import mvc.ModelEventListener;
 import mvc.ViewEventListener;
@@ -55,7 +57,11 @@ public class ConsoleView implements ModelEventListener{
 				username = getInput("Please enter your"
 						+ "username", br);
 			    password = getInput("Please input your password", br);
-				controller.login(username, password);
+				try {
+					controller.login(username, password);
+				} catch (StateException | DataException e2) {
+					printString("Failed to login.");
+				}
 				break;
 			case "logout":
 				controller.logout();
@@ -74,7 +80,12 @@ public class ConsoleView implements ModelEventListener{
 				password2 = getInput("Please repeat the "+ 
 				"same password", br); 
 				
-				controller.register(username, password, password2);
+				try {
+					controller.register(username, password, password2);
+				} catch (DataException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				break;
 
 			case "credits": //carlito coded this
@@ -92,10 +103,18 @@ public class ConsoleView implements ModelEventListener{
 			case "refresh": //Carlito coded this
 				//make a request for boards or messages depending on state.
 				if(this.state.equals("logged in")) {
-					controller.requestBoards();				
+					try {
+						controller.requestBoards();
+					} catch (StateException e) {
+						printString("Failed to retrieve Boards.");
+					}				
 				}
 				else if(this.state.equals("in board")) {
-					controller.requestBoardMessages();
+					try {
+						controller.requestBoardMessages();
+					} catch (StateException e) {
+						printString("Failed to retrieve Messages.");;
+					}
 				}
 				
 				break;
@@ -103,7 +122,12 @@ public class ConsoleView implements ModelEventListener{
 			case "post":
 				input.trim();
 				input=input.substring(toStrip = input.indexOf(' ')+1);
-				controller.post(input);
+				try {
+					controller.post(input);
+				} catch (StateException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				break;
 				
 			case "private message":
@@ -112,17 +136,33 @@ public class ConsoleView implements ModelEventListener{
 				//controller.messageUser();
 			case "join board by name":
 				toStrip = input.indexOf(' ');
-				controller.changeBoardByName(input.substring(toStrip).trim());
+				try {
+					controller.changeBoardByName(input.substring(toStrip).trim());
+				} catch (StateException e) {
+					printString("Failed to join board.");
+				} catch (DataException e) {
+					printString("Board does not exist.");
+				}
 				break;
 				
 			case "join board by bid":
 				toStrip = input.indexOf(' ');
-				controller.changeBoardByBid(input.substring(toStrip).trim());
+				try {
+					controller.changeBoardByBid(input.substring(toStrip).trim());
+				} catch (StateException e) {
+					printString("Failed to join board.");
+				} catch (DataException e) {
+					printString("Board does not exist.");
+				}
 				break;
 				
 			case "create board":
 				toStrip = input.indexOf(' ');
-				controller.createBoard(input.substring(toStrip).trim());
+				try {
+					controller.createBoard(input.substring(toStrip).trim());
+				} catch (DataException e) {
+					printString("Failed to create board.");
+				}
 				break;
 				
 			default:
@@ -273,31 +313,7 @@ public class ConsoleView implements ModelEventListener{
 		input.trim();
 		return input;
 	}
-	@Override
-	public void loginError() {
-		// TODO Auto-generated method stub
-		printString("Failed to login");
-	}
-	@Override
-	public void registerError() {
-		// TODO Auto-generated method stub
-		printString("Failed to register");
-	}
-	@Override
-	public void boardError() {
-		// TODO Auto-generated method stub
-		printString("Failed to join a board");
-	}
-	@Override
-	public void messageError() {
-		// TODO Auto-generated method stub
-		printString("Failed to post a message");
-	}
-	@Override
-	public void dataError() {
-		// TODO Auto-generated method stub
-		printString("Failed to retrieve data");
-	}
+
 
 }
 

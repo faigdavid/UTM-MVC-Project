@@ -1,10 +1,7 @@
 package model;
 
-import java.util.Iterator;
-
 import local.*;
-
-
+import java.util.Iterator;
 
 public class User {
 	private String username;

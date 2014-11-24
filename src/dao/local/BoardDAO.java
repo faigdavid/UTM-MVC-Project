@@ -17,13 +17,13 @@ import model.Board;
 
 public class BoardDAO implements BoardDAOInterface {
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/BOARDS/";
-	private String davidsPath = (System.getProperty("user.dir")+"/src/database/BOARDS/");
-	private String defaultPath = davidsPath;
+	private String dimitriPath = (System.getProperty("user.dir")+"/src/database/BOARDS/");
+	private String defaultPath = dimitriPath;
 	
 	@Override
 	public Board getBoard(String bid) {
 		BufferedReader reader = null;
-		String filename = davidsPath +bid+ ".txt";
+		String filename = dimitriPath +bid+ ".txt";
 		String name;
 		String password = null;
 		

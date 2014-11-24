@@ -22,14 +22,17 @@ public interface ModelEventListener {
 	public void removeViewEventListener(ViewEventListener listener);
 	
 	/*
-	 * Added error pop up messages to replace the error messages that prints to the console.
-	 * I did this since we're doing a GUI.
-	 * @author Carlito Llena
+	 * Changed this. Now GUI errors will be sent through exception catch
+	 * blocks. Since those error messages are meant for the GUI and not any
+	 * other views, there is no point to force other views to implement them.
+	 * 
+	 * This also allows the GUI to handle failures any way it wants.
+	 * -David.
 	 */
-	public void loginError();
-	public void registerError();
-	public void boardError();
-	public void messageError();
-	public void dataError();
+	//public void loginError();
+	//public void registerError();
+	//public void boardError();
+	//public void messageError();
+	//public void dataError();
 }
 
