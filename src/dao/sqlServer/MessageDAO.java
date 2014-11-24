@@ -1,6 +1,7 @@
 package sqlServer;
 
 import interfaces.MessageDAOInterface;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,12 +26,7 @@ public class MessageDAO implements MessageDAOInterface {
 
 			if (rs != null) {
 				while (rs.next()) {
-					Message msg = new Message.Builder()
-							.setBid(rs.getString("bid"))
-							.setusername(rs.getString("username"))
-							.setDate(rs.getString("date_posted"))
-							.setText(rs.getString("contents"))
-							.setMid(rs.getString("mid")).build();
+					Message msg = getMsgBuilderFromRS(rs).build();
 					messages.add(msg);
 				}
 			}
@@ -56,10 +52,7 @@ public class MessageDAO implements MessageDAOInterface {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs != null) {
-				msgbuild.setBid(rs.getString("bid"))
-						.setusername(rs.getString("username"))
-						.setDate(rs.getString("date_posted"))
-						.setText(rs.getString("contents")).setMid(mid);
+				msgbuild = getMsgBuilderFromRS(rs);
 				dbc.disconnect();
 			} else {
 				dbc.disconnect();
@@ -82,14 +75,14 @@ public class MessageDAO implements MessageDAOInterface {
 			dbc.connect();
 			Connection con = dbc.getConnection();
 			PreparedStatement pstmt = null; // use prepared statement
-			String sqlText = "SELECT mid FROM messages WHERE date_posted > ? ORDER BY mid";
+			String sqlText = "SELECT * FROM messages WHERE date_posted > ? ORDER BY mid";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, date);
 			ResultSet rs = pstmt.executeQuery(sqlText);
 
 			if (rs != null) {
 				while (rs.next()) {
-					Message msg = getMessage(bid, rs.getString("mid"));
+					Message msg = getMsgBuilderFromRS(rs).build();
 					messages.add(msg);
 				}
 			}
@@ -147,6 +140,15 @@ public class MessageDAO implements MessageDAOInterface {
 			return 0;
 		}
 		return 1; // **** WHAT DO I RETURN ON SUCCESS?
+	}
+
+	// ========== PRIVATE METHODS
+	private Message.Builder getMsgBuilderFromRS(ResultSet rs)
+			throws SQLException {
+		return new Message.Builder().setBid(rs.getString("bid"))
+				.setusername(rs.getString("username"))
+				.setDate(rs.getString("date_posted"))
+				.setText(rs.getString("contents")).setMid(rs.getString("mid"));
 	}
 
 }
