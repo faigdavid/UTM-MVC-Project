@@ -86,7 +86,7 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 	public void actionPerformed(ActionEvent event){
 		if (event.getSource() == BT_signin) {
 			try {
-				controller.login(LB_username.getText(), LB_password.getText());
+				controller.login(new String(TA_username.getText()), new String(PF_password.getPassword()));
 			} catch (StateException e) {
 				ErrorGUI.showError("Login Error", "You are already logged in.");
 			} catch (DataException e) {
