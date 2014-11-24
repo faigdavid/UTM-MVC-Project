@@ -15,12 +15,13 @@ import model.*;
 public class UserDAO implements UserDAOInterface {
 	//this string should work on my computer
 	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/USERS/";
-	private String davidsPath = (System.getProperty("user.dir")+"/src/database/USERS/");
+	private String dimitriPath = (System.getProperty("user.dir")+"/src/database/USERS/");
 	@Override
 	public User getUser(String username) {
 		String password;
+		username.trim();
 		BufferedReader reader = null;
-		String filename = davidsPath + username+ ".txt";
+		String filename = dimitriPath + username + ".txt";
 		
 		try{
 			reader = new BufferedReader(new FileReader(filename));
@@ -40,7 +41,7 @@ public class UserDAO implements UserDAOInterface {
 		//needs to create files in the format username.txt
 		
 
-		String filename = davidsPath + user.getUsername()+ ".txt";
+		String filename = dimitriPath + user.getUsername()+ ".txt";
 		Writer writer = null;
 		try {
 			writer = new BufferedWriter(new OutputStreamWriter(
