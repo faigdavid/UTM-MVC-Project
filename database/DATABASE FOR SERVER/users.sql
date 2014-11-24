@@ -13,7 +13,7 @@ CREATE TABLE boards(
     bid SERIAL PRIMARY KEY,
     name VARCHAR(127),
     motd TEXT,
-    bpasswd VARCHAR(30) default NULL,
+    passwd VARCHAR(30) default NULL,
     visible int default 1
 
 );
@@ -23,7 +23,7 @@ CREATE TABLE subscriptions (
     bid INT references boards(bid) ON DELETE CASCADE,
     type INT default 1,
     PRIMARY KEY (bid, username)
-);
+);	
 
 
 CREATE TABLE tags (

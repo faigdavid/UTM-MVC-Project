@@ -1,5 +1,10 @@
 package sqlServer;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import model.Message;
 import model.User;
 import interfaces.UserDAOInterface;
 
@@ -7,22 +12,90 @@ public class UserDAO implements UserDAOInterface {
 
 	@Override
 	public User getUser(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		User.Builder usrbuild = new User.Builder();
+		try {
+			DBConnection dbc = new DBConnection();
+			dbc.connect();
+			Connection con = dbc.getConnection();
+			PreparedStatement pstmt = null; // use prepared statement
+			String sqlText = "SELECT username, passwd FROM messages WHERE "
+					+ "username = ?";
+			pstmt = con.prepareStatement(sqlText);
+			pstmt.setString(1, username);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs != null) {
+				usrbuild.password(rs.getString("passwd"));
+				usrbuild.username(rs.getString("username"));
+				usrbuild.currentBoard(null);
+			}	
+			else{
+				dbc.disconnect();
+				return null;
+			}
+			dbc.disconnect();
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+		}
+		return usrbuild.build();
 	}
+	
 
 	@Override
 	public int saveUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			DBConnection dbc = new DBConnection();
+			dbc.connect();
+			Connection con = dbc.getConnection();
+			PreparedStatement pstmt = null; // use prepared statement
+			String sqlText = "UPDATE users SET username = ?, passwd = ? WHERE "
+					+ "username = ?";
+			pstmt = con.prepareStatement(sqlText);
+			pstmt.setString(1, user.getUsername());
+			pstmt.setString(2, user.getPassword());
+			if(pstmt.execute()){
+				return 1;
+			}			
+			else{
+				dbc.disconnect();
+				return 0;
+			}
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+			return 0;
+		}
 	}
-
 	@Override
 	public User createUser(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		User user = this.getUser(username);
+		if(user != null){
+			return null;
+	
+		}
+		user = new User.Builder().password(password).username(username).build();
+		try {
+			DBConnection dbc = new DBConnection();
+			dbc.connect();
+			Connection con = dbc.getConnection();
+			PreparedStatement pstmt = null; // use prepared statement
+			String sqlText = "INSERT INTO users (username, passwd) VALUES"
+					+ "(?, ?)";
+			pstmt = con.prepareStatement(sqlText);
+			pstmt.setString(1, user.getUsername());
+			pstmt.setString(2, user.getPassword());
+			if(pstmt.execute()){
+				return user;
+			}			
+			else{
+				dbc.disconnect();
+				return null;
+			}
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+			return null;
+		}
 	}
-
 	@Override
 	public int deleteUser(User user) {
 		// TODO Auto-generated method stub
