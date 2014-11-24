@@ -29,7 +29,6 @@ public class ModelController implements ViewEventListener {
 	public void register(String userName, String password1, String password2)
 			throws DataException {
 		UserDAO userDao = new UserDAO();
-		System.out.println("registering");
 		if (password1.equals(password2)) {
 			this.user = userDao.createUser(userName, password1);
 			if (this.user != null) {
