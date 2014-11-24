@@ -1,8 +1,6 @@
 package sqlServer;
 
-import sqlServer.DBConnection;
 import interfaces.MessageDAOInterface;
-
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,12 +20,17 @@ public class MessageDAO implements MessageDAOInterface {
 			Connection con = dbc.getConnection();
 			Statement sql = con.createStatement();
 
-			String sqlText = "SELECT mid FROM messages ORDER BY mid";
+			String sqlText = "SELECT * FROM messages ORDER BY mid";
 			ResultSet rs = sql.executeQuery(sqlText);
 
 			if (rs != null) {
 				while (rs.next()) {
-					Message msg = getMessage(bid, rs.getString("mid"));
+					Message msg = new Message.Builder()
+							.setBid(rs.getString("bid"))
+							.setusername(rs.getString("username"))
+							.setDate(rs.getString("date_posted"))
+							.setText(rs.getString("contents"))
+							.setMid(rs.getString("mid")).build();
 					messages.add(msg);
 				}
 			}
@@ -53,13 +56,15 @@ public class MessageDAO implements MessageDAOInterface {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs != null) {
-				msgbuild.setBid(rs.getString("bid"));
-				msgbuild.setusername(rs.getString("username"));
-				msgbuild.setDate(rs.getString("date_posted"));
-				msgbuild.setText(rs.getString("contents"));
-				msgbuild.setMid(mid);
+				msgbuild.setBid(rs.getString("bid"))
+						.setusername(rs.getString("username"))
+						.setDate(rs.getString("date_posted"))
+						.setText(rs.getString("contents")).setMid(mid);
+				dbc.disconnect();
+			} else {
+				dbc.disconnect();
+				return null;
 			}
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
