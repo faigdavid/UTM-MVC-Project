@@ -27,10 +27,15 @@ public class BoardDAO implements BoardDAOInterface {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs != null) {
-				rs.next();
-				boardbuild.bid(rs.getString("bid")).name(rs.getString("name"))
-						.password(rs.getString("passwd"));
-				dbc.disconnect();
+				if (rs.next()) {
+					boardbuild.bid(rs.getString("bid"))
+							.name(rs.getString("name"))
+							.password(rs.getString("passwd"));
+					dbc.disconnect();
+				} else {
+					dbc.disconnect();
+					return null;
+				}
 			} else {
 				dbc.disconnect();
 				return null;
@@ -56,10 +61,15 @@ public class BoardDAO implements BoardDAOInterface {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs != null) {
-				rs.next();
-				boardbuild.bid(rs.getString("bid")).name(rs.getString("name"))
-						.password(rs.getString("passwd"));
-				dbc.disconnect();
+				if (rs.next()) {
+					boardbuild.bid(rs.getString("bid"))
+							.name(rs.getString("name"))
+							.password(rs.getString("passwd"));
+					dbc.disconnect();
+				} else {
+					dbc.disconnect();
+					return null;
+				}
 			} else {
 				dbc.disconnect();
 				return null;
