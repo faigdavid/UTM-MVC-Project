@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
@@ -153,6 +155,20 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 		}
 		else if(event.getSource() == BT_subscribe) {
 			//controller.subscribeUserToBoard(BOARD)
+		}
+		else if (event.getSource() == BT_tag) {
+			
+			JTextField TA_tag = new JTextField();
+			String tagString = JOptionPane.showInputDialog("Type in your tags"
+					+ ", seperated by a space");
+			ArrayList<String> tags = new ArrayList<String>(
+					Arrays.asList(tagString.split(" ")));
+			try {
+				controller.addTagsToBoard(tags);
+			} catch (DataException | StateException e) {
+				ErrorGUI.showError("DashBoard Error", e.getMessage());
+			}
+			refresh();
 		}
 	}
 

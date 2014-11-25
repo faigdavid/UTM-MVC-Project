@@ -208,11 +208,27 @@ public class ModelController implements ViewEventListener {
 			throw new DataException();
 		}
 	}
-
+	@Override
+	public void addTagsToBoard(ArrayList<String> tags) throws DataException,
+	StateException  {
+		// TODO Auto-generated method stub
+		if (assertLoggedIn()) {
+			BoardDAO DAO = new BoardDAO();
+			if(DAO.addTags(tags, user.getcurrentBoard().getBid()) == 1){
+				return;
+			}
+			else{
+				
+				throw new StateException("Not logged in...?");
+			}
+		}
+	}
 	/*-------------NON-OVERRIDES-------------*/
 
 	/* ALways call this to check that you've logged in. */
 	private boolean assertLoggedIn() {
 		return this.user != null;
 	}
+
+	
 }

@@ -212,4 +212,30 @@ public class BoardDAO implements BoardDAOInterface {
 		}
 		return boards.iterator();
 	}
+
+	public int addTags(ArrayList<String> tags, String bid) {
+		//see super for implementation details
+		PreparedStatement pstmt = null;
+		try {
+			DBConnection dbc = new DBConnection();
+			dbc.connect();
+			Connection con = dbc.getConnection();
+			for(String s : tags){
+		
+				pstmt = null; // use prepared statement
+				String sqlText = "INSERT INTO " + "tags (bid, tag) "
+						+ "VALUES (?, ?)";
+				pstmt = con.prepareStatement(sqlText);
+				//casts the bid to an integer
+				pstmt.setInt(1, Integer.parseInt(bid));
+				pstmt.setString(2, s);
+				pstmt.executeUpdate();
+				//Make it execute the statement for each tag.
+			}
+			}catch(Exception e){
+				System.err.println("Exception: " + e.getMessage());
+			}
+		
+		return 0;
+	}
 }

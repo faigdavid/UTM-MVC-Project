@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import model.Board;
@@ -40,4 +41,17 @@ public interface BoardDAOInterface {
 	 * @return Iterator<Board> all the boards in the database.
 	 */
 	public Iterator<Board> getAllBoards();
+	/**
+	 * 
+	 * returns all boards in an Iterator
+	 * @return the iterator of all boards
+	 */
+
+	public int addTags(ArrayList<String> tags, String bid);
+	/**
+	 * 
+	 * adds all tags in the array list to the board, so we can find
+	 * them by that tag.
+	 * @return an int: 1 = worked, 0 = failed.
+	 */
 }

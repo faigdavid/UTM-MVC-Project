@@ -24,4 +24,6 @@ public interface ViewEventListener {
 	public void unsubscribeUserFromBoard(Board board);
 	public void addModelEventListener(ModelEventListener e);
 	public void removeModelEventListener(ModelEventListener e);
+	
+	public void addTagsToBoard(ArrayList<String> tags) throws DataException, StateException;
 }
