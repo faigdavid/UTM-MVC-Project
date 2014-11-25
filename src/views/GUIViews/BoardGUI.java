@@ -140,8 +140,9 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	}
 
 	public void recieveMessages(Iterator<Message> messages) {
-		// TODO Auto-generated method stub
-		
+		while(messages.hasNext()) {
+			TA_boardMsgs.append(messages.next().getText() + '\n');
+		}
 	}
 	
     //function for centering the frame
