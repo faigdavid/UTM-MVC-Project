@@ -5,7 +5,6 @@
 	<classpathentry kind="src" path="src/views"/>
 	<classpathentry kind="src" path="src/main"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBC4"/>
-	<classpathentry kind="lib" path="C:/Users/David/git/Proj-UTM-Team6-repo/src/dao/sqlServer/postgresql-9.1-903.jdbc4.jar"/>
+	<classpathentry kind="lib" path="./src/dao/sqlServer/postgresql-9.1-903.jdbc4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
