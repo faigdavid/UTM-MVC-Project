@@ -178,11 +178,11 @@ public class BoardDAO implements BoardDAOInterface {
 			Connection con = dbc.getConnection();
 			PreparedStatement pstmt = null;
 			
-			String sqlText = "SELECT DISTINCT bid, passwd, name FROM tags "
+			String sqlText = "SELECT DISTINCT bid, name FROM tags "
 					+ "NATURAL JOIN boards WHERE tag = ? ";
 			
 			for(int i = 2 ; i <= tags.size() ; i++){
-				sqlText = sqlText+"INTERSECT SELECT DISTINCT bid, passwd, name"
+				sqlText = sqlText+"INTERSECT SELECT DISTINCT bid, name"
 						+ " FROM tags NATURAL JOIN boards WHERE tag = ? ";
 			}
 			pstmt = con.prepareStatement(sqlText);

@@ -12,9 +12,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
@@ -47,9 +49,11 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	private JComboBox<String> JCB_boardList = new JComboBox<String>(temp);
 	private JButton BT_create = new JButton("Create New");
 	private JButton BT_join = new JButton("Join");
-	private JButton BT_cancel = new JButton("Cancel");
+	private JButton BT_cancel = new JButton("Logout");
 	private JButton BT_refresh = new JButton("Refresh");
-	
+	private JButton BT_search = new JButton("Search by Tags: ");
+	private JTextField TA_tags = new JTextField(0);
+
 	/**
 	 * Create the frame.
 	 */
@@ -75,38 +79,49 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	}
 	
     public void preparePanel(Container pane) {
-        GridLayout inputLayout = new GridLayout(0,1);
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(inputLayout);
-        
-        GridLayout controlLayout = new GridLayout(0,4);
+    	
+    	//buttons
+    	GridLayout controlLayout = new GridLayout(0,4);
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(controlLayout);
-         
-        //Add buttons to experiment with Grid Layout
-        inputPanel.add(JCB_boardList);
-        inputLayout.setVgap(10);
-         
+        
+        //boards
+    	GridLayout inputLayout = new GridLayout(0,1);
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(inputLayout);
+       
+        //search stuff
+    	GridLayout searchLayout = new GridLayout(0,2);
+        JPanel searchPanel = new JPanel();
+        searchPanel.setLayout(searchLayout);
+        
         //Add controls to set up horizontal and vertical gaps
         controlPanel.add(BT_create);
         controlPanel.add(BT_join);
         controlPanel.add(BT_cancel);
         controlPanel.add(BT_refresh);
-        
         controlLayout.setHgap(10);
-        
-        
+         
+        //Add buttons to experiment with Grid Layout
+        inputPanel.add(JCB_boardList);
+        inputLayout.setVgap(10);
+         
+        //add the search text field to the search layout 
+        searchPanel.add(BT_search);
+        //searchPanel.add(LB_tags);
+        searchPanel.add(TA_tags);
+      
         //add action listener
         BT_refresh.addActionListener(this);
         BT_cancel.addActionListener(this); 
         BT_join.addActionListener(this); 
         BT_create.addActionListener(this); 
-        
+        BT_search.addActionListener(this);
         //Process the Apply gaps button press
-        pane.add(inputPanel, BorderLayout.NORTH);
-        pane.add(new JSeparator(), BorderLayout.CENTER);
-        pane.add(controlPanel, BorderLayout.SOUTH);
-
+       // inputPanel.add(TA_username);
+        pane.add(inputPanel, BorderLayout.SOUTH);
+        pane.add(controlPanel, BorderLayout.NORTH);
+       	pane.add(searchPanel, BorderLayout.CENTER);
     }	
 	
     
@@ -133,7 +148,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 			} catch (DataException e) {
 				ErrorGUI.showError("DashBoard Error", e.getMessage());
 			}
-			tagRefresh(null);
+			tagRefresh(new String(TA_tags.getText()));
 		}
 		else if(event.getSource() == BT_cancel) {
 			//GUIMain.changeStateRegister();
@@ -152,9 +167,21 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 				e.printStackTrace();
 			}
 		}
+		else if(event.getSource() == BT_search) {
+			try {
+				String tagString = new String(TA_tags.getText());
+				ArrayList<String> tags = new ArrayList<String>(
+						Arrays.asList(tagString.split(" ")));
+				controller.requestBoardsByTag(tags);
+				
+			}catch (StateException e) {
+				ErrorGUI.showError("DashBoard Error", e.getMessage());
+				e.printStackTrace();
+			}
+		}
 		else if(event.getSource() == BT_refresh){
 			
-			tagRefresh(null);
+			tagRefresh(new String(TA_tags.getText()));
 			
 		}
 	}
