@@ -123,7 +123,8 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 		// TODO Auto-generated method stub
 		if (event.getSource() == BT_post) {
 			try {
-				controller.post(TA_userInput.getText());
+				controller.post(new String (TA_userInput.getText()));
+				//(new String(TA_username.getText()), new String(PF_password.getPassword()))
 			} catch (StateException e) {
 				ErrorGUI.messageError();
 			}

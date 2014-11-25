@@ -160,5 +160,49 @@ public class BoardDAO implements BoardDAOInterface {
 		}
 		return boards.iterator();
 	}
-
+	//returns all boards that match all tags given in the array list
+	public Iterator<Board> getAllBoardsByTags(ArrayList<String> tags){
+		if (tags.size() == 0){
+			return getAllBoards();
+		}
+		int count = 1;
+		ArrayList<Board> boards = new ArrayList<Board>();
+		try {
+			DBConnection dbc = new DBConnection();
+			dbc.connect();
+			Connection con = dbc.getConnection();
+			PreparedStatement pstmt = null;
+			
+			String sqlText = "SELECT DISTINCT bid FROM tags WHERE tag = ? ";
+			
+			for(int i = 2 ; i <= tags.size() ; i++){
+				sqlText = sqlText + "INTERSECT SELECT DISTINCT bid FROM tags WHERE tag = ? ";
+			}
+			pstmt = con.prepareStatement(sqlText);
+			
+			for(String s : tags){
+				pstmt.setString(count, s);
+				count++;
+			}
+			ResultSet rs = pstmt.executeQuery();
+			String passwd = null;
+			if (rs != null) {
+				while (rs.next()) {
+					try {
+						passwd = rs.getString("passwd");
+						} catch (Exception e){
+							passwd = null;
+						}
+					Board brd = new Board.Builder().bid(rs.getString("bid"))
+							.name(rs.getString("name"))
+							.password(passwd).build();
+					boards.add(brd);
+				}
+			}
+			dbc.disconnect();
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+		}
+		return boards.iterator();
+	}
 }
