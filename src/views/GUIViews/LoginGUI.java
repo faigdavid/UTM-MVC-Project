@@ -131,5 +131,11 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
     }
+
+	@Override
+	public void refresh() {
+		//Do Nothing for login or register.
+		
+	}
 	
 }

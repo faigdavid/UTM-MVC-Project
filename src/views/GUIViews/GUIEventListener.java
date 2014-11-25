@@ -8,5 +8,6 @@ package GUIViews;
 
 public interface GUIEventListener {
 	public void closeGUI();
-	public int displayString(String text);	
+	public int displayString(String text);
+	public void refresh();
 }

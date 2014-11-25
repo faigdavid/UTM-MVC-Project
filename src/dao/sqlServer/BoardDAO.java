@@ -23,14 +23,19 @@ public class BoardDAO implements BoardDAOInterface {
 			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "SELECT * FROM boards WHERE bid = ?";
 			pstmt = con.prepareStatement(sqlText);
-			pstmt.setString(1, bid);
+			pstmt.setInt(1, Integer.parseInt(bid));
 			ResultSet rs = pstmt.executeQuery();
-
+			String passwd = null;
 			if (rs != null) {
 				if (rs.next()) {
+					try {
+						passwd = rs.getString("passwd");
+						} catch (Exception e){
+							passwd = null;
+						}
 					boardbuild.bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(rs.getString("passwd"));
+							.password(passwd);
 					dbc.disconnect();
 				} else {
 					dbc.disconnect();

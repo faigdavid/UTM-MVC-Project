@@ -124,7 +124,7 @@ public class ConsoleView implements ModelEventListener{
 				input=input.substring(toStrip = input.indexOf(' ')+1);
 				try {
 					controller.post(input);
-				} catch (StateException e1) {
+				} catch (DataException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -176,7 +176,7 @@ public class ConsoleView implements ModelEventListener{
 		//PRINT OUT ALL THE MESSAGES ON THE CURRENT BOARD.
 			while (messages.hasNext()) {
 				Message msg = messages.next();
-				System.out.println(msg.formatMessage(username));
+				System.out.println(msg.formatMessage());
 			}
 		
 	}
@@ -230,7 +230,7 @@ public class ConsoleView implements ModelEventListener{
 	}
 
 	@Override
-	public void changeStateInBoard() {
+	public void changeStateInBoard(String name) {
 		state = "in board";
 		
 	}

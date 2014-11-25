@@ -14,23 +14,26 @@ import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
+import exceptions.DataException;
 import exceptions.StateException;
+import model.Board;
 import model.Message;
 import mvc.ViewEventListener;
 
 
 public class BoardGUI extends JFrame implements ActionListener, GUIEventListener {
-
+	
 	private GUIController GUIMain = null;
 	private ViewEventListener controller = null;
 	private static final long serialVersionUID = 1L;
@@ -41,13 +44,17 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	private JButton BT_post = new JButton("Post");
 	private JButton BT_subscribe = new JButton ("Subscribe");
 	private JButton BT_back = new JButton("Back");
-
+	
+	private String name;
 
 	/**
 	 * Create the frame.
 	 */
-	public BoardGUI(GUIController listener) {
+	public BoardGUI(GUIController listener, String name) {
 		super("Board");
+		this.name = name;
+		this.GUIMain = listener;
+		this.controller = GUIMain.getController();
 		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
@@ -62,8 +69,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	}
 	
 	public void preparePanel(java.awt.Container pane) {
-		LB_boardTitle = new JLabel("<-INSERT BOARD NAME HERE->");
-		
+		LB_boardTitle = new JLabel(name);
 		/*
 		if (User sub){
 			BT_subscribe.setText("Unsubscribe");
@@ -87,24 +93,29 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
         //---------displayPanel-------------------------
         TA_boardMsgs.setEditable(false);
         
-        //displayPanel.add(LB_boardTitle);
-        displayPanel.add(TA_boardMsgs);
-        inputPanel.add(Box.createVerticalStrut(4));
+        //Scroll bar, and messages.
+        JScrollPane scroll = new JScrollPane(TA_boardMsgs);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        displayPanel.add(scroll);
+       
         //---------inputPanel-------------------------
+        inputPanel.add(Box.createVerticalStrut(4));
         inputPanel.add(TA_userInput);
         
 	    inputPanel.add(BT_post);
 	    inputPanel.add(BT_subscribe);
 	    inputPanel.add(BT_back);
+	    
+	    //Add Action listeners.
 	    BT_post.addActionListener(this);
 	    BT_back.addActionListener(this);
 	    BT_subscribe.addActionListener(this);
         
+	    //Gaps.
 	    pane.add(LB_boardTitle, BorderLayout.NORTH);
-	
 	    pane.add(displayPanel,BorderLayout.CENTER);
-		//pane.add(new JSeparator(), BorderLayout.CENTER);
 		pane.add(inputPanel, BorderLayout.SOUTH);
+		//pane.add(new JSeparator(), BorderLayout.CENTER);
 	}
 
 	@Override
@@ -120,15 +131,20 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
 		if (event.getSource() == BT_post) {
 			try {
-				controller.post(new String (TA_userInput.getText()));
-				//(new String(TA_username.getText()), new String(PF_password.getPassword()))
-			} catch (StateException e) {
+				//this is throwing a null pointer exception for some reason
+				//when we attempt to post
+				if (TA_userInput.getText() == null){
+					ErrorGUI.showError("Post", "Nothing to post...");
+				} else {
+					controller.post(new String (TA_userInput.getText()));
+				}
+			} catch (DataException e) {
 				ErrorGUI.messageError();
 			}
 			TA_userInput.setText("");
+			refresh();
 		}
 		else if(event.getSource() == BT_back) {
 			//GUIMain.changeStateRegister();
@@ -140,8 +156,10 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	}
 
 	public void recieveMessages(Iterator<Message> messages) {
+		TA_boardMsgs.setText("");
 		while(messages.hasNext()) {
-			TA_boardMsgs.append(messages.next().getText() + '\n');
+			Message msg = messages.next();
+			TA_boardMsgs.append(msg.formatMessage());
 		}
 	}
 	
@@ -163,4 +181,13 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
             }
         }
     };
+    @Override
+    public void refresh(){
+    	try {
+			controller.requestBoardMessages();
+		} catch (StateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 }

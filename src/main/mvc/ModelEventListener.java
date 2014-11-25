@@ -12,7 +12,7 @@ public interface ModelEventListener {
 	public int printString(String text);
 	public void changeStateLoggedIn();
 	public void changeStateLoggedOut();
-	public void changeStateInBoard();
+	public void changeStateInBoard(String name);//changed to provide board being joined.
 	public void changeStateNoBoard();
 	public void changeStateRegister();
 	public void recieveBoardMessages(Iterator<Message> messages) throws StateException;
@@ -20,6 +20,7 @@ public interface ModelEventListener {
 	public void recieveSubscribedBoards(Iterator<Board> boards) throws StateException;
 	public void addViewEventListener(ViewEventListener listener);
 	public void removeViewEventListener(ViewEventListener listener);
+	
 	
 	/*
 	 * Changed this. Now GUI errors will be sent through exception catch

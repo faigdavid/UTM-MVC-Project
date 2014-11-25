@@ -133,7 +133,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 			} catch (DataException e) {
 				ErrorGUI.showError("DashBoard Error", e.getMessage());
 			}
-			refresh();
+			tagRefresh(null);
 		}
 		else if(event.getSource() == BT_cancel) {
 			//GUIMain.changeStateRegister();
@@ -154,7 +154,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 		}
 		else if(event.getSource() == BT_refresh){
 			
-			refresh();
+			tagRefresh(null);
 			
 		}
 	}
@@ -169,14 +169,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 		}
 		
 	}
-	public void refresh(){
-		try {
-			controller.requestBoards();
-		} catch (StateException e) {
-			ErrorGUI.showError("DashBoard Error", e.getMessage());
-			e.printStackTrace();
-		}	
-    }
+
 	
 	WindowListener exitListener = new WindowAdapter() {
 
@@ -195,4 +188,23 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
     }
+    
+	private void tagRefresh(String tags){
+		try {
+			controller.requestBoards();
+		} catch (StateException e) {
+			ErrorGUI.showError("DashBoard Error", e.getMessage());
+			e.printStackTrace();
+		}	
+    }
+	@Override
+	public void refresh() {
+		try {
+			controller.requestBoards();
+		} catch (StateException e) {
+			ErrorGUI.showError("DashBoard Error", e.getMessage());
+			e.printStackTrace();
+		}	
+		
+	}
 }

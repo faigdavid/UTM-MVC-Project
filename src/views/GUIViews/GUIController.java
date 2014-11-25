@@ -80,11 +80,7 @@ public class GUIController implements ModelEventListener{
 		this.tempCurrentState=this.currentState;
 		this.currentState = new DashBoardGUI(this);
 		tempCurrentState.closeGUI();
-		try {//If anyone can put this in DashboardGUI and make it work, I will hug you.
-			controller.requestBoards();
-		} catch (StateException e) {
-			ErrorGUI.showError("DashBoard Error", e.getMessage());
-		}
+		currentState.refresh();//To populate the list.
 	}
 
 	@Override
@@ -95,10 +91,11 @@ public class GUIController implements ModelEventListener{
 	}
 
 	@Override
-	public void changeStateInBoard() {
+	public void changeStateInBoard(String name) {
 		this.tempCurrentState=this.currentState;
-		this.currentState = new BoardGUI(this);
+		this.currentState = new BoardGUI(this, name);
 		tempCurrentState.closeGUI();
+		currentState.refresh();
 	}
 
 	@Override
@@ -106,11 +103,7 @@ public class GUIController implements ModelEventListener{
 		this.tempCurrentState=this.currentState;
 		this.currentState = new DashBoardGUI(this);
 		tempCurrentState.closeGUI();
-        try {//If anyone can put this in DashboardGUI and make it work, I will hug you.
-			controller.requestBoards();
-		} catch (StateException e) {
-			ErrorGUI.showError("DashBoard Error", e.getMessage());
-		}
+        currentState.refresh();//To populate the list.
 	}
 
 	@Override

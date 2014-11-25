@@ -126,5 +126,11 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
         frame.setLocation(x, y);
     }
 
+	@Override
+	public void refresh() {
+		//Do Nothing for login or register.
+		
+	}
+
 
 } //end class

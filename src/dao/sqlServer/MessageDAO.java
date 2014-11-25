@@ -114,7 +114,7 @@ public class MessageDAO implements MessageDAOInterface {
 	}
 
 	@Override
-	public int addMessage(String username, String bid, String text) {
+	public int addMessage(String bid, String username, String text) {
 
 		// get current time in postgreSQL timestamp format
 		String psqlTimestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -126,9 +126,10 @@ public class MessageDAO implements MessageDAOInterface {
 			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "INSERT INTO "
 					+ "messages (bid, date_posted, username, contents) "
-					+ "VALUES (?, ?, ?, ?)";
+					+ "VALUES (?, to_timestamp(?, 'YYYY-MM-DD HH:MI:ss'), ?, ?)";
 			pstmt = con.prepareStatement(sqlText);
-			pstmt.setString(1, bid);
+			int bidi = Integer.parseInt(bid);
+			pstmt.setInt(1, bidi);
 			pstmt.setString(2, psqlTimestamp);
 			pstmt.setString(3, username);
 			pstmt.setString(4, text);
@@ -137,6 +138,7 @@ public class MessageDAO implements MessageDAOInterface {
 			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
+			e.printStackTrace();
 			return 0;
 		}
 		return 1; // **** WHAT DO I RETURN ON SUCCESS?

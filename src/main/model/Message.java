@@ -24,20 +24,14 @@ public class Message {
 		this.whitelist = builder.whitelist;
 	}
 
-	public String formatMessage(String username) {
+	public String formatMessage() {
 		String msg = null;
 		String boardName = new BoardDAO().getBoard(bid).getName();
 		msg = String.format("[%s][%s][%s][%s][%s]\n", mid, boardName,
 				this.username, date, text);
 
 		if (whitelist == null) { // No whitelist == public message.
-			return msg;
-		} else {
-			for (String name : whitelist) {
-				if (name == username) {
-					return msg;
-				}
-			}
+			return msg; //NOTE: all messages are public... for now.
 		}
 		return "<Permission Denied>";
 	}

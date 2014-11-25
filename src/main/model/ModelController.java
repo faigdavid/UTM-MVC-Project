@@ -1,8 +1,11 @@
 package model;
 
 import sqlServer.*;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+
 import exceptions.DataException;
 import exceptions.StateException;
 import mvc.ModelEventListener;
@@ -53,7 +56,7 @@ public class ModelController implements ViewEventListener {
 			Board toChange = DAO.getBoardByName(name);
 			if (this.user.joinBoard(toChange.getBid()) == 1) {
 				for (ModelEventListener view : views) {
-					view.changeStateInBoard();
+					view.changeStateInBoard(user.getcurrentBoard().getName());
 				}
 
 			} else {// Board does not exist, or the DAO failed.
@@ -71,7 +74,7 @@ public class ModelController implements ViewEventListener {
 		if (assertLoggedIn()) {
 			if (this.user.joinBoard(bid) == 1) {
 				for (ModelEventListener view : views) {
-					view.changeStateInBoard();
+					view.changeStateInBoard(user.getcurrentBoard().getName());
 				}
 			} else {// Board does not exist, or DAO failed.
 				throw new DataException();
@@ -123,7 +126,7 @@ public class ModelController implements ViewEventListener {
 				view.recieveBoardMessages(msgs);
 			}
 		} else {
-			throw new StateException();
+			throw new StateException("Not logged in.");
 		}
 
 	}
@@ -133,6 +136,19 @@ public class ModelController implements ViewEventListener {
 		if (assertLoggedIn()) {
 			BoardDAO DAO = new BoardDAO();
 			Iterator<Board> boards = DAO.getAllBoards();
+			for (ModelEventListener view : views) {
+				view.recieveBoards(boards);
+			}
+		} else {
+			throw new StateException("Wrong state to recieve boards.");
+		}
+	}
+	
+	@Override
+	public void requestBoardsByTag(ArrayList<String> tags) throws StateException {
+		if (assertLoggedIn()) {
+			BoardDAO DAO = new BoardDAO();
+			Iterator<Board> boards = DAO.getAllBoardsByTags(tags);
 			for (ModelEventListener view : views) {
 				view.recieveBoards(boards);
 			}
@@ -184,9 +200,12 @@ public class ModelController implements ViewEventListener {
 	}
 
 	@Override
-	public void post(String message) throws StateException {
+	public void post(String message) throws DataException {
+		if (message == null){
+			throw new DataException();
+		}
 		if (user.post(message) != 1) {// failed to post.
-			throw new StateException();
+			throw new DataException();
 		}
 	}
 
