@@ -87,7 +87,7 @@ public class ModelController implements ViewEventListener {
 	public void login(String username, String password) throws DataException,
 			StateException {
 		if (user != null) {
-			throw new StateException();
+			throw new StateException("User must be logged out.");
 		}
 		user = new Authenticator().authenticateUser(username, password);
 		if (user == null) {
@@ -137,7 +137,7 @@ public class ModelController implements ViewEventListener {
 				view.recieveBoards(boards);
 			}
 		} else {
-			throw new StateException();
+			throw new StateException("Wrong state to recieve boards.");
 		}
 	}
 
@@ -179,7 +179,7 @@ public class ModelController implements ViewEventListener {
 		// TODO Auto-generated method stub
 		BoardDAO BDAO = new BoardDAO();
 		if (BDAO.createBoard(name) != 1) {
-			throw new DataException();
+			throw new DataException("Board already exists.");
 		}
 	}
 

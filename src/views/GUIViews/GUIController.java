@@ -132,7 +132,7 @@ public class GUIController implements ModelEventListener{
 			((DashBoardGUI) currentState).recieveBoards(boards);
 		}
 		else {
-			ErrorGUI.showError("State Error", "GUI is out of sync");
+			ErrorGUI.showError("State Error", "Must be in DashBoard to recieve boards.");
 		}
 
 	}
@@ -143,7 +143,7 @@ public class GUIController implements ModelEventListener{
 			((DashBoardGUI) currentState).recieveBoards(boards);
 		}
 		else {
-			ErrorGUI.showError("State Error", "GUI is out of sync");
+			ErrorGUI.showError("State Error", "Must be in DashBoard to recieve boards.");
 		}
 
 

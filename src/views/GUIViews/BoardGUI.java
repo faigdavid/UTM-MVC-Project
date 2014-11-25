@@ -42,6 +42,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	private JButton BT_subscribe = new JButton ("Subscribe");
 	private JButton BT_back = new JButton("Back");
 
+
 	/**
 	 * Create the frame.
 	 */

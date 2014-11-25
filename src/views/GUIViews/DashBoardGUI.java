@@ -17,8 +17,6 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -41,16 +39,16 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	private ViewEventListener controller = null;
 	
 	//list of board names
-	private List<String> boardList = new ArrayList<>();
+	private ArrayList<String> boardList = new ArrayList<String>();
 	
 	//-- THIS STRING LIST IS TEMPERORY
 	private String[] temp = {"c","c","c","c","c","c","c","c","c","c","c","c"};
 	
-	private JComboBox JCB_boardList = new JComboBox(temp);
+	private JComboBox<String> JCB_boardList = new JComboBox<String>(temp);
 	private JButton BT_create = new JButton("Create New");
 	private JButton BT_join = new JButton("Join");
 	private JButton BT_cancel = new JButton("Cancel");
-	
+	private JButton BT_refresh = new JButton("Refresh");
 	
 	/**
 	 * Create the frame.
@@ -81,7 +79,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(inputLayout);
         
-        GridLayout controlLayout = new GridLayout(0,3);
+        GridLayout controlLayout = new GridLayout(0,4);
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(controlLayout);
          
@@ -93,12 +91,13 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         controlPanel.add(BT_create);
         controlPanel.add(BT_join);
         controlPanel.add(BT_cancel);
-        
+        controlPanel.add(BT_refresh);
         
         controlLayout.setHgap(10);
         
         
         //add action listener
+        BT_refresh.addActionListener(this);
         BT_cancel.addActionListener(this); 
         BT_join.addActionListener(this); 
         BT_create.addActionListener(this); 
@@ -132,8 +131,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 			try {
 				controller.createBoard(create);
 			} catch (DataException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				ErrorGUI.showError("DashBoard Error", e.getMessage());
 			}
 
 		}
@@ -143,9 +141,22 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 		}
 		else if(event.getSource() == BT_join) {
 			try {
-				controller.changeBoardByName(String.valueOf(JCB_boardList.getSelectedItem()));
+				String toJoin = String.valueOf(JCB_boardList.getSelectedItem());
+				if (toJoin != null) {
+					controller.changeBoardByName(toJoin);
+				} else {
+					ErrorGUI.showError("DashBoard Error", "No board selected.");
+				}
 			} catch (StateException | DataException e) {
-				// TODO Auto-generated catch block
+				ErrorGUI.showError("DashBoard Error", e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		else if(event.getSource() == BT_refresh){
+			try {
+				controller.requestBoards();
+			} catch (StateException e) {
+				ErrorGUI.showError("DashBoard Error", e.getMessage());
 				e.printStackTrace();
 			}
 		}
@@ -153,11 +164,13 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	}
 
 	public void recieveBoards(Iterator<Board> boards) {
-		// TODO Auto-generated method stub
-		boardList.add(boards.next().getName());
+		JCB_boardList.removeAllItems();
+		JCB_boardList.addItem("pepe");
 		while (boards.hasNext()){
-			boardList.add(boards.next().getName());
+			JCB_boardList.addItem(boards.next().getName());
+			
 		}
+		
 	}
 	
 	
