@@ -80,6 +80,11 @@ public class GUIController implements ModelEventListener{
 		this.tempCurrentState=this.currentState;
 		this.currentState = new DashBoardGUI(this);
 		tempCurrentState.closeGUI();
+		try {//If anyone can put this in DashboardGUI and make it work, I will hug you.
+			controller.requestBoards();
+		} catch (StateException e) {
+			ErrorGUI.showError("DashBoard Error", e.getMessage());
+		}
 	}
 
 	@Override
@@ -101,6 +106,11 @@ public class GUIController implements ModelEventListener{
 		this.tempCurrentState=this.currentState;
 		this.currentState = new DashBoardGUI(this);
 		tempCurrentState.closeGUI();
+        try {//If anyone can put this in DashboardGUI and make it work, I will hug you.
+			controller.requestBoards();
+		} catch (StateException e) {
+			ErrorGUI.showError("DashBoard Error", e.getMessage());
+		}
 	}
 
 	@Override

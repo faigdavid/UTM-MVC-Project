@@ -106,7 +106,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         pane.add(inputPanel, BorderLayout.NORTH);
         pane.add(new JSeparator(), BorderLayout.CENTER);
         pane.add(controlPanel, BorderLayout.SOUTH);
-        
+
     }	
 	
     
@@ -165,7 +165,6 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 
 	public void recieveBoards(Iterator<Board> boards) {
 		JCB_boardList.removeAllItems();
-		JCB_boardList.addItem("pepe");
 		while (boards.hasNext()){
 			JCB_boardList.addItem(boards.next().getName());
 			
