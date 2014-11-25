@@ -26,9 +26,7 @@ public class Message {
 
 	public String formatMessage() {
 		String msg = null;
-		String boardName = new BoardDAO().getBoard(bid).getName();
-		msg = String.format("[%s][%s][%s][%s][%s]\n", mid, boardName,
-				this.username, date, text);
+		msg = String.format("[%s] [%s]: %s\n", date, this.username, text);
 
 		if (whitelist == null) { // No whitelist == public message.
 			return msg; //NOTE: all messages are public... for now.

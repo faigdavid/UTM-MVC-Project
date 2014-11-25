@@ -19,10 +19,11 @@ public class MessageDAO implements MessageDAOInterface {
 			DBConnection dbc = new DBConnection();
 			dbc.connect();
 			Connection con = dbc.getConnection();
-			Statement sql = con.createStatement();
-
-			String sqlText = "SELECT * FROM messages ORDER BY mid";
-			ResultSet rs = sql.executeQuery(sqlText);
+			PreparedStatement pstmt = null; // use prepared statement
+			String sqlText = "SELECT * FROM messages WHERE bid = ? ORDER BY mid";
+			pstmt = con.prepareStatement(sqlText);
+			pstmt.setString(1, bid);
+			ResultSet rs = pstmt.executeQuery();
 
 			if (rs != null) {
 				while (rs.next()) {
