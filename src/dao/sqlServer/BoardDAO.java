@@ -59,12 +59,17 @@ public class BoardDAO implements BoardDAOInterface {
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, name);
 			ResultSet rs = pstmt.executeQuery();
-
+			String passwd = null;
 			if (rs != null) {
 				if (rs.next()) {
+					try {
+					passwd = rs.getString("passwd");
+					} catch (Exception e){
+						passwd = null;
+					}
 					boardbuild.bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(rs.getString("passwd"));
+							.password(passwd);
 					dbc.disconnect();
 				} else {
 					dbc.disconnect();
@@ -87,7 +92,7 @@ public class BoardDAO implements BoardDAOInterface {
 		if (board != null) { // make sure same board does not exist
 			return 0;
 		}
-
+		System.out.println("asd123");
 		try {
 			DBConnection dbc = new DBConnection();
 			dbc.connect();
@@ -133,14 +138,19 @@ public class BoardDAO implements BoardDAOInterface {
 			Connection con = dbc.getConnection();
 			Statement sql = con.createStatement();
 
-			String sqlText = "SELECT * FROM messages ORDER BY bid";
+			String sqlText = "SELECT * FROM boards ORDER BY bid";
 			ResultSet rs = sql.executeQuery(sqlText);
-
+			String passwd = null;
 			if (rs != null) {
 				while (rs.next()) {
+					try {
+						passwd = rs.getString("passwd");
+						} catch (Exception e){
+							passwd = null;
+						}
 					Board brd = new Board.Builder().bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(rs.getString("passwd")).build();
+							.password(passwd).build();
 					boards.add(brd);
 				}
 			}
