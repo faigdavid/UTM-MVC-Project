@@ -40,18 +40,18 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	
 	private JLabel LB_boardTitle;
 	private JTextArea TA_boardMsgs = new JTextArea(10,30);
-	private JTextField TA_userInput  = new JTextField();
+	private JTextField TA_userInput  = new JTextField(30);
 	private JButton BT_post = new JButton("Post");
 	private JButton BT_subscribe = new JButton ("Subscribe");
-	private JButton BT_back = new JButton("Back");
-	
+	private JButton BT_tag = new JButton ("Tag This Board!");
+	private JButton BT_back = new JButton("Leave Board");
 	private String name;
 
 	/**
 	 * Create the frame.
 	 */
 	public BoardGUI(GUIController listener, String name) {
-		super("Board");
+		super(name);
 		this.name = name;
 		this.GUIMain = listener;
 		this.controller = GUIMain.getController();
@@ -69,7 +69,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	}
 	
 	public void preparePanel(java.awt.Container pane) {
-		LB_boardTitle = new JLabel(name);
+		LB_boardTitle = new JLabel("MAKE THIS TAKE THE TOPIC OF THE BOARD");
 		/*
 		if (User sub){
 			BT_subscribe.setText("Unsubscribe");
@@ -99,10 +99,10 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
         displayPanel.add(scroll);
        
         //---------inputPanel-------------------------
-        inputPanel.add(Box.createVerticalStrut(4));
+        inputLayout.setVgap(3);
         inputPanel.add(TA_userInput);
-        
-	    inputPanel.add(BT_post);
+        inputPanel.add(BT_post);
+	    inputPanel.add(BT_tag);
 	    inputPanel.add(BT_subscribe);
 	    inputPanel.add(BT_back);
 	    
@@ -112,6 +112,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	    BT_subscribe.addActionListener(this);
         
 	    //Gaps.
+	    
 	    pane.add(LB_boardTitle, BorderLayout.NORTH);
 	    pane.add(displayPanel,BorderLayout.CENTER);
 		pane.add(inputPanel, BorderLayout.SOUTH);
