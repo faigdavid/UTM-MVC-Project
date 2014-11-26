@@ -12,14 +12,17 @@ import java.util.Iterator;
 import model.Board;
 
 public class BoardDAO implements BoardDAOInterface {
-
+	private DBConnection dbc = new DBConnection();
+	private Connection con;
+	private PreparedStatement pstmt = null; // use prepared statement
+	public BoardDAO()
+	{
+		con = dbc.getConnection();
+	}
 	@Override
 	public Board getBoard(String bid) {
 		Board.Builder boardbuild = new Board.Builder();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
 			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "SELECT * FROM boards WHERE bid = ?";
 			pstmt = con.prepareStatement(sqlText);
@@ -36,13 +39,10 @@ public class BoardDAO implements BoardDAOInterface {
 					boardbuild.bid(rs.getString("bid"))
 							.name(rs.getString("name"))
 							.password(passwd).topic(rs.getString("topic"));
-					dbc.disconnect();
 				} else {
-					dbc.disconnect();
 					return null;
 				}
 			} else {
-				dbc.disconnect();
 				return null;
 			}
 		} catch (Exception e) {
@@ -56,10 +56,6 @@ public class BoardDAO implements BoardDAOInterface {
 	public Board getBoardByName(String name) {
 		Board.Builder boardbuild = new Board.Builder();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "SELECT * FROM boards WHERE name = ?";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, name);
@@ -75,13 +71,10 @@ public class BoardDAO implements BoardDAOInterface {
 					boardbuild.bid(rs.getString("bid"))
 							.name(rs.getString("name"))
 							.password(passwd).topic(rs.getString("topic"));
-					dbc.disconnect();
 				} else {
-					dbc.disconnect();
 					return null;
 				}
 			} else {
-				dbc.disconnect();
 				return null;
 			}
 		} catch (Exception e) {
@@ -97,16 +90,11 @@ public class BoardDAO implements BoardDAOInterface {
 			return 0;
 		}
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "INSERT INTO " + "boards (name, topic) " + "VALUES (?, ?)";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, name);
 			pstmt.setString(2, topic);
 			pstmt.executeUpdate();
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 			return 0;
@@ -121,15 +109,10 @@ public class BoardDAO implements BoardDAOInterface {
 			return 0;
 		}
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "INSERT INTO " + "boards (name) " + "VALUES (?)";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, name);
 			pstmt.executeUpdate();
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 			return 0;
@@ -140,15 +123,10 @@ public class BoardDAO implements BoardDAOInterface {
 	@Override
 	public int deleteBoard(Board board) {
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "DELETE FROM boards WHERE bid = ?";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, board.getBid());
 			pstmt.executeUpdate();
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 			return 0;
@@ -160,9 +138,6 @@ public class BoardDAO implements BoardDAOInterface {
 	public Iterator<Board> getAllBoards() {
 		ArrayList<Board> boards = new ArrayList<Board>();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
 			Statement sql = con.createStatement();
 
 			String sqlText = "SELECT * FROM boards ORDER BY bid";
@@ -181,7 +156,6 @@ public class BoardDAO implements BoardDAOInterface {
 					boards.add(brd);
 				}
 			}
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
@@ -195,10 +169,6 @@ public class BoardDAO implements BoardDAOInterface {
 		int count = 1;
 		ArrayList<Board> boards = new ArrayList<Board>();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null;
 			
 			String sqlText = "SELECT DISTINCT bid, name FROM tags "
 					+ "NATURAL JOIN boards WHERE tag = ? ";
@@ -228,23 +198,19 @@ public class BoardDAO implements BoardDAOInterface {
 					boards.add(brd);
 				}
 			}
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
 		return boards.iterator();
 	}
 
+	
 	public int addTags(ArrayList<String> tags, String bid) {
 		//see super for implementation details
 		PreparedStatement pstmt = null;
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
 			for(String s : tags){
-		
-				pstmt = null; // use prepared statement
+	
 				String sqlText = "INSERT INTO " + "tags (bid, tag) "
 						+ "VALUES (?, ?)";
 				pstmt = con.prepareStatement(sqlText);
@@ -262,11 +228,7 @@ public class BoardDAO implements BoardDAOInterface {
 	}
 	public int changeTopic(String bid, String topic) {
 		//see super for implementation details
-		PreparedStatement pstmt = null;
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
 			String sqlText = "UPDATE boards SET topic = ?";
 			pstmt = con.prepareStatement(sqlText);
 			//casts the bid to an integer

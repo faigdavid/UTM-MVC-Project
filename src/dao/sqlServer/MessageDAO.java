@@ -12,14 +12,18 @@ import model.Message;
 
 public class MessageDAO implements MessageDAOInterface {
 
+	private DBConnection dbc = new DBConnection();
+	private Connection con;
+	private PreparedStatement pstmt = null; // use prepared statement
+	public MessageDAO()
+	{
+		con = dbc.getConnection();
+	}
+	
 	@Override
 	public Iterator<Message> getMessages(String bid) {
 		ArrayList<Message> messages = new ArrayList<Message>();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "SELECT * FROM messages WHERE bid = ? ORDER BY mid";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, bid);
@@ -31,7 +35,6 @@ public class MessageDAO implements MessageDAOInterface {
 					messages.add(msg);
 				}
 			}
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
@@ -42,10 +45,7 @@ public class MessageDAO implements MessageDAOInterface {
 	public Message getMessage(String bid, String mid) {
 		Message.Builder msgbuild = new Message.Builder();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
+
 			String sqlText = "SELECT * FROM messages WHERE bid = ? AND mid = ?";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, bid);
@@ -54,9 +54,7 @@ public class MessageDAO implements MessageDAOInterface {
 
 			if (rs != null) {
 				msgbuild = getMsgBuilderFromRS(rs);
-				dbc.disconnect();
 			} else {
-				dbc.disconnect();
 				return null;
 			}
 		} catch (Exception e) {
@@ -72,10 +70,6 @@ public class MessageDAO implements MessageDAOInterface {
 
 		ArrayList<Message> messages = new ArrayList<Message>();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "SELECT * FROM messages WHERE date_posted > ? ORDER BY mid";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, date);
@@ -87,7 +81,6 @@ public class MessageDAO implements MessageDAOInterface {
 					messages.add(msg);
 				}
 			}
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
@@ -98,15 +91,10 @@ public class MessageDAO implements MessageDAOInterface {
 	@Override
 	public int deleteMessage(String mid) {
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "DELETE FROM messages WHERE mid = ?";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, mid);
 			pstmt.executeUpdate();
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 			return 0;
@@ -119,10 +107,7 @@ public class MessageDAO implements MessageDAOInterface {
 
 		// get current time in postgreSQL timestamp format
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
+
 			String sqlText = "INSERT INTO "
 					+ "messages (bid, username, contents) "
 					+ "VALUES (?, ?, ?)";
@@ -133,7 +118,6 @@ public class MessageDAO implements MessageDAOInterface {
 			pstmt.setString(3, text);
 
 			pstmt.executeUpdate();
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 			e.printStackTrace();

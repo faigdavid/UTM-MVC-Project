@@ -11,11 +11,13 @@ public class DBConnection {
     public static final String UID      = "shk0307";
     public static final String PASSWORD = "psql6";
 
-    private Connection con = null;
+    public Connection con = null;
 
     public DBConnection() {
+    	connect();
     }
 
+    
     public void connect() {
         try {
             Class.forName(DRIVER);
