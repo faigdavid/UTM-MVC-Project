@@ -12,11 +12,12 @@ import java.util.Iterator;
 import model.Board;
 
 public class BoardDAO implements BoardDAOInterface {
-	private DBConnection dbc = new DBConnection();
-	private Connection con;
+	private DBConnection dbc = null;
+	private Connection con = null;
 	private PreparedStatement pstmt = null; // use prepared statement
 	public BoardDAO()
 	{
+		dbc =  new DBConnection();
 		con = dbc.getConnection();
 	}
 	@Override

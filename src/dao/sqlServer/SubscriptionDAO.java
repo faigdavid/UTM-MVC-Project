@@ -2,20 +2,23 @@
 package sqlServer;
 
 import interfaces.SubscriptionDAOInterface;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import model.Board;
 
 
 public class SubscriptionDAO implements SubscriptionDAOInterface {
-	private DBConnection dbc = new DBConnection();
-	private Connection con;
+	private DBConnection dbc = null;
+	private Connection con = null;
 	private PreparedStatement pstmt = null; // use prepared statement
 	public SubscriptionDAO()
 	{
+		dbc =  new DBConnection();
 		con = dbc.getConnection();
 	}
 	

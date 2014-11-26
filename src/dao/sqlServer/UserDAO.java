@@ -8,12 +8,12 @@ import model.User;
 import interfaces.UserDAOInterface;
 
 public class UserDAO implements UserDAOInterface {
-
-	private DBConnection dbc = new DBConnection();
-	private Connection con;
+	private DBConnection dbc = null;
+	private Connection con = null;
 	private PreparedStatement pstmt = null; // use prepared statement
 	public UserDAO()
 	{
+		dbc =  new DBConnection();
 		con = dbc.getConnection();
 	}
 	

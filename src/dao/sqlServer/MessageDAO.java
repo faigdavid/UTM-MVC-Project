@@ -11,15 +11,14 @@ import java.util.Iterator;
 import model.Message;
 
 public class MessageDAO implements MessageDAOInterface {
-
-	private DBConnection dbc = new DBConnection();
-	private Connection con;
+	private DBConnection dbc = null;
+	private Connection con = null;
 	private PreparedStatement pstmt = null; // use prepared statement
 	public MessageDAO()
 	{
+		dbc =  new DBConnection();
 		con = dbc.getConnection();
 	}
-	
 	@Override
 	public Iterator<Message> getMessages(String bid) {
 		ArrayList<Message> messages = new ArrayList<Message>();
