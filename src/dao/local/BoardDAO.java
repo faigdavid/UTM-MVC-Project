@@ -135,4 +135,10 @@ public class BoardDAO implements BoardDAOInterface {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int createBoard(String name, String topic) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
