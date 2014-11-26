@@ -143,7 +143,19 @@ public class ModelController implements ViewEventListener {
 			throw new StateException("Wrong state to recieve boards.");
 		}
 	}
-	
+	@Override
+	public void requestSubbedBoards() throws StateException {
+		if (assertLoggedIn()) {
+			SubscriptionDAO DAO = new SubscriptionDAO();
+			Iterator<Board> boards = DAO.getBoardsBySubscriber(
+					user.getUsername());
+			for (ModelEventListener view : views) {
+				view.recieveBoards(boards);
+			}
+		} else {
+			throw new StateException("Wrong state to recieve boards.");
+		}
+	}
 	@Override
 	public void requestBoardsByTag(ArrayList<String> tags) throws StateException {
 		if (assertLoggedIn()) {
@@ -164,10 +176,10 @@ public class ModelController implements ViewEventListener {
 	}
 
 	@Override
-	public void subscribeUserToBoard(Board board) {
+	public void subscribeUserToBoard() {
 		// TODO Auto-generated method stub
 		SubscriptionDAO dao = new SubscriptionDAO();
-		dao.subUserToBoard(user.getUsername(), board.getBid());
+		dao.subUserToBoard(user.getUsername(), user.getcurrentBoard().getBid());
 
 	}
 
