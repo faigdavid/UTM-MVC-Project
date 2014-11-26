@@ -47,7 +47,7 @@ CREATE TABLE messages (
 
 CREATE FUNCTION messagesTime() RETURNS trigger AS $$
     BEGIN
-        NEW.date_posted := CURRENT_TIMESTAMP AT TIME ZONE 'EST';
+        NEW.date_posted := CURRENT_TIMESTAMP(0) AT TIME ZONE 'EST';
         RETURN NEW;
     END;
 $$ LANGUAGE plpgsql;
