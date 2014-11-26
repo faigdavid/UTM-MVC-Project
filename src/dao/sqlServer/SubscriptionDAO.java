@@ -16,17 +16,19 @@ import model.Message;
 import model.User;
 
 public class SubscriptionDAO implements SubscriptionDAOInterface {
-
+	private DBConnection dbc = new DBConnection();
+	private Connection con;
+	private PreparedStatement pstmt = null; // use prepared statement
+	public SubscriptionDAO()
+	{
+		con = dbc.getConnection();
+	}
 	@Override
 	//change this function name to getSubscribersByBoard(String bid) 
 	public Iterator<String> getSubscriptionsByBoard(String username) {
 		ArrayList<String> users = new ArrayList<String>();
 		
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "SELECT username FROM subscriptions WHERE bid = ?";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, username);
@@ -34,7 +36,6 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 			while (rs.next()) {
 				users.add(rs.getString("username"));
 			}
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
@@ -47,10 +48,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 		ArrayList<Board> boards = new ArrayList<Board>();
 		
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
+
 			String sqlText = "SELECT bid FROM subscriptions WHERE username = ?";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, username);
@@ -61,7 +59,6 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 				boards.add(dao.getBoard(rs.getString("bid")));
 				
 			}
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
@@ -72,10 +69,6 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 	public int subUserToBoard(String user, String bid) {
 		
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "INSERT INTO subscriptions "
 					+ " (username, bid) VALUES (? , ?)";
 			
@@ -86,7 +79,6 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 				
 				return 1;
 			}
-			dbc.disconnect();
 			return 0;
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
@@ -100,10 +92,6 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 	public int unSubUserFromBoard(String user, String bid) {
 		
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "DELETE FROM subscriptions WHERE username = ?, "
 					+"bid = ?";
 			
@@ -114,7 +102,6 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 				
 				return 1;
 			}
-			dbc.disconnect();
 			return 0;
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());

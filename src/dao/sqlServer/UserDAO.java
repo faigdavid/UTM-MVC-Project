@@ -9,14 +9,18 @@ import interfaces.UserDAOInterface;
 
 public class UserDAO implements UserDAOInterface {
 
+	private DBConnection dbc = new DBConnection();
+	private Connection con;
+	private PreparedStatement pstmt = null; // use prepared statement
+	public UserDAO()
+	{
+		con = dbc.getConnection();
+	}
 	@Override
 	public User getUser(String username) {
 		User.Builder usrbuild = new User.Builder();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
+			
 			String sqlText = "SELECT username, passwd FROM users WHERE "
 					+ "username = ?";
 			pstmt = con.prepareStatement(sqlText);
@@ -29,14 +33,11 @@ public class UserDAO implements UserDAOInterface {
 					usrbuild.username(rs.getString("username"));
 					usrbuild.currentBoard(null);
 				} else { // user does not exist
-					dbc.disconnect();
 					return null;
 				}
 			} else {
-				dbc.disconnect();
 				return null;
 			}
-			dbc.disconnect();
 		} catch (Exception e) {
 			System.err.println("Get Exception: " + e.getMessage());
 		}
@@ -46,10 +47,6 @@ public class UserDAO implements UserDAOInterface {
 	@Override
 	public int saveUser(User user) {
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "UPDATE users SET username = ?, passwd = ? WHERE "
 					+ "username = ?";
 			pstmt = con.prepareStatement(sqlText);
@@ -58,7 +55,6 @@ public class UserDAO implements UserDAOInterface {
 			if (pstmt.execute()) {
 				return 1;
 			} else {
-				dbc.disconnect();
 				return 0;
 			}
 		} catch (Exception e) {
@@ -75,17 +71,12 @@ public class UserDAO implements UserDAOInterface {
 		}
 		user = new User.Builder().password(password).username(username).build();
 		try {
-			DBConnection dbc = new DBConnection();
-			dbc.connect();
-			Connection con = dbc.getConnection();
-			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "INSERT INTO users (username, passwd) VALUES"
 					+ "(?, ?)";
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
 			pstmt.executeUpdate();
-			dbc.disconnect();
 			return user;
 		} catch (Exception e) {
 			System.err.println("Create Exception: " + e.getMessage());
