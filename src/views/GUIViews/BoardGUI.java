@@ -47,14 +47,13 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	private JButton BT_subscribe = new JButton ("Subscribe");
 	private JButton BT_tag = new JButton ("Tag This Board!");
 	private JButton BT_back = new JButton("Leave Board");
-	private String name;
-
+	private String topic = null;
 	/**
 	 * Create the frame.
 	 */
-	public BoardGUI(GUIController listener, String name) {
-		super(name);
-		this.name = name;
+	public BoardGUI(GUIController listener, Board board) {
+		super(board.getName());
+		this.topic = board.getTopic();
 		this.GUIMain = listener;
 		this.controller = GUIMain.getController();
 		
@@ -71,7 +70,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	}
 	
 	public void preparePanel(java.awt.Container pane) {
-		LB_boardTitle = new JLabel("MAKE THIS TAKE THE TOPIC OF THE BOARD");
+		LB_boardTitle = new JLabel(topic);
 		/*
 		if (User sub){
 			BT_subscribe.setText("Unsubscribe");
@@ -112,7 +111,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	    BT_post.addActionListener(this);
 	    BT_back.addActionListener(this);
 	    BT_subscribe.addActionListener(this);
-        
+        BT_tag.addActionListener(this);
 	    //Gaps.
 	    
 	    pane.add(LB_boardTitle, BorderLayout.NORTH);
@@ -157,8 +156,6 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 			//controller.subscribeUserToBoard(BOARD)
 		}
 		else if (event.getSource() == BT_tag) {
-			
-			JTextField TA_tag = new JTextField();
 			String tagString = JOptionPane.showInputDialog("Type in your tags"
 					+ ", seperated by a space");
 			ArrayList<String> tags = new ArrayList<String>(

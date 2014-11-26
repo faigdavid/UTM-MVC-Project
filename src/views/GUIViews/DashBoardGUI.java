@@ -139,8 +139,6 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == BT_create) {
-		
-			JTextField TA_boardName = new JTextField();
 			String create = JOptionPane.showInputDialog("Type in your board name");
 
 			try {

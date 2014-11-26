@@ -91,9 +91,9 @@ public class GUIController implements ModelEventListener{
 	}
 
 	@Override
-	public void changeStateInBoard(String name) {
+	public void changeStateInBoard(Board board) {
 		this.tempCurrentState=this.currentState;
-		this.currentState = new BoardGUI(this, name);
+		this.currentState = new BoardGUI(this, board);
 		tempCurrentState.closeGUI();
 		currentState.refresh();
 	}

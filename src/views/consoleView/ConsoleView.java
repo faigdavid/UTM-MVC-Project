@@ -230,7 +230,7 @@ public class ConsoleView implements ModelEventListener{
 	}
 
 	@Override
-	public void changeStateInBoard(String name) {
+	public void changeStateInBoard(Board board) {
 		state = "in board";
 		
 	}

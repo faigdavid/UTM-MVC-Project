@@ -56,7 +56,7 @@ public class ModelController implements ViewEventListener {
 			Board toChange = DAO.getBoardByName(name);
 			if (this.user.joinBoard(toChange.getBid()) == 1) {
 				for (ModelEventListener view : views) {
-					view.changeStateInBoard(user.getcurrentBoard().getName());
+					view.changeStateInBoard(user.getcurrentBoard());
 				}
 
 			} else {// Board does not exist, or the DAO failed.
@@ -74,7 +74,7 @@ public class ModelController implements ViewEventListener {
 		if (assertLoggedIn()) {
 			if (this.user.joinBoard(bid) == 1) {
 				for (ModelEventListener view : views) {
-					view.changeStateInBoard(user.getcurrentBoard().getName());
+					view.changeStateInBoard(user.getcurrentBoard());
 				}
 			} else {// Board does not exist, or DAO failed.
 				throw new DataException();
@@ -214,13 +214,11 @@ public class ModelController implements ViewEventListener {
 		// TODO Auto-generated method stub
 		if (assertLoggedIn()) {
 			BoardDAO DAO = new BoardDAO();
-			if(DAO.addTags(tags, user.getcurrentBoard().getBid()) == 1){
-				return;
+			if(DAO.addTags(tags, user.getcurrentBoard().getBid()) != 1){
+				throw new DataException("Failed to add tags.");
 			}
-			else{
-				
-				throw new StateException("Not logged in...?");
-			}
+		} else {
+			throw new StateException("Not logged in.");
 		}
 	}
 	/*-------------NON-OVERRIDES-------------*/

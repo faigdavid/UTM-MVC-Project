@@ -12,7 +12,7 @@ public interface ModelEventListener {
 	public int printString(String text);
 	public void changeStateLoggedIn();
 	public void changeStateLoggedOut();
-	public void changeStateInBoard(String name);//changed to provide board being joined.
+	public void changeStateInBoard(Board board);//changed to provide board being joined.
 	public void changeStateNoBoard();
 	public void changeStateRegister();
 	public void recieveBoardMessages(Iterator<Message> messages) throws StateException;
