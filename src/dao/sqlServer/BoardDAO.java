@@ -189,7 +189,7 @@ public class BoardDAO implements BoardDAOInterface {
 	}
 	//returns all boards that match all tags given in the array list
 	public Iterator<Board> getAllBoardsByTags(ArrayList<String> tags){
-		if (tags.size() == 0){
+		if (tags.get(0).equals("")){
 			return getAllBoards();
 		}
 		int count = 1;
