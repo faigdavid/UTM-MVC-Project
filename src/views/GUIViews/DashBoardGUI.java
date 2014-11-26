@@ -47,6 +47,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	private String[] temp = {"c","c","c","c","c","c","c","c","c","c","c","c"};
 	
 	private JComboBox<String> JCB_boardList = new JComboBox<String>(temp);
+	private JButton BT_subsOnly = new JButton("Subscribed Boards");
 	private JButton BT_create = new JButton("Create New");
 	private JButton BT_join = new JButton("Join");
 	private JButton BT_cancel = new JButton("Logout");
@@ -104,7 +105,8 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
          
         //Add buttons to experiment with Grid Layout
         inputPanel.add(JCB_boardList);
-        inputLayout.setVgap(10);
+        inputPanel.add(BT_subsOnly);
+       // inputLayout.setVgap(10);
          
         //add the search text field to the search layout 
         searchPanel.add(BT_search);
@@ -117,6 +119,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         BT_join.addActionListener(this); 
         BT_create.addActionListener(this); 
         BT_search.addActionListener(this);
+        BT_subsOnly.addActionListener(this);
         //Process the Apply gaps button press
        // inputPanel.add(TA_username);
         pane.add(inputPanel, BorderLayout.SOUTH);
@@ -200,7 +203,9 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 
         @Override
         public void windowClosing(WindowEvent e) {
-            int confirm = JOptionPane.showOptionDialog(null, "Are you sure?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+            int confirm = JOptionPane.showOptionDialog(null, "Are you sure?", 
+            		"Exit Confirmation", JOptionPane.YES_NO_OPTION, 
+            		JOptionPane.QUESTION_MESSAGE, null, null, null);
             if (confirm == 0) {
                System.exit(0);
             }

@@ -209,7 +209,7 @@ public class BoardDAO implements BoardDAOInterface {
 			}
 			pstmt = con.prepareStatement(sqlText);
 			
-			for(String s : tags){
+			for(String s : tags){	
 				pstmt.setString(count, s);
 				count++;
 			}
