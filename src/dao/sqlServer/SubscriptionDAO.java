@@ -23,6 +23,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 	{
 		con = dbc.getConnection();
 	}
+	
 	@Override
 	//change this function name to getSubscribersByBoard(String bid) 
 	public Iterator<String> getSubscriptionsByBoard(String username) {

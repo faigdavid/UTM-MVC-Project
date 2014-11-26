@@ -204,6 +204,7 @@ public class BoardDAO implements BoardDAOInterface {
 		return boards.iterator();
 	}
 
+	
 	public int addTags(ArrayList<String> tags, String bid) {
 		//see super for implementation details
 		PreparedStatement pstmt = null;

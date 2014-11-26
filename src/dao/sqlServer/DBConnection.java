@@ -17,6 +17,7 @@ public class DBConnection {
     	connect();
     }
 
+    
     public void connect() {
         try {
             Class.forName(DRIVER);

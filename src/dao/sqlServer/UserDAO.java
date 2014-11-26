@@ -16,6 +16,7 @@ public class UserDAO implements UserDAOInterface {
 	{
 		con = dbc.getConnection();
 	}
+	
 	@Override
 	public User getUser(String username) {
 		User.Builder usrbuild = new User.Builder();

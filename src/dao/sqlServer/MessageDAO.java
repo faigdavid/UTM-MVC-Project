@@ -19,6 +19,7 @@ public class MessageDAO implements MessageDAOInterface {
 	{
 		con = dbc.getConnection();
 	}
+	
 	@Override
 	public Iterator<Message> getMessages(String bid) {
 		ArrayList<Message> messages = new ArrayList<Message>();
