@@ -14,7 +14,7 @@ public interface ViewEventListener {
 	public void logout();
 	public void register(String userName, String password1,String password2) throws DataException;
 	public void post(String message) throws DataException;
-	public void createBoard(String name) throws DataException;
+	public void createBoard(String name, String topic) throws DataException;
 	public void requestBoardMessages() throws StateException;
 	public void requestBoards() throws StateException;
 	public void requestBoardsByTag(ArrayList<String> tags) throws StateException;

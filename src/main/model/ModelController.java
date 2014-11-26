@@ -191,12 +191,19 @@ public class ModelController implements ViewEventListener {
 	}
 
 	@Override
-	public void createBoard(String name) throws DataException {
+	public void createBoard(String name, String topic) throws DataException {
 		// TODO Auto-generated method stub
 		BoardDAO BDAO = new BoardDAO();
-		if (BDAO.createBoard(name) != 1) {
-			throw new DataException("Board already exists.");
+		if (topic == "" || topic == null){
+			if (BDAO.createBoard(name) != 1) {
+				throw new DataException("Board already exists.");
+			}
+		} else {
+			if (BDAO.createBoard(name, topic) != 1) {
+				throw new DataException("Board already exists.");
+			}
 		}
+		
 	}
 
 	@Override

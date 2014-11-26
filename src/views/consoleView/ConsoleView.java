@@ -159,7 +159,7 @@ public class ConsoleView implements ModelEventListener{
 			case "create board":
 				toStrip = input.indexOf(' ');
 				try {
-					controller.createBoard(input.substring(toStrip).trim());
+					controller.createBoard(input.substring(toStrip).trim(), "");
 				} catch (DataException e) {
 					printString("Failed to create board.");
 				}

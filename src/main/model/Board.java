@@ -63,7 +63,7 @@ public class Board {
 	}
 
 	public static class Builder {
-		public String topic;
+		private String topic;
 		private String bid;
 		private String name;
 		private String password; // defaults to null.

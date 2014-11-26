@@ -35,7 +35,7 @@ public class BoardDAO implements BoardDAOInterface {
 						}
 					boardbuild.bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd).topic("topic");
+							.password(passwd).topic(rs.getString("topic"));
 					dbc.disconnect();
 				} else {
 					dbc.disconnect();
@@ -74,7 +74,7 @@ public class BoardDAO implements BoardDAOInterface {
 					}
 					boardbuild.bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd).topic("topic");
+							.password(passwd).topic(rs.getString("topic"));
 					dbc.disconnect();
 				} else {
 					dbc.disconnect();
@@ -177,7 +177,7 @@ public class BoardDAO implements BoardDAOInterface {
 						}
 					Board brd = new Board.Builder().bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd).topic("topic").build();
+							.password(passwd).topic(rs.getString("topic")).build();
 					boards.add(brd);
 				}
 			}
@@ -224,7 +224,7 @@ public class BoardDAO implements BoardDAOInterface {
 						}
 					Board brd = new Board.Builder().bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd).topic("topic").build();
+							.password(passwd).topic(rs.getString("topic")).build();
 					boards.add(brd);
 				}
 			}

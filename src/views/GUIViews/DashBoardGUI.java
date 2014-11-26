@@ -139,10 +139,10 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == BT_create) {
-			String create = JOptionPane.showInputDialog("Type in your board name");
-
+			String name = JOptionPane.showInputDialog("Type in your board name");
+			String topic = JOptionPane.showInputDialog("Type in your topic");
 			try {
-				controller.createBoard(create);
+				controller.createBoard(name, topic);
 			} catch (DataException e) {
 				ErrorGUI.showError("DashBoard Error", e.getMessage());
 			}
