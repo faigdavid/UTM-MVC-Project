@@ -1,9 +1,13 @@
+DROP TRIGGER triggeInsertMessages on messages;
+DROP FUNCTION messagesTime() CASCADE; 
 DROP TABLE users CASCADE;
 DROP TABLE subscriptions CASCADE;
 DROP TABLE messages CASCADE;
 DROP TABLE boards CASCADE;
 DROP TABLE tags;
 DROP TABLE user_permissions;
+
+
 CREATE TABLE users (
     username VARCHAR(30) PRIMARY KEY,
     passwd  VARCHAR(30) NOT NULL
