@@ -35,11 +35,22 @@ CREATE TABLE tags (
 CREATE TABLE messages (
     mid SERIAL PRIMARY KEY,
     bid INT REFERENCES boards(bid) ON DELETE CASCADE,    
-    date_posted TIMESTAMP,
+    date_posted TIMESTAMP NOT NULL,
     username VARCHAR(30) REFERENCES users(username),
     visibility INT default 1,    
     contents TEXT
 );
+
+CREATE FUNCTION messagesTime() RETURNS trigger AS $$
+    BEGIN
+        NEW.date_posted := CURRENT_TIMESTAMP AT TIME ZONE 'EST';
+        RETURN NEW;
+    END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER triggeInsertMessages BEFORE INSERT OR UPDATE
+    ON messages FOR EACH ROW 
+    EXECUTE PROCEDURE messagesTime();
 
 CREATE TABLE user_permissions(
     username VARCHAR(30) REFERENCES users(username) ON DELETE CASCADE PRIMARY KEY,
