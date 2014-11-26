@@ -26,6 +26,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.text.DefaultCaret;
 
 import exceptions.DataException;
 import exceptions.StateException;
@@ -43,11 +44,13 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	private JLabel LB_boardTitle;
 	private JTextArea TA_boardMsgs = new JTextArea(10,30);
 	private JTextField TA_userInput  = new JTextField(30);
+	
 	private JButton BT_post = new JButton("Post");
 	private JButton BT_subscribe = new JButton ("Subscribe");
 	private JButton BT_tag = new JButton ("Tag This Board!");
 	private JButton BT_back = new JButton("Leave Board");
 	private String topic = null;
+	private int highestMid = 0;
 	/**
 	 * Create the frame.
 	 */
@@ -56,7 +59,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 		this.topic = board.getTopic();
 		this.GUIMain = listener;
 		this.controller = GUIMain.getController();
-		
+
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		this.setVisible(true);
@@ -67,15 +70,12 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 		
 		this.pack();
 		addWindowListener(exitListener);
+		(new Thread(new Refresher(this))).start();
 	}
 	
 	public void preparePanel(java.awt.Container pane) {
 		LB_boardTitle = new JLabel(topic);
-		/*
-		if (User sub){
-			BT_subscribe.setText("Unsubscribe");
-		}
-		*/
+
 				
 		GridLayout inputLayout = new GridLayout(0,1);
 		JPanel inputPanel = new JPanel();
@@ -98,7 +98,6 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
         JScrollPane scroll = new JScrollPane(TA_boardMsgs);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         displayPanel.add(scroll);
-       
         //---------inputPanel-------------------------
         inputLayout.setVgap(3);
         inputPanel.add(TA_userInput);
@@ -146,7 +145,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 				ErrorGUI.messageError();
 			}
 			TA_userInput.setText("");
-			refresh();
+			//refresh();
 		}
 		else if(event.getSource() == BT_back) {
 			//GUIMain.changeStateRegister();
@@ -165,15 +164,19 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 			} catch (DataException | StateException e) {
 				ErrorGUI.showError("DashBoard Error", e.getMessage());
 			}
-			refresh();
+			//refresh();
 		}
 	}
 
 	public void recieveMessages(Iterator<Message> messages) {
-		TA_boardMsgs.setText("");
 		while(messages.hasNext()) {
 			Message msg = messages.next();
-			TA_boardMsgs.append(msg.formatMessage());
+			int nextMid = Integer.parseInt(msg.getMid());
+			if (nextMid > highestMid){
+				highestMid = nextMid;
+				TA_boardMsgs.append(msg.formatMessage());
+			}
+			
 		}
 	}
 	
@@ -199,9 +202,32 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
     public void refresh(){
     	try {
 			controller.requestBoardMessages();
+			
 		} catch (StateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    public class Refresher implements Runnable {
+    	private BoardGUI gui = null;
+    	
+    	public Refresher(BoardGUI gui){
+    		this.gui = gui;
+    	}
+		@Override
+		public void run() {
+			while(true){
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
+				gui.refresh();
+			}
+			
+			
+		}
+    	
     }
 }

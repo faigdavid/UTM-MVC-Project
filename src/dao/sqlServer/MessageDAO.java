@@ -16,7 +16,7 @@ public class MessageDAO implements MessageDAOInterface {
 	private PreparedStatement pstmt = null; // use prepared statement
 	public MessageDAO()
 	{
-		dbc =  new DBConnection();
+		dbc =  DBConnection.getInstance();
 		con = dbc.getConnection();
 	}
 	@Override

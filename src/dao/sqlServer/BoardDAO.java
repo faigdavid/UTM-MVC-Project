@@ -17,7 +17,7 @@ public class BoardDAO implements BoardDAOInterface {
 	private PreparedStatement pstmt = null; // use prepared statement
 	public BoardDAO()
 	{
-		dbc =  new DBConnection();
+		dbc =  DBConnection.getInstance();
 		con = dbc.getConnection();
 	}
 	@Override

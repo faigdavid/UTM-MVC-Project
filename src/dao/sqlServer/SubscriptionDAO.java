@@ -18,7 +18,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 	private PreparedStatement pstmt = null; // use prepared statement
 	public SubscriptionDAO()
 	{
-		dbc =  new DBConnection();
+		dbc =   DBConnection.getInstance();
 		con = dbc.getConnection();
 	}
 	
@@ -36,7 +36,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 			while (rs.next()) {
 				users.add(rs.getString("username"));
 			}
-			dbc.disconnect();
+			;
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
@@ -58,7 +58,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 				boards.add(dao.getBoard(rs.getString("bid")));
 				
 			}
-			dbc.disconnect();
+			;
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 		}
@@ -80,7 +80,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 				
 				return 1;
 			}
-			dbc.disconnect();
+			;
 			return 0;
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
@@ -104,7 +104,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 				
 				return 1;
 			}
-			dbc.disconnect();
+			;
 			return 0;
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());

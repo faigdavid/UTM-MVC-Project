@@ -13,7 +13,7 @@ public class UserDAO implements UserDAOInterface {
 	private PreparedStatement pstmt = null; // use prepared statement
 	public UserDAO()
 	{
-		dbc =  new DBConnection();
+		dbc =  DBConnection.getInstance();
 		con = dbc.getConnection();
 	}
 	

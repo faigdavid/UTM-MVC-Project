@@ -5,15 +5,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-
+	private static DBConnection dbc = null;
     public static final String DRIVER   = "org.postgresql.Driver";
     public static final String URL      = "jdbc:postgresql://johnny.heliohost.org:5432/shk0307_group6";
     public static final String UID      = "shk0307";
     public static final String PASSWORD = "psql6";
 
     public Connection con = null;
-
-    public DBConnection() {
+    public static DBConnection getInstance() {
+        if(dbc == null) {
+        	dbc = new DBConnection();
+        }
+        return dbc;
+    	
+    }
+    private DBConnection() {
     	connect();
     }
 
