@@ -51,6 +51,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 	private JButton BT_back = new JButton("Leave Board");
 	private String topic = null;
 	private int highestMid = 0;
+	private Thread refreshThread;
 	/**
 	 * Create the frame.
 	 */
@@ -70,7 +71,8 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 		
 		this.pack();
 		addWindowListener(exitListener);
-		(new Thread(new Refresher(this))).start();
+		refreshThread = new Thread(new Refresher(this));
+		refreshThread.start();
 	}
 	
 	public void preparePanel(java.awt.Container pane) {
@@ -149,6 +151,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 		}
 		else if(event.getSource() == BT_back) {
 			//GUIMain.changeStateRegister();
+        	refreshThread.stop();
 			GUIMain.changeStateNoBoard();
 		}
 		else if(event.getSource() == BT_subscribe) {
@@ -194,6 +197,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
         public void windowClosing(WindowEvent e) {
             int confirm = JOptionPane.showOptionDialog(null, "Are you sure?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
             if (confirm == 0) {
+            	refreshThread.stop();
                System.exit(0);
             }
         }
