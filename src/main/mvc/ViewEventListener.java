@@ -20,11 +20,10 @@ public interface ViewEventListener {
 	public void requestBoardsByTag(ArrayList<String> tags) throws StateException;
 	public void requestSubscribedBoards();
 	//Carlito added these abstract methods()
-	public void subscribeUserToBoard();
+	public void subscribeUserToBoard(Board board);
 	public void unsubscribeUserFromBoard(Board board);
 	public void addModelEventListener(ModelEventListener e);
 	public void removeModelEventListener(ModelEventListener e);
-	public void requestSubbedBoards() throws StateException;
 	
 	public void addTagsToBoard(ArrayList<String> tags) throws DataException, StateException;
 }

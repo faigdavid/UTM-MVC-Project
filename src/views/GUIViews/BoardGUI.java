@@ -153,7 +153,7 @@ public class BoardGUI extends JFrame implements ActionListener, GUIEventListener
 			GUIMain.changeStateNoBoard();
 		}
 		else if(event.getSource() == BT_subscribe) {
-			controller.subscribeUserToBoard();
+			//controller.subscribeUserToBoard(BOARD)
 		}
 		else if (event.getSource() == BT_tag) {
 			String tagString = JOptionPane.showInputDialog("Type in your tags"

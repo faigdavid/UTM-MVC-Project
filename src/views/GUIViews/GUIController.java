@@ -140,7 +140,16 @@ public class GUIController implements ModelEventListener{
 
 	}
 
-	
-	
+	@Override
+	public void recieveSubscribedBoards(Iterator<Board> boards) throws StateException {
+		if (this.currentState instanceof DashBoardGUI) {
+			((DashBoardGUI) currentState).recieveBoards(boards);
+		}
+		else {
+			ErrorGUI.showError("State Error", "Must be in DashBoard to recieve boards.");
+		}
+
+
+	}
 	
 }

@@ -51,7 +51,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	private JButton BT_create = new JButton("Create New");
 	private JButton BT_join = new JButton("Join");
 	private JButton BT_cancel = new JButton("Logout");
-	private JButton BT_refresh = new JButton("Show All");
+	private JButton BT_refresh = new JButton("Clear Search");
 	private JButton BT_search = new JButton("Search by Tags: ");
 	private JTextField TA_tags = new JTextField(0);
 
@@ -104,8 +104,8 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         controlLayout.setHgap(10);
          
         //Add buttons to experiment with Grid Layout
-        inputPanel.add(BT_subsOnly);
         inputPanel.add(JCB_boardList);
+        inputPanel.add(BT_subsOnly);
        // inputLayout.setVgap(10);
          
         //add the search text field to the search layout 
@@ -180,16 +180,6 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 				e.printStackTrace();
 			}
 		}
-		else if(event.getSource() == BT_subsOnly){
-			
-			try {
-				controller.requestSubbedBoards();
-			} catch (StateException e) {
-				ErrorGUI.showError("DashBoard Error", e.getMessage());
-				e.printStackTrace();
-			}
-			
-		}
 		else if(event.getSource() == BT_refresh){
 			
 			refresh();
@@ -201,12 +191,9 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 
 	public void recieveBoards(Iterator<Board> boards) {
 		JCB_boardList.removeAllItems();
-		try{
 		while (boards.hasNext()){
 			JCB_boardList.addItem(boards.next().getName());
-		}
-		}catch(Exception  e){
-			System.out.println(e.getMessage());
+			
 		}
 		
 	}
