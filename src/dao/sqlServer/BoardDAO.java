@@ -254,11 +254,11 @@ public class BoardDAO implements BoardDAOInterface {
 				pstmt.executeUpdate();
 				//Make it execute the statement for each tag.
 			}
-			}catch(Exception e){
-				System.err.println("Exception: " + e.getMessage());
-			}
+		}catch(Exception e){
+			System.err.println("Exception: " + e.getMessage());
+		}
 		
-		return 0;
+		return 1;
 	}
 	public int changeTopic(String bid, String topic) {
 		//see super for implementation details
@@ -272,11 +272,11 @@ public class BoardDAO implements BoardDAOInterface {
 			//casts the bid to an integer
 			pstmt.setString(1,topic);
 			pstmt.executeUpdate();
-			}catch(Exception e){
-				System.err.println("Exception: " + e.getMessage());
-			}
+		}catch(Exception e){
+			System.err.println("Exception: " + e.getMessage());
+		}
 		
-		return 0;
+		return 1;
 	}
 
 }

@@ -242,7 +242,7 @@ public class ConsoleView implements ModelEventListener{
 	}
 	@Override
 	public void changeStateRegister() {
-		// TODO Auto-generated method stub
+		state = "logged out";
 		
 	}
 	/*--------------------------Private Methods--------------------------*/
