@@ -50,7 +50,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 	private JButton BT_create = new JButton("Create New");
 	private JButton BT_join = new JButton("Join");
 	private JButton BT_cancel = new JButton("Logout");
-	private JButton BT_refresh = new JButton("Refresh");
+	private JButton BT_refresh = new JButton("Clear Search");
 	private JButton BT_search = new JButton("Search by Tags: ");
 	private JTextField TA_tags = new JTextField(0);
 
@@ -179,7 +179,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
 		}
 		else if(event.getSource() == BT_refresh){
 			
-			tagRefresh(new String(TA_tags.getText()));
+			refresh();
 			
 		}
 	}
@@ -215,8 +215,10 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
     }
     
 	private void tagRefresh(String tags){
+		ArrayList<String> tagsList = new ArrayList<String>(
+				Arrays.asList(tags.split(" ")));
 		try {
-			controller.requestBoards();
+			controller.requestBoardsByTag(tagsList);
 		} catch (StateException e) {
 			ErrorGUI.showError("DashBoard Error", e.getMessage());
 			e.printStackTrace();
@@ -224,6 +226,7 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
     }
 	@Override
 	public void refresh() {
+		TA_tags.setText("");
 		try {
 			controller.requestBoards();
 		} catch (StateException e) {
