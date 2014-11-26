@@ -1,19 +1,13 @@
 package sqlServer;
 
 import interfaces.SubscriptionDAOInterface;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import local.BoardDAO;
-import local.UserDAO;
 import model.Board;
-import model.Message;
-import model.User;
+
 
 public class SubscriptionDAO implements SubscriptionDAOInterface {
 
@@ -57,7 +51,6 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 			ResultSet rs = pstmt.executeQuery();
 			BoardDAO dao = new BoardDAO();
 			while (rs.next()) {
-				
 				boards.add(dao.getBoard(rs.getString("bid")));
 				
 			}
@@ -81,7 +74,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 			
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, user);
-			pstmt.setString(2, bid);
+			pstmt.setInt(2, Integer.parseInt(bid));
 			if(pstmt.execute()){
 				
 				return 1;
@@ -109,7 +102,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 			
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, user);
-			pstmt.setString(2, bid);
+			pstmt.setInt(2, Integer.parseInt(bid));
 			if(pstmt.execute()){
 				
 				return 1;
