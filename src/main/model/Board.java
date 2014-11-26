@@ -6,7 +6,8 @@ public class Board {
 	private String bid;
 	private String name;
 	private String password;
-
+	private String topic = null;
+	
 	public Board(String id, String name, String password) {
 		this.bid = id;
 		this.name = name;
@@ -17,6 +18,7 @@ public class Board {
 		this.bid = builder.bid;
 		this.name = builder.name;
 		this.password = builder.password;
+		this.setTopic(builder.topic);
 	}
 
 	// Deletes a message
@@ -52,7 +54,16 @@ public class Board {
 		return bid;
 	}
 
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+
 	public static class Builder {
+		public String topic;
 		private String bid;
 		private String name;
 		private String password; // defaults to null.
@@ -71,9 +82,16 @@ public class Board {
 			this.password = password;
 			return this;
 		}
-
+		
+		public Builder topic(String topic){
+			this.topic = topic;
+			return this;
+		}
+		
 		public Board build() {
 			return new Board(this);
 		}
+		
+
 	}
 }

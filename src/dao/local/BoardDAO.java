@@ -129,4 +129,10 @@ public class BoardDAO implements BoardDAOInterface {
 		return String.valueOf(bid);
 		
 	}
+
+	@Override
+	public int addTags(ArrayList<String> tags, String bid) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

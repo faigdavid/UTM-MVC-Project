@@ -97,7 +97,6 @@ public class BoardDAO implements BoardDAOInterface {
 		if (board != null) { // make sure same board does not exist
 			return 0;
 		}
-		System.out.println("asd123");
 		try {
 			DBConnection dbc = new DBConnection();
 			dbc.connect();

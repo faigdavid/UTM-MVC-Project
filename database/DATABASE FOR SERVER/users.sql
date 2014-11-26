@@ -14,8 +14,8 @@ CREATE TABLE boards(
     name VARCHAR(127) NOT NULL,
     motd TEXT,
     passwd VARCHAR(30) default NULL,
-    visible int default 1
-
+    visible int default 1,
+	topic VARCHAR(127) default 'No Topic'
 );
 
 CREATE TABLE subscriptions (
