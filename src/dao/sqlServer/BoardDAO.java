@@ -35,7 +35,7 @@ public class BoardDAO implements BoardDAOInterface {
 						}
 					boardbuild.bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd);
+							.password(passwd).topic("topic");
 					dbc.disconnect();
 				} else {
 					dbc.disconnect();
@@ -74,7 +74,7 @@ public class BoardDAO implements BoardDAOInterface {
 					}
 					boardbuild.bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd);
+							.password(passwd).topic("topic");
 					dbc.disconnect();
 				} else {
 					dbc.disconnect();
@@ -90,7 +90,30 @@ public class BoardDAO implements BoardDAOInterface {
 		}
 		return boardbuild.build();
 	}
-
+	@Override
+	public int createBoard(String name, String topic) {
+		Board board = this.getBoardByName(name);
+		if (board != null) { // make sure same board does not exist
+			return 0;
+		}
+		try {
+			DBConnection dbc = new DBConnection();
+			dbc.connect();
+			Connection con = dbc.getConnection();
+			PreparedStatement pstmt = null; // use prepared statement
+			String sqlText = "INSERT INTO " + "boards (name, topic) " + "VALUES (?, ?)";
+			pstmt = con.prepareStatement(sqlText);
+			pstmt.setString(1, name);
+			pstmt.setString(2, topic);
+			pstmt.executeUpdate();
+			dbc.disconnect();
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+			return 0;
+		}
+		return 1;
+	}
+	
 	@Override
 	public int createBoard(String name) {
 		Board board = this.getBoardByName(name);
@@ -154,7 +177,7 @@ public class BoardDAO implements BoardDAOInterface {
 						}
 					Board brd = new Board.Builder().bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd).build();
+							.password(passwd).topic("topic").build();
 					boards.add(brd);
 				}
 			}
@@ -201,7 +224,7 @@ public class BoardDAO implements BoardDAOInterface {
 						}
 					Board brd = new Board.Builder().bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd).build();
+							.password(passwd).topic("topic").build();
 					boards.add(brd);
 				}
 			}
@@ -237,4 +260,6 @@ public class BoardDAO implements BoardDAOInterface {
 		
 		return 0;
 	}
+
+
 }
