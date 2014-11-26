@@ -260,6 +260,23 @@ public class BoardDAO implements BoardDAOInterface {
 		
 		return 0;
 	}
-
+	public int changeTopic(String bid, String topic) {
+		//see super for implementation details
+		PreparedStatement pstmt = null;
+		try {
+			DBConnection dbc = new DBConnection();
+			dbc.connect();
+			Connection con = dbc.getConnection();
+			String sqlText = "UPDATE boards SET topic = ?";
+			pstmt = con.prepareStatement(sqlText);
+			//casts the bid to an integer
+			pstmt.setString(1,topic);
+			pstmt.executeUpdate();
+			}catch(Exception e){
+				System.err.println("Exception: " + e.getMessage());
+			}
+		
+		return 0;
+	}
 
 }
