@@ -224,7 +224,7 @@ public class BoardDAO implements BoardDAOInterface {
 						}
 					Board brd = new Board.Builder().bid(rs.getString("bid"))
 							.name(rs.getString("name"))
-							.password(passwd).topic(rs.getString("topic")).build();
+							.password(passwd).build();
 					boards.add(brd);
 				}
 			}
