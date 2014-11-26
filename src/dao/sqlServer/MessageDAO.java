@@ -67,7 +67,7 @@ public class MessageDAO implements MessageDAOInterface {
 
 	@Override
 	public Iterator<Message> getMessagesSinceTime(String bid, String date) {
-		// String date must be in postgreSQL timestamp format (i.e.
+		// String date must be in postgreSQL timestamp format in EST (i.e.
 		// "yyyy-MM-dd HH:mm:ss")
 
 		ArrayList<Message> messages = new ArrayList<Message>();
@@ -118,22 +118,19 @@ public class MessageDAO implements MessageDAOInterface {
 	public int addMessage(String bid, String username, String text) {
 
 		// get current time in postgreSQL timestamp format
-		String psqlTimestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-				.format(Calendar.getInstance().getTime());
 		try {
 			DBConnection dbc = new DBConnection();
 			dbc.connect();
 			Connection con = dbc.getConnection();
 			PreparedStatement pstmt = null; // use prepared statement
 			String sqlText = "INSERT INTO "
-					+ "messages (bid, date_posted, username, contents) "
-					+ "VALUES (?, to_timestamp(?, 'YYYY-MM-DD HH:MI:ss'), ?, ?)";
+					+ "messages (bid, username, contents) "
+					+ "VALUES (?, ?, ?)";
 			pstmt = con.prepareStatement(sqlText);
 			int bidi = Integer.parseInt(bid);
 			pstmt.setInt(1, bidi);
-			pstmt.setString(2, psqlTimestamp);
-			pstmt.setString(3, username);
-			pstmt.setString(4, text);
+			pstmt.setString(2, username);
+			pstmt.setString(3, text);
 
 			pstmt.executeUpdate();
 			dbc.disconnect();
@@ -153,5 +150,4 @@ public class MessageDAO implements MessageDAOInterface {
 				.setDate(rs.getString("date_posted"))
 				.setText(rs.getString("contents")).setMid(rs.getString("mid"));
 	}
-
 }
