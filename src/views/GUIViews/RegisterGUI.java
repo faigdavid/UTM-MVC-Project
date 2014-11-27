@@ -79,6 +79,66 @@ public class RegisterGUI extends JFrame implements GUIEventListener, ActionListe
         pane.add(controlPanel, BorderLayout.SOUTH);
         
         addWindowListener(exitListener);
+        
+        
+	    PF_password.addKeyListener(new KeyListener (){
+			@Override
+			public void keyPressed(KeyEvent key) {
+				// TODO Auto-generated method stub
+				if (key.getKeyCode() == KeyEvent.VK_ENTER){
+					try {
+						controller.register(TA_username.getText(), new String (PF_password.getPassword()), new String (PF_passwordConfirm.getPassword()));
+					} catch (DataException e) {
+						ErrorGUI.showError("Registration Error", e.getMessage());
+					}
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent key) {}
+			@Override
+			public void keyTyped(KeyEvent key) {}
+        	
+        });
+	    
+	    PF_passwordConfirm.addKeyListener(new KeyListener (){
+
+			@Override
+			public void keyPressed(KeyEvent key) {
+				// TODO Auto-generated method stub
+				if (key.getKeyCode() == KeyEvent.VK_ENTER){
+					try {
+						controller.register(TA_username.getText(), new String (PF_password.getPassword()), new String (PF_passwordConfirm.getPassword()));
+					} catch (DataException e) {
+						ErrorGUI.showError("Registration Error", e.getMessage());
+					}
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent key) {}
+			@Override
+			public void keyTyped(KeyEvent key) {}
+        	
+        });
+	    
+	    TA_username.addKeyListener(new KeyListener (){
+
+			@Override
+			public void keyPressed(KeyEvent key) {
+				// TODO Auto-generated method stub
+				if (key.getKeyCode() == KeyEvent.VK_ENTER){
+					try {
+						controller.register(TA_username.getText(), new String (PF_password.getPassword()), new String (PF_passwordConfirm.getPassword()));
+					} catch (DataException e) {
+						ErrorGUI.showError("Registration Error", e.getMessage());
+					}
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent key) {}
+			@Override
+			public void keyTyped(KeyEvent key) {}
+        	
+        });
     }
    
     
