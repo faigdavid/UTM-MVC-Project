@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.text.DefaultCaret;
 
 import exceptions.DataException;
 import exceptions.StateException;
@@ -39,6 +40,8 @@ public class BoardGUI extends JFrame implements ActionListener,
 
 	private JLabel LB_boardTitle;
 	private JTextArea TA_boardMsgs = new JTextArea(10, 30);
+	DefaultCaret caret = (DefaultCaret)TA_boardMsgs.getCaret();
+	
 	private JTextField TA_userInput = new JTextField(30);
 
 	private JButton BT_post = new JButton("Post");
@@ -91,7 +94,8 @@ public class BoardGUI extends JFrame implements ActionListener,
 		controlLayout.setVgap(10);
 		// ---------displayPanel-------------------------
 		TA_boardMsgs.setEditable(false);
-
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
 		// Scroll bar, and messages.
 		JScrollPane scroll = new JScrollPane(TA_boardMsgs);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -124,7 +128,6 @@ public class BoardGUI extends JFrame implements ActionListener,
 
 	@Override
 	public int displayString(String text) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -204,7 +207,6 @@ public class BoardGUI extends JFrame implements ActionListener,
 			controller.requestBoardMessages();
 
 		} catch (StateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
