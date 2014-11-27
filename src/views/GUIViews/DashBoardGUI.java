@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -125,6 +127,31 @@ public class DashBoardGUI extends JFrame implements ActionListener, GUIEventList
         pane.add(inputPanel, BorderLayout.SOUTH);
         pane.add(controlPanel, BorderLayout.NORTH);
        	pane.add(searchPanel, BorderLayout.CENTER);
+       	
+       	TA_tags.addKeyListener(new KeyListener (){
+
+			@Override
+			public void keyPressed(KeyEvent key) {
+				if (key.getKeyCode() == KeyEvent.VK_ENTER){
+					try {
+						String tagString = new String(TA_tags.getText());
+						ArrayList<String> tags = new ArrayList<String>(
+								Arrays.asList(tagString.split(" ")));
+						controller.requestBoardsByTag(tags);
+						
+					}catch (StateException e) {
+						ErrorGUI.showError("DashBoard Error", e.getMessage());
+						e.printStackTrace();
+					}
+				}
+				
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+			@Override
+			public void keyTyped(KeyEvent e) {}
+       		
+       	});
     }	
 	
     
