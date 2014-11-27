@@ -81,6 +81,66 @@ public class LoginGUI extends JFrame implements ActionListener, GUIEventListener
 		pane.add(inputPanel, BorderLayout.NORTH);
 		pane.add(new JSeparator(), BorderLayout.CENTER);
 		pane.add(controlPanel, BorderLayout.SOUTH);
+		
+		
+	    PF_password.addKeyListener(new KeyListener (){
+
+			@Override
+			public void keyPressed(KeyEvent key) {
+				// TODO Auto-generated method stub
+				if (key.getKeyCode() == KeyEvent.VK_ENTER){
+					//this is throwing a null pointer exception for some reason
+					//when we attempt to post
+					if (PF_password == null){
+						ErrorGUI.showError("Password field is empty", "NoPassword");
+					} else {
+						try {
+							controller.login(new String(TA_username.getText()), new String(PF_password.getPassword()));
+						} catch (StateException e) {
+							ErrorGUI.showError("Login Error", "You are already logged in.");
+						} catch (DataException e) {
+							ErrorGUI.loginError();
+						}
+					}
+					refresh();
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent key) {}
+			@Override
+			public void keyTyped(KeyEvent key) {}
+        	
+        });
+	    
+	    
+	    TA_username.addKeyListener(new KeyListener (){
+
+			@Override
+			public void keyPressed(KeyEvent key) {
+				// TODO Auto-generated method stub
+				if (key.getKeyCode() == KeyEvent.VK_ENTER){
+					//this is throwing a null pointer exception for some reason
+					//when we attempt to post
+					if (PF_password == null){
+						ErrorGUI.showError("Password field is empty", "NoPassword");
+					} else {
+						try {
+							controller.login(new String(TA_username.getText()), new String(PF_password.getPassword()));
+						} catch (StateException e) {
+							ErrorGUI.showError("Login Error", "You are already logged in.");
+						} catch (DataException e) {
+							ErrorGUI.loginError();
+						}
+					}
+					refresh();
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent key) {}
+			@Override
+			public void keyTyped(KeyEvent key) {}
+        	
+        });
 	}
 	
 	public void actionPerformed(ActionEvent event){
