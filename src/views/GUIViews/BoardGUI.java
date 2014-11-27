@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -119,6 +121,36 @@ public class BoardGUI extends JFrame implements ActionListener,
 		pane.add(displayPanel, BorderLayout.CENTER);
 		pane.add(inputPanel, BorderLayout.SOUTH);
 		// pane.add(new JSeparator(), BorderLayout.CENTER);
+		
+		//enter key response
+        TA_userInput.addKeyListener(new KeyListener (){
+
+			@Override
+			public void keyPressed(KeyEvent key) {
+				// TODO Auto-generated method stub
+				if (key.getKeyCode() == KeyEvent.VK_ENTER){
+					try {
+						//this is throwing a null pointer exception for some reason
+						//when we attempt to post
+						if (TA_userInput.getText() == null){
+							ErrorGUI.showError("Post", "Nothing to post...");
+						} else {
+							controller.post(new String (TA_userInput.getText()));
+						}
+					} catch (DataException e) {
+						ErrorGUI.messageError();
+					}
+					TA_userInput.setText("");
+					refresh();
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent key) {}
+			@Override
+			public void keyTyped(KeyEvent key) {}
+       	
+        });
 	}
 
 	@Override
