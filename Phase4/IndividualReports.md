@@ -10,9 +10,15 @@
 
 ----
 
-## Name (GitHub username)
+## Henry Ekelund (ekelund)
 
-TODO: Fill in the report
+My most significant contrubtion to this project was my work on the DAOs, as well as my work in convering our older design into an MVC implementing program. 
+
+I learned how to implement database servers into our programs as well as how to make seperate threads. 
+
+I helped organize the team - no one was really willing to self organize at first (we got much better at this as time progressed)
+
+I could have declared what I was working on specifically - because i didn't always declare what i was currently doing we run into quite a few git conflicts that were a huge pain to fix.
 
 ----
 
