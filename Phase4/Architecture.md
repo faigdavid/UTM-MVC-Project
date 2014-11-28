@@ -7,15 +7,14 @@ This proved to be a very good decision since the MVC design decoupled the compon
 
 -----
 
-## VIEW
+## View
 
 *The View interacts only with the Model via the ModelController class. Each view implements the ModelEventListener interface, so that they may respond to data and state updates from the model.
-
 *We implemented two views: ConsoleView and GUIView. The console view was made for the initial demo, and to make sure the Model and DAOs worked properly. The GUIView was later implemented with special features such as creating a thread that auto-refreshes the board.
 
 -----
 
-## MODEL CONTROLLER
+## Class: ModelController
 
 *The ModelController uses a Listener design pattern: It keeps a list of views that all implement the ModelEventListener interface, and it sends commands such as "recieveBoards()" to all of the listening views.
 
@@ -23,7 +22,7 @@ This proved to be a very good decision since the MVC design decoupled the compon
 
 -----
 
-## MODEL
+## Model
 
 *The Model itself is just the Object classes such as User and Board and Message, all of which are constructed by the DAOs as they access the data from the servers.
 
