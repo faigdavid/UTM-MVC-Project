@@ -10,6 +10,7 @@ This proved to be a very good decision since the MVC design decoupled the compon
 ## View
 
 *The View interacts only with the Model via the ModelController class. Each view implements the ModelEventListener interface, so that they may respond to data and state updates from the model.
+
 *We implemented two views: ConsoleView and GUIView. The console view was made for the initial demo, and to make sure the Model and DAOs worked properly. The GUIView was later implemented with special features such as creating a thread that auto-refreshes the board.
 
 -----
