@@ -11,6 +11,7 @@ The View interacts only with the Model via the ModelController class.
 ## MODEL CONTROLLER
 
 *The ModelController uses a Listener design pattern: It keeps a list of views that all implement the ModelEventListener interface, and it sends commands such as "recieveBoards()" to all of the listening views.
+
 *The ModelController also implements the ViewEventListener interface. So, commands such as "requestBoards()" can be sent from the View to the ModelController. In order to implement such commands, the ModelController interacts with the Model and DAOs to request data or data updates.
 
 -----
