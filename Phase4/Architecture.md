@@ -4,7 +4,8 @@
 -----
 
 ## VIEW
-The View interacts only with the Model via the ModelController class. Each view implements the ModelEventListener interface, so that they may respond to data updates from the model.
+
+*The View interacts only with the Model via the ModelController class. Each view implements the ModelEventListener interface, so that they may respond to data updates from the model.
 
 *We implemented two views: ConsoleView and GUIView. The console view was made for the initial demo, and to make sure the Model and DAOs worked properly. The GUIView was later implemented with special features such as creating a thread that auto-refreshes the board.
 
@@ -23,7 +24,8 @@ The View interacts only with the Model via the ModelController class. Each view 
 *The Model itself is just the Object classes such as User and Board and Message, all of which are constructed by the DAOs as they access the data from the servers.
 
 *All the classes were constructed with their relevant information (name, id, etc) as well as special information and methods that ensure the consistency of the data. 
-For example: The user objects have a post() function that posts a given message to the user's currentBoard attribute. Without the existence of both the user, and the user's currentBoard, it is impossible to post a message.
+
+For example: The user objects have a post(message) function that posts the given message to the user's currentBoard attribute. Without the existence of both the user, and the user's currentBoard, it is impossible to post a message.
 
 -----
 
