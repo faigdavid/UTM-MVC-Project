@@ -42,8 +42,8 @@ public class BoardGUI extends JFrame implements ActionListener,
 
 	private JLabel LB_boardTitle;
 	private JTextArea TA_boardMsgs = new JTextArea(10, 30);
-	DefaultCaret caret = (DefaultCaret)TA_boardMsgs.getCaret();
-	
+	DefaultCaret caret = (DefaultCaret) TA_boardMsgs.getCaret();
+
 	private JTextField TA_userInput = new JTextField(30);
 
 	private JButton BT_post = new JButton("Post");
@@ -52,7 +52,7 @@ public class BoardGUI extends JFrame implements ActionListener,
 	private JButton BT_back = new JButton("Leave Board");
 	private String topic = null;
 	private int highestMid = 0;
-	private Thread refreshThread;
+	private volatile Thread refreshThread;
 
 	/**
 	 * Create the frame.
@@ -97,7 +97,7 @@ public class BoardGUI extends JFrame implements ActionListener,
 		// ---------displayPanel-------------------------
 		TA_boardMsgs.setEditable(false);
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-		
+
 		// Scroll bar, and messages.
 		JScrollPane scroll = new JScrollPane(TA_boardMsgs);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -121,21 +121,22 @@ public class BoardGUI extends JFrame implements ActionListener,
 		pane.add(displayPanel, BorderLayout.CENTER);
 		pane.add(inputPanel, BorderLayout.SOUTH);
 		// pane.add(new JSeparator(), BorderLayout.CENTER);
-		
-		//enter key response
-        TA_userInput.addKeyListener(new KeyListener (){
+
+		// enter key response
+		TA_userInput.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyPressed(KeyEvent key) {
 				// TODO Auto-generated method stub
-				if (key.getKeyCode() == KeyEvent.VK_ENTER){
+				if (key.getKeyCode() == KeyEvent.VK_ENTER) {
 					try {
-						//this is throwing a null pointer exception for some reason
-						//when we attempt to post
-						if (TA_userInput.getText() == null){
+						// this is throwing a null pointer exception for some
+						// reason
+						// when we attempt to post
+						if (TA_userInput.getText() == null) {
 							ErrorGUI.showError("Post", "Nothing to post...");
 						} else {
-							controller.post(new String (TA_userInput.getText()));
+							controller.post(new String(TA_userInput.getText()));
 						}
 					} catch (DataException e) {
 						ErrorGUI.messageError();
@@ -146,11 +147,14 @@ public class BoardGUI extends JFrame implements ActionListener,
 			}
 
 			@Override
-			public void keyReleased(KeyEvent key) {}
+			public void keyReleased(KeyEvent key) {
+			}
+
 			@Override
-			public void keyTyped(KeyEvent key) {}
-       	
-        });
+			public void keyTyped(KeyEvent key) {
+			}
+
+		});
 	}
 
 	@Override
@@ -180,8 +184,7 @@ public class BoardGUI extends JFrame implements ActionListener,
 			TA_userInput.setText("");
 			// refresh();
 		} else if (event.getSource() == BT_back) {
-			// GUIMain.changeStateRegister();
-			refreshThread.interrupt();
+			refreshThread = null;
 			GUIMain.changeStateNoBoard();
 		} else if (event.getSource() == BT_subscribe) {
 			controller.subscribeUserToBoard();
@@ -227,7 +230,7 @@ public class BoardGUI extends JFrame implements ActionListener,
 					"Exit Confirmation", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE, null, null, null);
 			if (confirm == 0) {
-				refreshThread.interrupt();
+				refreshThread = null;
 				System.exit(0);
 			}
 		}
@@ -237,7 +240,6 @@ public class BoardGUI extends JFrame implements ActionListener,
 	public void refresh() {
 		try {
 			controller.requestBoardMessages();
-
 		} catch (StateException e) {
 			e.printStackTrace();
 		}
@@ -252,10 +254,11 @@ public class BoardGUI extends JFrame implements ActionListener,
 
 		@Override
 		public void run() {
+			Thread thisThread = Thread.currentThread();
 			try {
-				while (true) {
-					Thread.sleep(500);
+				while (refreshThread == thisThread) {
 					gui.refresh();
+					Thread.sleep(500);
 				}
 			} catch (InterruptedException e) {
 				return;
