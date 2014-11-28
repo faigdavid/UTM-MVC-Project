@@ -42,7 +42,20 @@ What is your main weakness(es) as a team member? (i.e. Where do you think you ca
 ----
 ## Name (GitHub username)
 
-TODO: Fill in the report
+## Carlito Llena (R-ed)
+
+What is your most significant individual contribution?
+* My most significant contribution to this project was in Phase 2 and 4.  I implemented the User class and the first person designing the DashBoardGUI and BoardGUI classes.
+
+Tell us about a new technical concept/issue that you learned while working on the project.
+* I gained a better intuition on how the MVC, Observer, and DAO models work together.
+
+What is your main strength(s) as a team member?
+* My coding skills, everything was refactored that satisfied team standards.
+
+What is your main weakness(es) as a team member? (i.e. Where do you think you can/should improve?)
+* I didn't took the initiative early enough and so work was being finished by other people, this was a problem in Phase 3 when we were doing the Kanban process.  The freedom the process gave works
+  well with people who take the initiative early.  Next time, I'll take the initiative earlier.
 
 
 ----
