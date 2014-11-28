@@ -1,5 +1,6 @@
 # Individual Reports
 
+## Name (GitHub username)
 -----
 
 ## David Faig (FaigDavid)
@@ -40,7 +41,6 @@ What is your main weakness(es) as a team member? (i.e. Where do you think you ca
 * I could have worked better on proper error handlings such as raising proper exceptions
 
 ----
-## Name (GitHub username)
 
 ## Carlito Llena (R-ed)
 
@@ -57,5 +57,17 @@ What is your main weakness(es) as a team member? (i.e. Where do you think you ca
 * I didn't took the initiative early enough and so work was being finished by other people, this was a problem in Phase 3 when we were doing the Kanban process.  The freedom the process gave works
   well with people who take the initiative early.  Next time, I'll take the initiative earlier.
 
+
+----
+
+## Zhang An Ni (benbennza1)
+
+* My most significant individual contribution was making the main class in the console stage (phase 1) and developing the GUI for the final presentation.
+
+* While working on the project, I learned the kanban process, DAO and MVC, they seem really hard in the beginning, but once it is implemented it gets really easy.
+
+* My main strength as a team member is cheering the team up, there is nothing bad about making the team happy and making this a memorable experience.
+
+* My main weakness as a team member is I am lazy, if no one tells me to do something, I will probably not do it. 
 
 ----
