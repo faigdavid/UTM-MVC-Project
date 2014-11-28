@@ -16,6 +16,7 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
@@ -26,6 +27,7 @@ import javax.swing.JTextField;
 import exceptions.DataException;
 import exceptions.StateException;
 import model.Board;
+import model.Message;
 import mvc.ViewEventListener;
 
 public class DashBoardGUI extends JFrame implements ActionListener,
@@ -263,5 +265,11 @@ public class DashBoardGUI extends JFrame implements ActionListener,
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public void recieveMessages(Iterator<Message> messages) {
+		// TODO Auto-generated method stub
+		
 	}
 }

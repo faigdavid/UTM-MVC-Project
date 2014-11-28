@@ -4,10 +4,12 @@ import javax.swing.*;
 
 import exceptions.DataException;
 import exceptions.StateException;
+import model.Message;
 import mvc.ViewEventListener;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Iterator;
 
 public class LoginGUI extends JFrame implements ActionListener,
 		GUIEventListener {
@@ -203,6 +205,12 @@ public class LoginGUI extends JFrame implements ActionListener,
 	public void refresh() {
 		// Do Nothing for login or register.
 
+	}
+
+	@Override
+	public void recieveMessages(Iterator<Message> messages) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

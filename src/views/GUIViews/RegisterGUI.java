@@ -2,10 +2,12 @@ package GUIViews;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Iterator;
 
 import javax.swing.*;
 
 import exceptions.DataException;
+import model.Message;
 import mvc.ViewEventListener;
 // HOW TO CALL GUI
 //new GUI();
@@ -206,6 +208,12 @@ public class RegisterGUI extends JFrame implements GUIEventListener,
 	public void refresh() {
 		// Do Nothing for login or register.
 
+	}
+
+	@Override
+	public void recieveMessages(Iterator<Message> messages) {
+		// TODO Auto-generated method stub
+		
 	}
 
 } // end class

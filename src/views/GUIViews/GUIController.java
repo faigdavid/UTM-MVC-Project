@@ -120,11 +120,8 @@ public class GUIController implements ModelEventListener {
 	@Override
 	public void recieveBoardMessages(Iterator<Message> messages)
 			throws StateException {
-		if (this.currentState instanceof BoardGUI) {
-			((BoardGUI) currentState).recieveMessages(messages);
-		} else {
-			ErrorGUI.showError("State Error", "GUI is out of sync");
-		}
+		currentState.recieveMessages(messages);
+
 
 	}
 

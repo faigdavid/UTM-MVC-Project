@@ -43,7 +43,9 @@ public class BoardGUI extends JFrame implements ActionListener,
 	private JLabel LB_boardTitle;
 	private JTextArea TA_boardMsgs = new JTextArea(10, 30);
 	DefaultCaret caret = (DefaultCaret) TA_boardMsgs.getCaret();
-
+	private int bottomPos = -1;
+	JScrollPane scroll;
+	
 	private JTextField TA_userInput = new JTextField(30);
 
 	private JButton BT_post = new JButton("Post");
@@ -96,10 +98,10 @@ public class BoardGUI extends JFrame implements ActionListener,
 		controlLayout.setVgap(10);
 		// ---------displayPanel-------------------------
 		TA_boardMsgs.setEditable(false);
-		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 
 		// Scroll bar, and messages.
-		JScrollPane scroll = new JScrollPane(TA_boardMsgs);
+		scroll = new JScrollPane(TA_boardMsgs);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		displayPanel.add(scroll);
 		// ---------inputPanel-------------------------
@@ -209,6 +211,10 @@ public class BoardGUI extends JFrame implements ActionListener,
 			if (nextMid > highestMid) {
 				highestMid = nextMid;
 				TA_boardMsgs.append(msg.formatMessage());
+				if (bottomPos - scroll.getVerticalScrollBar().getValue() < 100 ){
+					TA_boardMsgs.setCaretPosition(TA_boardMsgs.getDocument().getLength());
+					bottomPos = scroll.getVerticalScrollBar().getValue();
+				}
 			}
 
 		}
