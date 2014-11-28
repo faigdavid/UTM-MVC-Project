@@ -23,6 +23,23 @@ I could have declared what I was working on specifically - because i didn't alwa
 
 ----
 
+## Seung Hyun Kim (shk0307)
+
+What is your most significant individual contribution?
+* My most significant individual contribution is setting up postgreSQL server for the application.
+* I wrote SQL query and functions to impose restrictions on SQL relations, and set correct timestamps for each messages.
+* I also wrote most DAO's to write/build models to/from SQL server.
+
+Tell us about a new technical concept/issue that you learned while working on the project.
+* I've learned about DAO and MVC model concept which I found it very helpful when implementing postgreSQL server.
+
+What is your main strength(s) as a team member?
+* My main strength lies in finding problems/bugs in the code and provide possible solutions.
+
+What is your main weakness(es) as a team member? (i.e. Where do you think you can/should improve?)
+* I could have worked better on proper error handlings such as raising proper exceptions
+
+----
 ## Name (GitHub username)
 
 TODO: Fill in the report
