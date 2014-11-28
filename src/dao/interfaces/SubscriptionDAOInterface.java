@@ -3,7 +3,6 @@ package interfaces;
 import java.util.Iterator;
 
 import model.Board;
-import model.User;
 
 public interface SubscriptionDAOInterface{
 	/**
@@ -42,7 +41,7 @@ public interface SubscriptionDAOInterface{
 	 *            User object who's unsubscribing.
 	 * @param board
 	 *            Board object that a user is unsubscribing.
-	 * @return 0 on success, -1 on error
+	 * @return 1 on success, 0 on error
 	 */
 	public int unSubUserFromBoard(String user, String bid);
 

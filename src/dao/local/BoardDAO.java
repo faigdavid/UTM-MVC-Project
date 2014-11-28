@@ -16,7 +16,6 @@ import java.util.Iterator;
 import model.Board;
 
 public class BoardDAO implements BoardDAOInterface {
-	private String linuxPath = "/student/ekelundh/git/Proj-UTM-Team6-repo/src/database/BOARDS/";
 	private String dimitriPath = (System.getProperty("user.dir")+"/src/database/BOARDS/");
 	private String defaultPath = dimitriPath;
 	

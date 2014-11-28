@@ -1,4 +1,3 @@
-
 package sqlServer;
 
 import interfaces.SubscriptionDAOInterface;
@@ -11,23 +10,21 @@ import java.util.Iterator;
 
 import model.Board;
 
-
 public class SubscriptionDAO implements SubscriptionDAOInterface {
 	private DBConnection dbc = null;
 	private Connection con = null;
 	private PreparedStatement pstmt = null; // use prepared statement
-	public SubscriptionDAO()
-	{
-		dbc =   DBConnection.getInstance();
+
+	public SubscriptionDAO() {
+		dbc = DBConnection.getInstance();
 		con = dbc.getConnection();
 	}
-	
-	
+
 	@Override
-	//change this function name to getSubscribersByBoard(String bid) 
+	// change this function name to getSubscribersByBoard(String bid)
 	public Iterator<String> getSubscriptionsByBoard(String username) {
 		ArrayList<String> users = new ArrayList<String>();
-		
+
 		try {
 			String sqlText = "SELECT username FROM subscriptions WHERE bid = ?";
 			pstmt = con.prepareStatement(sqlText);
@@ -45,9 +42,9 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 
 	@Override
 	public Iterator<Board> getBoardsBySubscriber(String username) {
-		
+
 		ArrayList<Board> boards = new ArrayList<Board>();
-		
+
 		try {
 			String sqlText = "SELECT bid FROM subscriptions WHERE username = ?";
 			pstmt = con.prepareStatement(sqlText);
@@ -56,7 +53,7 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 			BoardDAO dao = new BoardDAO();
 			while (rs.next()) {
 				boards.add(dao.getBoard(rs.getString("bid")));
-				
+
 			}
 			;
 		} catch (Exception e) {
@@ -67,17 +64,17 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 
 	@Override
 	public int subUserToBoard(String user, String bid) {
-		
+
 		try {
 
 			String sqlText = "INSERT INTO subscriptions "
 					+ " (username, bid) VALUES (? , ?)";
-			
+
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, user);
 			pstmt.setInt(2, Integer.parseInt(bid));
-			if(pstmt.execute()){
-				
+			if (pstmt.execute()) {
+
 				return 1;
 			}
 			;
@@ -86,22 +83,20 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 			System.err.println("Exception: " + e.getMessage());
 			return 0;
 		}
-		
 
 	}
 
 	@Override
 	public int unSubUserFromBoard(String user, String bid) {
-		
+
 		try {
 			String sqlText = "DELETE FROM subscriptions WHERE username = ?, "
-					+"bid = ?";
-			
+					+ "bid = ?";
+
 			pstmt = con.prepareStatement(sqlText);
 			pstmt.setString(1, user);
 			pstmt.setInt(2, Integer.parseInt(bid));
-			if(pstmt.execute()){
-				
+			if (pstmt.execute()) {
 				return 1;
 			}
 			;
@@ -110,7 +105,6 @@ public class SubscriptionDAO implements SubscriptionDAOInterface {
 			System.err.println("Exception: " + e.getMessage());
 			return 0;
 		}
-		
 
 	}
 

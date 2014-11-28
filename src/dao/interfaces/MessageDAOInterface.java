@@ -1,6 +1,5 @@
 package interfaces;
 
-import java.sql.Timestamp;
 import java.util.Iterator;
 
 import model.Message;
@@ -42,7 +41,7 @@ public interface MessageDAOInterface {
 	 *            Board object where message is posted.
 	 * @param msg
 	 *            Message object which to be deleted.
-	 * @return 0 on success, -1 on error.
+	 * @return 1 on success, 0 on error.
 	 */
 	public int deleteMessage(String mid);
 
@@ -55,7 +54,7 @@ public interface MessageDAOInterface {
 	 *  		  The user who is posting
 	 * @param text
 	 *           text which going to be added.
-	 * @return 0 on success, -1 on error.
+	 * @return 1 on success, 0 on error.
 	 */
 	public int addMessage(String username, String bid, String text);
 }

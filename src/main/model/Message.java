@@ -1,6 +1,5 @@
 package model;
 
-import sqlServer.*;
 import java.util.ArrayList;
 
 public class Message {
@@ -29,7 +28,7 @@ public class Message {
 		msg = String.format("[%s] [%s]: %s\n", date, this.username, text);
 
 		if (whitelist == null) { // No whitelist == public message.
-			return msg; //NOTE: all messages are public... for now.
+			return msg; // NOTE: all messages are public... for now.
 		}
 		return "<Permission Denied>";
 	}

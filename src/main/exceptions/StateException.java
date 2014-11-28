@@ -6,7 +6,8 @@ package exceptions;
  *
  */
 public class StateException extends Exception {
-	  public StateException() {
+	private static final long serialVersionUID = 1L;
+	public StateException() {
 		  super(); 
 	  }
 	  public StateException(String message) {

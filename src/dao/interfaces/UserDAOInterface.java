@@ -39,7 +39,7 @@ public interface UserDAOInterface {
 	 * 
 	 * @param user
 	 *            User object that will be deleted.
-	 * @return 0 on success, -1 on error.
+	 * @return 1 on success, 0 on error.
 	 */
 	public int deleteUser(User user);
 }
