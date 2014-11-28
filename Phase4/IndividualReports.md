@@ -2,15 +2,16 @@
 
 -----
 
-## FaigDavid
+## David Faig (FaigDavid)
 
  * My most significant contrubution was making most of the skeleton code with Henry, and patching together everyone's code after they implemented their parts.
+ * I learned a lot about DAO design patterns, Java GUIs, observer design patterns, and MVC design patterns. Overall, I feel as though I have a much stronger understanding of how Java applications work.
  * I understood the MVC design well since I helped make the skeleton code, so I was very helpfull in explaining the design to other team members.
  * I could have included more documentation strings in my skeleton code, and taking the time to organize code ahead of time.
 
 ----
 
-## Henry Ekelund (ekelund)
+## Henry Ekelund (ekelundh)
 
 My most significant contrubtion to this project was my work on the DAOs, as well as my work in convering our older design into an MVC implementing program. 
 
