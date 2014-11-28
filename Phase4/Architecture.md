@@ -1,11 +1,15 @@
 # Architecture
-*There are three parts to the overall architecture: The Model, The DAOs, and the Views. We chose this MVC design pattern because it is a neat and efficient way to separate the different tasks so that various components of the program can be replaced or updated with minimal side effects.
+
+There are three parts to the overall architecture: The Model, The DAOs, and the Views. 
+
+We chose this MVC design pattern because it is a neat and efficient way to separate the tasks that the program needs to perform. The reason behind this decision was to make it easy to give each group member a component to implement on their own. 
+This proved to be a very good decision since the MVC design decoupled the components nicely, making our code easy to put together. Furthermore, switching the implementation of certain components was as easy as importing a different package; for example, we could switch the imported DAOs to local, and the entire program would run using local files instead of the SQL server. (The local DAOs are currently out of date so we technically can't, but it's nice to think we can).
 
 -----
 
 ## VIEW
 
-*The View interacts only with the Model via the ModelController class. Each view implements the ModelEventListener interface, so that they may respond to data updates from the model.
+*The View interacts only with the Model via the ModelController class. Each view implements the ModelEventListener interface, so that they may respond to data and state updates from the model.
 
 *We implemented two views: ConsoleView and GUIView. The console view was made for the initial demo, and to make sure the Model and DAOs worked properly. The GUIView was later implemented with special features such as creating a thread that auto-refreshes the board.
 
