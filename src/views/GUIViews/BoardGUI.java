@@ -211,12 +211,11 @@ public class BoardGUI extends JFrame implements ActionListener,
 			if (nextMid > highestMid) {
 				highestMid = nextMid;
 				TA_boardMsgs.append(msg.formatMessage());
-				if (bottomPos - scroll.getVerticalScrollBar().getValue() < 100 ){
+				if (bottomPos - scroll.getVerticalScrollBar().getValue() < 25 ){
 					TA_boardMsgs.setCaretPosition(TA_boardMsgs.getDocument().getLength());
 					bottomPos = scroll.getVerticalScrollBar().getValue();
 				}
 			}
-
 		}
 	}
 
