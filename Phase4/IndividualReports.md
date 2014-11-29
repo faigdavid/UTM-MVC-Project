@@ -71,3 +71,12 @@ What is your main weakness(es) as a team member? (i.e. Where do you think you ca
 * My main weakness as a team member is I am lazy, if no one tells me to do something, I will probably not do it. 
 
 ----
+
+## Dmitry Vasin (vasindmi)
+
+* My most significant contribution was the work on the GUI of the program, mostly the login, register, and dashboard GUIs. Another big part that sadly didn't make it to the presentation due to technical difficulties was the Android port.
+* I certainly learned the importance of proper DAO's during the project. Since we switched DAO structures at least twice it was apparent that we would have spent a lot of time reworking our code if not for our great DAO design. Learning more about this topic and how it could be used to make programming more efficient was very interesting. 
+* My main strength as a team member is my ability to write proper documentation and the ability to focus and work hard when in a pair or small group. While working in a group of 6 was distracting, pair programming the GUI with Ben showed that it was clearly efficient and a powerful combination.
+* My main weakness as a team member was not being able to discuss designs properly. I usually just accepted what others decided our design should be and we ended up with code that was needlessly complex. If I were to look into it deeper and discuss why we were implementing it that way, we may have saved some precious time. 
+
+----
