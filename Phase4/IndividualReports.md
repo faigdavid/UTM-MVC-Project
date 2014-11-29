@@ -72,7 +72,7 @@ What is your main weakness(es) as a team member? (i.e. Where do you think you ca
 
 ----
 
-## Dmitry Vasin (vasindmi)
+## Dmitry Vasin (trallgorm)
 
 * My most significant contribution was the work on the GUI of the program, mostly the login, register, and dashboard GUIs. Another big part that sadly didn't make it to the presentation due to technical difficulties was the Android port.
 * I certainly learned the importance of proper DAO's during the project. Since we switched DAO structures at least twice it was apparent that we would have spent a lot of time reworking our code if not for our great DAO design. Learning more about this topic and how it could be used to make programming more efficient was very interesting. 
